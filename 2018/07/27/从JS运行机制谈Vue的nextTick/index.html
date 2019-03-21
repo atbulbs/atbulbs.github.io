@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="源码探秘,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="¶从JavaScript的单线程谈起        什么是单线程, 大白话: 同一时间, 只能做一件事情. JavaScript的诞生主要是为了操作DOM, 如果有多个线程, 假设线程A在它的时间片里去修改DOM_FOO, 但是来不及修改完就得退出CPU, 进入就绪状态, 等待下一次调度, 接着线程B占用CPU, 然而它的任务是删除DOM_FOO, 而且线程B这哥们比较麻溜儿的在一个时间片里就把D">
+<meta name="keywords" content="源码探秘">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从JS运行机制谈Vue的nextTick">
+<meta property="og:url" content="https://atbulbs.github.io/2018/07/27/从JS运行机制谈Vue的nextTick/index.html">
+<meta property="og:site_name" content="atbubls(Jason Liao)">
+<meta property="og:description" content="¶从JavaScript的单线程谈起        什么是单线程, 大白话: 同一时间, 只能做一件事情. JavaScript的诞生主要是为了操作DOM, 如果有多个线程, 假设线程A在它的时间片里去修改DOM_FOO, 但是来不及修改完就得退出CPU, 进入就绪状态, 等待下一次调度, 接着线程B占用CPU, 然而它的任务是删除DOM_FOO, 而且线程B这哥们比较麻溜儿的在一个时间片里就把D">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://atbulbs.github.io/images/next-tick/brendan-eich.jpg">
+<meta property="og:image" content="https://atbulbs.github.io/images/next-tick/ryan-dahl.jpg">
+<meta property="og:image" content="https://atbulbs.github.io/images/next-tick/event-loop.png">
+<meta property="og:image" content="https://atbulbs.github.io/images/next-tick/vue-doc-1.png">
+<meta property="og:image" content="https://atbulbs.github.io/images/next-tick/vue-doc-2.png">
+<meta property="og:image" content="https://atbulbs.github.io/images/next-tick/global-api.png">
+<meta property="og:image" content="https://atbulbs.github.io/images/next-tick/instance-render.png">
+<meta property="og:updated_time" content="2019-03-21T08:40:21.906Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="从JS运行机制谈Vue的nextTick">
+<meta name="twitter:description" content="¶从JavaScript的单线程谈起        什么是单线程, 大白话: 同一时间, 只能做一件事情. JavaScript的诞生主要是为了操作DOM, 如果有多个线程, 假设线程A在它的时间片里去修改DOM_FOO, 但是来不及修改完就得退出CPU, 进入就绪状态, 等待下一次调度, 接着线程B占用CPU, 然而它的任务是删除DOM_FOO, 而且线程B这哥们比较麻溜儿的在一个时间片里就把D">
+<meta name="twitter:image" content="https://atbulbs.github.io/images/next-tick/brendan-eich.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    
+    
+    emojis: {
+      className: 'github-emoji'
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://atbulbs.github.io/2018/07/27/从JS运行机制谈Vue的nextTick/">
+
+
+
+
+
+  <title>从JS运行机制谈Vue的nextTick | atbubls(Jason Liao)</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">atbubls(Jason Liao)</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">more code, more exercise, more happy</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://atbulbs.github.io/2018/07/27/从JS运行机制谈Vue的nextTick/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="atbulbs">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="atbubls(Jason Liao)">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">从JS运行机制谈Vue的nextTick</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-27T13:57:13+08:00">
+                2018-07-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/vue/" itemprop="url" rel="index">
+                    <span itemprop="name">vue</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="&#x4ECE;javascript&#x7684;&#x5355;&#x7EBF;&#x7A0B;&#x8C08;&#x8D77;"><a class="header-anchor" href="#&#x4ECE;javascript&#x7684;&#x5355;&#x7EBF;&#x7A0B;&#x8C08;&#x8D77;">&#xB6;</a>&#x4ECE;JavaScript&#x7684;&#x5355;&#x7EBF;&#x7A0B;&#x8C08;&#x8D77;</h2>
+<p>&#xA0; &#xA0; &#xA0; &#xA0;&#x4EC0;&#x4E48;&#x662F;&#x5355;&#x7EBF;&#x7A0B;, &#x5927;&#x767D;&#x8BDD;: &#x540C;&#x4E00;&#x65F6;&#x95F4;, &#x53EA;&#x80FD;&#x505A;&#x4E00;&#x4EF6;&#x4E8B;&#x60C5;. JavaScript&#x7684;&#x8BDE;&#x751F;&#x4E3B;&#x8981;&#x662F;&#x4E3A;&#x4E86;&#x64CD;&#x4F5C;DOM, &#x5982;&#x679C;&#x6709;&#x591A;&#x4E2A;&#x7EBF;&#x7A0B;, &#x5047;&#x8BBE;&#x7EBF;&#x7A0B;A&#x5728;&#x5B83;&#x7684;&#x65F6;&#x95F4;&#x7247;&#x91CC;&#x53BB;&#x4FEE;&#x6539;DOM_FOO, &#x4F46;&#x662F;&#x6765;&#x4E0D;&#x53CA;&#x4FEE;&#x6539;&#x5B8C;&#x5C31;&#x5F97;&#x9000;&#x51FA;CPU, &#x8FDB;&#x5165;&#x5C31;&#x7EEA;&#x72B6;&#x6001;, &#x7B49;&#x5F85;&#x4E0B;&#x4E00;&#x6B21;&#x8C03;&#x5EA6;, &#x63A5;&#x7740;&#x7EBF;&#x7A0B;B&#x5360;&#x7528;CPU, &#x7136;&#x800C;&#x5B83;&#x7684;&#x4EFB;&#x52A1;&#x662F;&#x5220;&#x9664;DOM_FOO, &#x800C;&#x4E14;&#x7EBF;&#x7A0B;B&#x8FD9;&#x54E5;&#x4EEC;&#x6BD4;&#x8F83;&#x9EBB;&#x6E9C;&#x513F;&#x7684;&#x5728;&#x4E00;&#x4E2A;&#x65F6;&#x95F4;&#x7247;&#x91CC;&#x5C31;&#x628A;DOM_FOO&#x7ED9;&#x5E72;&#x6389;&#x4E86;, &#x529F;&#x6210;&#x8EAB;&#x9000;, &#x7B49;&#x5230;&#x7EBF;&#x7A0B;A&#x518D;&#x6765;&#x6267;&#x884C;&#x4EFB;&#x52A1;&#x7684;&#x65F6;&#x5019;&#x538B;&#x6839;&#x5C31;&#x627E;&#x4E0D;&#x5230;DOM_FOO,&#x8FD9;&#x4E0B;&#x5C31;&#x5C34;&#x5C2C;&#x4E86;&#x1F602;, &#x5B8C;&#x4E0D;&#x6210;&#x4EFB;&#x52A1;&#x8BE5;&#x548B;&#x6574;&#x554A;, &#x8981;&#x4E3B;&#x4EBA;&#x6765;&#x4E00;&#x5957;&#x9501;&#x673A;&#x5236;&#x5427;, &#x4F1A;&#x4E0D;&#x4F1A;&#x6210;&#x672C;&#x592A;&#x9AD8;, &#x5E03;&#x5170;&#x767B;&#x5DF4;&#x5DF4;&#x4E00;&#x5F00;&#x59CB;&#x5C31;&#x628A;&#x5B83;&#x8BBE;&#x8BA1;&#x6210;&#x4E86;&#x5355;&#x7EBF;&#x7A0B;(&#x800C;&#x4E14;&#x4E0E;&#x6D4F;&#x89C8;&#x5668;&#x6E32;&#x67D3;DOM&#x5171;&#x7528;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;), &#x5E76;&#x88AB;&#x745E;&#x5B89;&#x5927;&#x5927;&#x53D1;&#x626C;&#x5149;&#x5927;, &#x819C;&#x62DC;&#x4E00;&#x4E0B;&#x6211;JS&#x4E24;&#x5927;&#x7537;&#x795E;&#x1F60D;</p>
+<a id="more"></a>
+<p><img src="/images/next-tick/brendan-eich.jpg" alt="brendan-eich"></p>
+<p><img src="/images/next-tick/ryan-dahl.jpg" alt="ryan-dahl"></p>
+<p>&#xA0; &#xA0; &#xA0; &#xA0;JavaScript&#x7684;&#x4E8B;&#x4EF6;&#x8F6E;&#x8BE2;Event Loop: &#x540C;&#x6B65;&#x4EFB;&#x52A1;&#x5728;&#x6267;&#x884C;&#x73AF;&#x5883;&#x6808;ECS(Execution Context Stack)&#x4E2D;&#x8FD0;&#x884C;, &#x4E3B;&#x7EBF;&#x7A0B;&#x6267;&#x884C;&#x4E00;&#x6B21;&#x53EB;&#x505A;&#x4E00;&#x4E2A;tick, &#x5F02;&#x6B65;&#x4EFB;&#x52A1;&#x6709;&#x4E86;&#x7ED3;&#x679C;&#x540E;&#x8FDB;&#x5165;&#x4EFB;&#x52A1;&#x961F;&#x5217;TQ(Task Quene)&#x6267;&#x884C;, task&#x5206;&#x4E3A;macro task(&#x5982; setImmediate, MessageChannel, setTimeout)&#x548C; micro task(&#x5982;Promise.then), &#x6BCF;&#x4E2A;macro task&#x7ED3;&#x675F;&#x540E;, &#x6240;&#x6709;&#x7684;micro task &#x90FD;&#x4F1A;&#x88AB;handle, &#x4E3B;&#x7EBF;&#x7A0B;&#x7A7A;&#x4E86;&#x5C31;&#x56DE;&#x53BB;&#x8BFB;&#x53D6;&#x4EFB;&#x52A1;&#x961F;&#x5217;, &#x800C;&#x4E14;&#x5B9A;&#x65F6;&#x5668;&#x7684;&#x6267;&#x884C;&#x65F6;&#x95F4;&#x5230;&#x4E86;&#x624D;&#x80FD;&#x8FD4;&#x56DE;&#x4E3B;&#x7EBF;&#x7A0B;, &#x5982;&#x6B64;&#x91CD;&#x590D;&#x91CD;&#x590D;&#x518D;&#x91CD;&#x590D;</p>
+<p><img src="/images/next-tick/event-loop.png" alt="event-loop"></p>
+<p>&#xA0; &#xA0; &#xA0; &#xA0;setTimeout(fn, 0), &#x5728;&#x4EFB;&#x52A1;&#x961F;&#x5217;&#x5C3E;&#x90E8;&#x6DFB;&#x52A0;&#x4E8B;&#x4EF6;, HTML5&#x6807;&#x51C6;&#x4E2D;&#x89C4;&#x5B9A;&#x5EF6;&#x8FDF;&#x65F6;&#x95F4;&#x4E0D;&#x4F4E;&#x4E8E;4ms, &#x6240;&#x4EE5;&#x4F60;&#x5199;&#x7684;0, &#x5B9E;&#x9645;&#x6267;&#x884C;&#x65F6;&#x5728;4ms&#x4EE5;&#x4E0A;</p>
+<p>&#xA0; &#xA0; &#xA0; &#xA0;&#x4E3B;&#x6D41;&#x5C4F;&#x5E55;&#x5237;&#x65B0;&#x7387;&#x5728;60hz, DOM&#x7684;&#x53D8;&#x52A8;&#x4E0D;&#x662F;&#x7ACB;&#x5373;&#x6267;&#x884C;, &#x800C;&#x662F;&#x6BCF;16&#x6BEB;&#x79D2;&#x6267;&#x884C;&#x4E00;&#x6B21;</p>
+<p>&#xA0; &#xA0; &#xA0; &#xA0;node.js&#x4E2D;process.nextTick&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x5728;&#x5F53;&#x524D;&#x6267;&#x884C;&#x6808;&#x7684;&#x5C3E;&#x90E8;&#x548C;&#x4E0B;&#x4E00;&#x6B21;Event Loop(&#x4E3B;&#x7EBF;&#x7A0B;&#x8BFB;&#x53D6;&#x4EFB;&#x52A1;&#x961F;&#x5217;)&#x4E4B;&#x524D;&#x89E6;&#x53D1;&#x56DE;&#x8C03;&#x51FD;&#x6570;,&#x5B83;&#x6307;&#x5B9A;&#x7684;&#x4EFB;&#x52A1;&#x4F18;&#x5148;&#x4E8E;&#x6240;&#x6709;&#x5F02;&#x6B65;&#x4EFB;&#x52A1;&#x4E4B;&#x524D;&#x6267;&#x884C;, node.js&#x4E2D;setImmediate&#x65B9;&#x6CD5;&#x5219;&#x662F;&#x5728;&#x5F53;&#x524D;&#x4EFB;&#x52A1;&#x961F;&#x5217;&#x7684;&#x5C3E;&#x90E8;&#x6DFB;&#x52A0;&#x4E8B;&#x4EF6;, &#x76F8;&#x5F53;&#x4E8E;window&#x4E2D;&#x7684;setTimeout(fn, 0)</p>
+<h2 id="vue&#x4E2D;&#x7684;nexttick"><a class="header-anchor" href="#vue&#x4E2D;&#x7684;nexttick">&#xB6;</a>Vue&#x4E2D;&#x7684;nextTick</h2>
+<p>&#xA0; &#xA0; &#xA0; &#xA0;&#x89C1;&#x5B98;&#x65B9;&#x6587;&#x6863;, nextTick&#x7684;&#x5E94;&#x7528;&#x573A;&#x666F;, &#x5927;&#x767D;&#x8BDD;, &#x6570;&#x636E;&#x53D8;&#x5316;&#x540E;, DOM&#x5728;&#x4E0B;&#x4E00;&#x4E2A;tick&#x624D;&#x4F1A;&#x91CD;&#x65B0;&#x6E32;&#x67D3;</p>
+<p><img src="/images/next-tick/vue-doc-1.png" alt="vue-doc-1"></p>
+<p><img src="/images/next-tick/vue-doc-2.png" alt="vue-doc-2"></p>
+<p>&#xA0; &#xA0; &#xA0; &#xA0;nextTick&#x4EE3;&#x7801;&#x5728;vue&#x6E90;&#x7801;&#x6838;&#x5FC3;&#x7684;&#x5DE5;&#x5177;&#x7C7B;&#x91CC;vue/src/core/util/next-tick.js, &#x5BF9;&#x5916;&#x66B4;&#x9732;&#x4E24;&#x4E2A;&#x51FD;&#x6570;, withMacroTask &#x548C; nextTick</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/* @flow */</span></span><br><span class="line"><span class="comment">/* globals MessageChannel */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> { noop } <span class="keyword">from</span> <span class="string">&apos;shared/util&apos;</span></span><br><span class="line"><span class="keyword">import</span> { handleError } <span class="keyword">from</span> <span class="string">&apos;./error&apos;</span></span><br><span class="line"><span class="keyword">import</span> { isIOS, isNative } <span class="keyword">from</span> <span class="string">&apos;./env&apos;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> callbacks = []</span><br><span class="line"><span class="keyword">let</span> pending = <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">flushCallbacks</span> (<span class="params"></span>) </span>{</span><br><span class="line">  pending = <span class="literal">false</span></span><br><span class="line">  <span class="keyword">const</span> copies = callbacks.slice(<span class="number">0</span>)</span><br><span class="line">  callbacks.length = <span class="number">0</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; copies.length; i++) {</span><br><span class="line">    copies[i]()</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// Here we have async deferring wrappers using both microtasks and (macro) tasks.</span></span><br><span class="line"><span class="comment">// In &lt; 2.4 we used microtasks everywhere, but there are some scenarios where</span></span><br><span class="line"><span class="comment">// microtasks have too high a priority and fire in between supposedly</span></span><br><span class="line"><span class="comment">// sequential events (e.g. #4521, #6690) or even between bubbling of the same</span></span><br><span class="line"><span class="comment">// event (#6566). However, using (macro) tasks everywhere also has subtle problems</span></span><br><span class="line"><span class="comment">// when state is changed right before repaint (e.g. #6813, out-in transitions).</span></span><br><span class="line"><span class="comment">// Here we use microtask by default, but expose a way to force (macro) task when</span></span><br><span class="line"><span class="comment">// needed (e.g. in event handlers attached by v-on).</span></span><br><span class="line"><span class="keyword">let</span> microTimerFunc</span><br><span class="line"><span class="keyword">let</span> macroTimerFunc</span><br><span class="line"><span class="keyword">let</span> useMacroTask = <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Determine (macro) task defer implementation.</span></span><br><span class="line"><span class="comment">// Technically setImmediate should be the ideal choice, but it&apos;s only available</span></span><br><span class="line"><span class="comment">// in IE. The only polyfill that consistently queues the callback after all DOM</span></span><br><span class="line"><span class="comment">// events triggered in the same loop is by using MessageChannel.</span></span><br><span class="line"><span class="comment">/* istanbul ignore if */</span></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span> setImmediate !== <span class="string">&apos;undefined&apos;</span> &amp;&amp; isNative(setImmediate)) {</span><br><span class="line">  macroTimerFunc = <span class="function"><span class="params">()</span> =&gt;</span> {</span><br><span class="line">    setImmediate(flushCallbacks)</span><br><span class="line">  }</span><br><span class="line">} <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> MessageChannel !== <span class="string">&apos;undefined&apos;</span> &amp;&amp; (</span><br><span class="line">  isNative(MessageChannel) ||</span><br><span class="line">  <span class="comment">// PhantomJS</span></span><br><span class="line">  MessageChannel.toString() === <span class="string">&apos;[object MessageChannelConstructor]&apos;</span></span><br><span class="line">)) {</span><br><span class="line">  <span class="keyword">const</span> channel = <span class="keyword">new</span> MessageChannel()</span><br><span class="line">  <span class="keyword">const</span> port = channel.port2</span><br><span class="line">  channel.port1.onmessage = flushCallbacks</span><br><span class="line">  macroTimerFunc = <span class="function"><span class="params">()</span> =&gt;</span> {</span><br><span class="line">    port.postMessage(<span class="number">1</span>)</span><br><span class="line">  }</span><br><span class="line">} <span class="keyword">else</span> {</span><br><span class="line">  <span class="comment">/* istanbul ignore next */</span></span><br><span class="line">  macroTimerFunc = <span class="function"><span class="params">()</span> =&gt;</span> {</span><br><span class="line">    setTimeout(flushCallbacks, <span class="number">0</span>)</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// Determine microtask defer implementation.</span></span><br><span class="line"><span class="comment">/* istanbul ignore next, $flow-disable-line */</span></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">Promise</span> !== <span class="string">&apos;undefined&apos;</span> &amp;&amp; isNative(<span class="built_in">Promise</span>)) {</span><br><span class="line">  <span class="keyword">const</span> p = <span class="built_in">Promise</span>.resolve()</span><br><span class="line">  microTimerFunc = <span class="function"><span class="params">()</span> =&gt;</span> {</span><br><span class="line">    p.then(flushCallbacks)</span><br><span class="line">    <span class="comment">// in problematic UIWebViews, Promise.then doesn&apos;t completely break, but</span></span><br><span class="line">    <span class="comment">// it can get stuck in a weird state where callbacks are pushed into the</span></span><br><span class="line">    <span class="comment">// microtask queue but the queue isn&apos;t being flushed, until the browser</span></span><br><span class="line">    <span class="comment">// needs to do some other work, e.g. handle a timer. Therefore we can</span></span><br><span class="line">    <span class="comment">// &quot;force&quot; the microtask queue to be flushed by adding an empty timer.</span></span><br><span class="line">    <span class="keyword">if</span> (isIOS) setTimeout(noop)</span><br><span class="line">  }</span><br><span class="line">} <span class="keyword">else</span> {</span><br><span class="line">  <span class="comment">// fallback to macro</span></span><br><span class="line">  microTimerFunc = macroTimerFunc</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Wrap a function so that if any code inside triggers state change,</span></span><br><span class="line"><span class="comment"> * the changes are queued using a (macro) task instead of a microtask.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">withMacroTask</span> (<span class="params">fn: Function</span>): <span class="title">Function</span> </span>{</span><br><span class="line">  <span class="keyword">return</span> fn._withTask || (fn._withTask = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>{</span><br><span class="line">    useMacroTask = <span class="literal">true</span></span><br><span class="line">    <span class="keyword">const</span> res = fn.apply(<span class="literal">null</span>, <span class="built_in">arguments</span>)</span><br><span class="line">    useMacroTask = <span class="literal">false</span></span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line">  })</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">nextTick</span> (<span class="params">cb?: Function, ctx?: Object</span>) </span>{</span><br><span class="line">  <span class="keyword">let</span> _resolve</span><br><span class="line">  callbacks.push(<span class="function"><span class="params">()</span> =&gt;</span> {</span><br><span class="line">    <span class="keyword">if</span> (cb) {</span><br><span class="line">      <span class="keyword">try</span> {</span><br><span class="line">        cb.call(ctx)</span><br><span class="line">      } <span class="keyword">catch</span> (e) {</span><br><span class="line">        handleError(e, ctx, <span class="string">&apos;nextTick&apos;</span>)</span><br><span class="line">      }</span><br><span class="line">    } <span class="keyword">else</span> <span class="keyword">if</span> (_resolve) {</span><br><span class="line">      _resolve(ctx)</span><br><span class="line">    }</span><br><span class="line">  })</span><br><span class="line">  <span class="keyword">if</span> (!pending) {</span><br><span class="line">    pending = <span class="literal">true</span></span><br><span class="line">    <span class="keyword">if</span> (useMacroTask) {</span><br><span class="line">      macroTimerFunc()</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      microTimerFunc()</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="comment">// $flow-disable-line</span></span><br><span class="line">  <span class="keyword">if</span> (!cb &amp;&amp; <span class="keyword">typeof</span> <span class="built_in">Promise</span> !== <span class="string">&apos;undefined&apos;</span>) {</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> {</span><br><span class="line">      _resolve = resolve</span><br><span class="line">    })</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>&#xA0; &#xA0; &#xA0; &#xA0;nextTick&#x5728;vue/src/core/global-api/index.js&#x4F5C;&#x4E3A;&#x9759;&#x6001;&#x65B9;&#x6CD5;&#x88AB;&#x7ED1;&#x5B9A;&#x5728;Vue&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#x4E0A;</p>
+<p><img src="/images/next-tick/global-api.png" alt="global-api"></p>
+<p>&#xA0; &#xA0; &#xA0; &#xA0;nextTick&#x5728;vue/src/core/instance/render.js&#x7ED1;&#x5B9A;&#x5728;Vue&#x539F;&#x578B;&#x5BF9;&#x8C61;&#x4E0A;&#x5E76;&#x4E14;this&#x4F1A;&#x6307;&#x5411;&#x8C03;&#x7528;$nextTick&#x7684;&#x5B9E;&#x4F8B;</p>
+<p><img src="/images/next-tick/instance-render.png" alt="instance-render"></p>
+<p>&#xA0; &#xA0; &#xA0; &#xA0;&#x5BF9;macro task&#x7684;&#x5B9E;&#x73B0;, &#x4F9D;&#x6B21;&#x5224;&#x65AD;&#x662F;&#x5426;&#x652F;&#x6301;&#x539F;&#x751F;&#x7684;setImmediate&#x548C;&#x539F;&#x751F;&#x7684;MessageChannel, &#x5426;&#x5219;&#x964D;&#x7EA7;&#x4E3A;setTimeout(flushCallbacks, 0)</p>
+<p>&#xA0; &#xA0; &#xA0; &#xA0;&#x5BF9;micro task&#x7684;&#x5B9E;&#x73B0;, &#x5224;&#x65AD;&#x662F;&#x5426;&#x652F;&#x6301;&#x539F;&#x751F;&#x7684;Promise, &#x5426;&#x5219;&#x964D;&#x7EA7;&#x4E3A;macro task</p>
+<p>&#xA0; &#xA0; &#xA0; &#xA0;nextTick&#x51FD;&#x6570;, &#x628A;&#x4F20;&#x5165;&#x7684;&#x56DE;&#x8C03;&#x51FD;&#x6570;cb&#x538B;&#x5165;callbacks&#x6570;&#x7EC4;, &#x6700;&#x540E;&#x4E00;&#x6B21;&#x6027;&#x5730;&#x6839;&#x636E;useMacroTask&#x6761;&#x4EF6;&#x6267;&#x884C;macroTimerFunc&#x6216;&#x8005;&#x662F; microTimerFunc, &#x800C;&#x5B83;&#x4EEC;&#x90FD;&#x4F1A;&#x5728;&#x4E0B;&#x4E00;&#x4E2A;tick&#x6267;&#x884C;flushCallbacks</p>
+<p>&#xA0; &#xA0; &#xA0; &#xA0;flushCallbacks&#x62F7;&#x8D1D;&#x5E76;&#x904D;&#x5386;callbacks&#x5E76;&#x6267;&#x884C;&#x76F8;&#x5E94;&#x7684;&#x56DE;&#x8C03;&#x51FD;&#x6570;</p>
+<p>&#xA0; &#xA0; &#xA0; &#xA0;&#x5982;&#x679C;nextTick&#x51FD;&#x6570;&#x6CA1;&#x6709;&#x63A5;&#x6536;&#x5230;cb&#x800C;&#x4E14;&#x652F;&#x6301;Promise, &#x5219;&#x63D0;&#x4F9B;Promise&#x5316;&#x7684;&#x8C03;&#x7528;</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>点击打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="atbulbs 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="atbulbs 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/源码探秘/" rel="tag"># 源码探秘</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/25/判断数组的排序/" rel="next" title="判断数组的排序">
+                <i class="fa fa-chevron-left"></i> 判断数组的排序
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/29/H5开发出坑姿势集锦/" rel="prev" title="H5开发出姿势集锦">
+                H5开发出姿势集锦 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="atbulbs">
+            
+              <p class="site-author-name" itemprop="name">atbulbs</p>
+              <p class="site-description motion-element" itemprop="description"></></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+  
+  
+  <div class="site-state-item site-state-categories">
+    
+	  <a href="/categories/index.html">
+	
+      <span class="site-state-item-count">16</span>
+      <span class="site-state-item-name">分类</span>
+    </a>
+  </div>
+
+
+
+  
+  
+  <div class="site-state-item site-state-tags">
+    
+	  <a href="/tags/index.html">
+	
+      <span class="site-state-item-count">23</span>
+      <span class="site-state-item-name">标签</span>
+    </a>
+  </div>
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/atbulbs" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:atbulbs@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#从javascript的单线程谈起"><span class="nav-number">1.</span> <span class="nav-text">¶从JavaScript的单线程谈起</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue中的nexttick"><span class="nav-number">2.</span> <span class="nav-text">¶Vue中的nextTick</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">atbulbs</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

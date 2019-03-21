@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="声明：转载自 ryanluoxu 原创文章，我的博客就是按照这篇文章搭建的, 有兴趣的同学可以玩一玩。 搭建这个博客走了许多弯路。在这里分享总结之后的思路和简化步骤。  Github Pages Hexo 博客框架 部署 Next 主题  ¶Github Pages Github Pages 其实本身就是 Github 提供的博客服务。 我们在 Github 中创建一个特定格式的 Reposito">
+<meta name="keywords" content="Hexo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo的入坑姿势">
+<meta property="og:url" content="https://atbulbs.github.io/2018/02/03/Hexo博客的使用/index.html">
+<meta property="og:site_name" content="atbubls(Jason Liao)">
+<meta property="og:description" content="声明：转载自 ryanluoxu 原创文章，我的博客就是按照这篇文章搭建的, 有兴趣的同学可以玩一玩。 搭建这个博客走了许多弯路。在这里分享总结之后的思路和简化步骤。  Github Pages Hexo 博客框架 部署 Next 主题  ¶Github Pages Github Pages 其实本身就是 Github 提供的博客服务。 我们在 Github 中创建一个特定格式的 Reposito">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-21T08:40:21.903Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo的入坑姿势">
+<meta name="twitter:description" content="声明：转载自 ryanluoxu 原创文章，我的博客就是按照这篇文章搭建的, 有兴趣的同学可以玩一玩。 搭建这个博客走了许多弯路。在这里分享总结之后的思路和简化步骤。  Github Pages Hexo 博客框架 部署 Next 主题  ¶Github Pages Github Pages 其实本身就是 Github 提供的博客服务。 我们在 Github 中创建一个特定格式的 Reposito">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    
+    
+    emojis: {
+      className: 'github-emoji'
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://atbulbs.github.io/2018/02/03/Hexo博客的使用/">
+
+
+
+
+
+  <title>Hexo的入坑姿势 | atbubls(Jason Liao)</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">atbubls(Jason Liao)</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">more code, more exercise, more happy</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://atbulbs.github.io/2018/02/03/Hexo博客的使用/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="atbulbs">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="atbubls(Jason Liao)">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Hexo的入坑姿势</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-03T10:15:17+08:00">
+                2018-02-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/博客工具/" itemprop="url" rel="index">
+                    <span itemprop="name">博客工具</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>&#x58F0;&#x660E;&#xFF1A;&#x8F6C;&#x8F7D;&#x81EA; ryanluoxu &#x539F;&#x521B;&#x6587;&#x7AE0;&#xFF0C;&#x6211;&#x7684;&#x535A;&#x5BA2;&#x5C31;&#x662F;&#x6309;&#x7167;&#x8FD9;&#x7BC7;&#x6587;&#x7AE0;&#x642D;&#x5EFA;&#x7684;, &#x6709;&#x5174;&#x8DA3;&#x7684;&#x540C;&#x5B66;&#x53EF;&#x4EE5;&#x73A9;&#x4E00;&#x73A9;&#x3002;</strong></p>
+<p>&#x642D;&#x5EFA;&#x8FD9;&#x4E2A;&#x535A;&#x5BA2;&#x8D70;&#x4E86;&#x8BB8;&#x591A;&#x5F2F;&#x8DEF;&#x3002;&#x5728;&#x8FD9;&#x91CC;&#x5206;&#x4EAB;&#x603B;&#x7ED3;&#x4E4B;&#x540E;&#x7684;&#x601D;&#x8DEF;&#x548C;&#x7B80;&#x5316;&#x6B65;&#x9AA4;&#x3002;</p>
+<ul>
+<li>Github Pages</li>
+<li>Hexo &#x535A;&#x5BA2;&#x6846;&#x67B6;</li>
+<li>&#x90E8;&#x7F72;</li>
+<li>Next &#x4E3B;&#x9898;</li>
+</ul>
+<h2 id="github-pages"><a class="header-anchor" href="#github-pages">&#xB6;</a>Github Pages</h2>
+<p>Github Pages &#x5176;&#x5B9E;&#x672C;&#x8EAB;&#x5C31;&#x662F; Github &#x63D0;&#x4F9B;&#x7684;&#x535A;&#x5BA2;&#x670D;&#x52A1;&#x3002; &#x6211;&#x4EEC;&#x5728; Github &#x4E2D;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x7279;&#x5B9A;&#x683C;&#x5F0F;&#x7684; Repository&#xFF0C;Github Pages &#x5C31;&#x4F1A;&#x5C06;&#x91CC;&#x9762;&#x7684;&#x4FE1;&#x606F;&#x751F;&#x6210;&#x4E00;&#x4E2A;&#x7F51;&#x9875;&#xFF0C;&#x5C55;&#x793A;&#x51FA;&#x6765;&#x3002;</p>
+<p><strong>&#x64CD;&#x4F5C;&#x5982;&#x4E0B;&#xFF1A;</strong></p>
+<a id="more"></a>
+<ol>
+<li>&#x6CE8;&#x518C; Github &#x8D26;&#x53F7;&#xFF0C;&#x7136;&#x540E;&#x5728; Github &#x4E2D;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x4EE5; .github.io &#x7ED3;&#x5C3E;&#x7684; Repository&#x3002;
+<ol>
+<li>Repository name: <a href="http://ryanluoxu.github.io" target="_blank" rel="noopener">ryanluoxu.github.io</a></li>
+<li>&#x52FE;&#x9009; Initialize this repository with a README</li>
+<li>Create repository</li>
+</ol>
+</li>
+<li>&#x7B80;&#x5355;&#x5730;&#x7F16;&#x8F91;&#x4E00;&#x4E0B; <a href="http://README.md" target="_blank" rel="noopener">README.md</a> &#x8FD9;&#x4E2A;&#x6587;&#x6863;&#x3002; &#x6BD4;&#x5982;&#x6DFB;&#x52A0;&#xFF1A;I am trying to create my own blog&#x2026; &#x4FDD;&#x5B58;(Commit changes)&#x3002;</li>
+<li>&#x6253;&#x5F00;&#x7F51;&#x9875;&#xFF1A;<a href="http://ryanluoxu.github.io" target="_blank" rel="noopener">ryanluoxu.github.io</a> &#x8FD9;&#x91CC;&#x5C31;&#x53EF;&#x4EE5;&#x770B;&#x5230; <a href="http://README.md" target="_blank" rel="noopener">README.md</a> &#x91CC;&#x7684;&#x5185;&#x5BB9;&#x4E86;&#x3002;</li>
+</ol>
+<p>&#x5982;&#x679C;&#x6CA1;&#x6709;&#x592A;&#x591A;&#x7684;&#x8981;&#x6C42;&#xFF0C;&#x5176;&#x5B9E;&#x76F4;&#x63A5;&#x7528; <a href="http://README.md" target="_blank" rel="noopener">README.md</a> &#x6765;&#x5199;&#x535A;&#x5BA2;&#x4E5F;&#x662F;&#x4E0D;&#x9519;&#x7684;&#x3002;</p>
+<p>&#x8FD9;&#x4E2A;&#x751F;&#x6210;&#x597D;&#x7684; Repository &#x5C31;&#x662F;&#x7528;&#x6765;&#x5B58;&#x653E;&#x535A;&#x5BA2;&#x5185;&#x5BB9;&#x7684;&#x5730;&#x65B9;&#xFF0C;&#x4E5F;&#x53EA;&#x6709;&#x8FD9;&#x4E2A;&#x4ED3;&#x5E93;&#x91CC;&#x7684;&#x5185;&#x5BB9;&#xFF0C;&#x624D;&#x4F1A;&#x88AB; <a href="http://ryanluoxu.github.io" target="_blank" rel="noopener">ryanluoxu.github.io</a> &#x8FD9;&#x4E2A;&#x7F51;&#x9875;&#x663E;&#x793A;&#x51FA;&#x6765;&#x3002;</p>
+<h2 id="hexo"><a class="header-anchor" href="#hexo">&#xB6;</a>Hexo</h2>
+<p>Hexo &#x662F;&#x4E00;&#x4E2A;&#x535A;&#x5BA2;&#x6846;&#x67B6;&#x3002;&#x5B83;&#x628A;&#x672C;&#x5730;&#x6587;&#x4EF6;&#x91CC;&#x7684;&#x4FE1;&#x606F;&#x751F;&#x6210;&#x4E00;&#x4E2A;&#x7F51;&#x9875;&#x3002;&#x5982;&#x679C;&#x4E0D;&#x9700;&#x8981;&#x653E;&#x5728;&#x7F51;&#x4E0A;&#x7ED9;&#x522B;&#x4EBA;&#x770B;&#xFF0C;&#x5C31;&#x6CA1; Github Pages &#x4EC0;&#x4E48;&#x4E8B;&#x4E86;&#x3002;</p>
+<p>&#x4F7F;&#x7528; Hexo &#x4E4B;&#x524D;&#xFF0C;&#x9700;&#x8981;&#x5148;&#x5B89;&#x88C5; Node.js &#x548C; Git&#x3002;</p>
+<p><strong>&#x64CD;&#x4F5C;&#x5982;&#x4E0B;&#xFF1A;</strong></p>
+<ol>
+<li>
+<p>&#x5B89;&#x88C5; Node.js</p>
+<ul>
+<li>&#x524D;&#x5F80; <a href="https://nodejs.org/en/" target="_blank" rel="noopener">https://nodejs.org/en/</a></li>
+<li>&#x70B9;&#x51FB; 8.9.1 LTS &#x4E0B;&#x8F7D;</li>
+<li>&#x5B89;&#x88C5;</li>
+<li>&#x6253;&#x5F00; Command Prompt&#xFF0C; &#x8F93;&#x5165; <code>node -v</code></li>
+<li>&#x5F97;&#x5230;&#xFF1A;v8.9.1</li>
+</ul>
+<p>&#x5B89;&#x88C5;&#x6210;&#x529F;</p>
+</li>
+<li>
+<p>&#x5B89;&#x88C5; Git</p>
+<ul>
+<li>&#x524D;&#x5F80; <a href="https://git-scm.com/" target="_blank" rel="noopener">https://git-scm.com/</a></li>
+<li>&#x70B9;&#x51FB; Downloads</li>
+<li>&#x70B9;&#x51FB; Windows</li>
+<li>&#x4E00;&#x822C;&#x60C5;&#x51B5;&#xFF0C;&#x4E0B;&#x8F7D;&#x4F1A;&#x81EA;&#x52A8;&#x5F00;&#x59CB;&#x3002;&#x5982;&#x679C;&#x6CA1;&#x6709;&#xFF0C;&#x5C31;&#x70B9;&#x51FB; click here to download manually</li>
+<li>&#x5B89;&#x88C5;</li>
+<li>&#x6253;&#x5F00; Command Prompt&#xFF0C; &#x8F93;&#x5165; <code>git --version</code></li>
+<li>&#x5F97;&#x5230;&#xFF1A;git version 2.15.0.windows.1</li>
+</ul>
+<p>&#x5B89;&#x88C5;&#x6210;&#x529F;</p>
+<p>&#x989D;&#x5916;&#x8BF4;&#x660E;&#xFF1A;&#x5982;&#x679C; Git --version &#x6307;&#x4EE4;&#x4E0D;&#x7BA1;&#x7528;&#xFF0C;&#x53EF;&#x80FD;&#x9700;&#x8981;&#x5230; Environment Variable &#x90A3;&#x91CC;&#x6DFB;&#x52A0; Path&#x3002;</p>
+</li>
+<li>
+<p>&#x5B89;&#x88C5; Hexo</p>
+<ul>
+<li>&#x6253;&#x5F00; Command Prompt</li>
+<li>&#x8F93;&#x5165; <code>npm install -g hexo-cli</code></li>
+<li>&#x56DE;&#x8F66;&#x5F00;&#x59CB;&#x5B89;&#x88C5;</li>
+<li>&#x8F93;&#x5165; <code>hexo -v</code></li>
+<li>&#x5F97;&#x5230; hexo-cli: 1.0.4 &#x7B49;&#x4E00;&#x4E32;&#x6570;&#x636E;</li>
+</ul>
+<p>&#x5B89;&#x88C5;&#x6210;&#x529F;</p>
+</li>
+<li>
+<p>&#x521B;&#x5EFA;&#x672C;&#x5730;&#x535A;&#x5BA2;</p>
+<ul>
+<li>&#x5728;D&#x76D8;&#x4E0B;&#x521B;&#x5EFA;&#x6587;&#x4EF6;&#x5939; blog</li>
+<li>&#x9F20;&#x6807;&#x53F3;&#x952E; blog&#xFF0C;&#x9009;&#x62E9; Git Bash Here&#x3002; &#x5982;&#x679C;&#x6CA1;&#x6709;&#x5B89;&#x88C5; Git&#xFF0C;&#x5C31;&#x4E0D;&#x4F1A;&#x6709;&#x8FD9;&#x4E2A;&#x9009;&#x9879;&#x3002;</li>
+<li>Git Bash &#x6253;&#x5F00;&#x4E4B;&#x540E;&#xFF0C;&#x6240;&#x5728;&#x7684;&#x4F4D;&#x7F6E;&#x5C31;&#x662F; blog &#x8FD9;&#x4E2A;&#x6587;&#x4EF6;&#x5939;&#x7684;&#x4F4D;&#x7F6E;&#x3002;&#xFF08;/d/blog&#xFF09;</li>
+<li>&#x8F93;&#x5165; <code>hexo init</code> &#x5C06; blog &#x6587;&#x4EF6;&#x5939;&#x521D;&#x59CB;&#x5316;&#x6210;&#x4E00;&#x4E2A;&#x535A;&#x5BA2;&#x6587;&#x4EF6;&#x5939;&#x3002;</li>
+<li>&#x8F93;&#x5165; <code>npm install</code> &#x5B89;&#x88C5;&#x4F9D;&#x8D56;&#x5305;&#x3002;</li>
+<li>&#x8F93;&#x5165; <code>hexo g</code> &#x751F;&#x6210;&#xFF08;generate&#xFF09;&#x7F51;&#x9875;&#x3002; &#x7531;&#x4E8E;&#x6211;&#x4EEC;&#x8FD8;&#x6CA1;&#x521B;&#x5EFA;&#x4EFB;&#x4F55;&#x535A;&#x5BA2;&#xFF0C;&#x751F;&#x6210;&#x7684;&#x7F51;&#x9875;&#x4F1A;&#x5C55;&#x793A; Hexo &#x91CC;&#x9762;&#x81EA;&#x5E26;&#x4E86;&#x4E00;&#x4E2A; Hello World &#x7684;&#x535A;&#x5BA2;&#x3002;</li>
+<li>&#x8F93;&#x5165; <code>hexo s</code> &#x5C06;&#x751F;&#x6210;&#x7684;&#x7F51;&#x9875;&#x653E;&#x5728;&#x4E86;&#x672C;&#x5730;&#x670D;&#x52A1;&#x5668;&#xFF08;server&#xFF09;&#x3002;</li>
+<li>&#x6D4F;&#x89C8;&#x5668;&#x91CC;&#x8F93;&#x5165; <a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a> &#x3002; &#x5C31;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x521A;&#x624D;&#x7684;&#x6210;&#x679C;&#x4E86;&#x3002;</li>
+<li>&#x56DE;&#x5230; Git Bash&#xFF0C;&#x6309; Ctrl+C &#x7ED3;&#x675F;&#x3002;</li>
+</ul>
+<p>&#x6B64;&#x65F6;&#x518D;&#x770B; <a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a> &#x5C31;&#x662F;&#x65E0;&#x6CD5;&#x8BBF;&#x95EE;&#x4E86;&#x3002;</p>
+</li>
+<li>
+<p>&#x53D1;&#x5E03;&#x4E00;&#x7BC7;&#x535A;&#x5BA2;</p>
+<ul>
+<li>&#x7EE7;&#x7EED;&#x5728; Git Bash &#x91CC;&#xFF0C;&#x6240;&#x5728;&#x8DEF;&#x5F84;&#x8FD8;&#x662F; /d/blog&#x3002;&#x8F93;&#x5165; <code>hexo new &quot;My First Post&quot;</code></li>
+<li>&#x5728; D:\blog\source_posts &#x8DEF;&#x5F84;&#x4E0B;&#xFF0C;&#x4F1A;&#x6709;&#x4E00;&#x4E2A; <a href="http://My-First-Post.md" target="_blank" rel="noopener">My-First-Post.md</a> &#x7684;&#x6587;&#x4EF6;&#x3002; &#x7F16;&#x8F91;&#x8FD9;&#x4E2A;&#x6587;&#x4EF6;&#xFF0C;&#x7136;&#x540E;&#x4FDD;&#x5B58;&#x3002;</li>
+<li>&#x56DE;&#x5230; Git Bash&#xFF0C;&#x8F93;&#x5165; <code>hexo g</code></li>
+<li>&#x8F93;&#x5165; <code>hexo s</code></li>
+<li>&#x524D;&#x5F80; <a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a> &#x67E5;&#x770B;&#x6210;&#x679C;&#x3002;</li>
+<li>&#x56DE;&#x5230; Git Bash&#xFF0C;&#x6309; Ctrl+C &#x7ED3;&#x675F;&#x3002;</li>
+</ul>
+</li>
+</ol>
+<h2 id="&#x5C06;&#x672C;&#x5730;-hexo-&#x535A;&#x5BA2;&#x90E8;&#x7F72;&#x5728;-github-&#x4E0A;"><a class="header-anchor" href="#&#x5C06;&#x672C;&#x5730;-hexo-&#x535A;&#x5BA2;&#x90E8;&#x7F72;&#x5728;-github-&#x4E0A;">&#xB6;</a>&#x5C06;&#x672C;&#x5730; Hexo &#x535A;&#x5BA2;&#x90E8;&#x7F72;&#x5728; Github &#x4E0A;</h2>
+<p>&#x524D;&#x9762;&#x4E24;&#x4E2A;&#x90E8;&#x5206;&#xFF0C;&#x6211;&#x4EEC;&#x5DF2;&#x7ECF;&#x6709;&#x4E86;&#x672C;&#x5730;&#x535A;&#x5BA2;&#xFF0C;&#x548C;&#x4E00;&#x4E2A;&#x80FD;&#x6258;&#x7BA1;&#x8FD9;&#x4E9B;&#x8D44;&#x6599;&#x7684;&#x7EBF;&#x4E0A;&#x4ED3;&#x5E93;&#x3002;&#x53EA;&#x8981;&#x628A;&#x672C;&#x5730;&#x535A;&#x5BA2;&#x90E8;&#x7F72;&#xFF08;deploy&#xFF09;&#x5728;&#x6211;&#x4EEC;&#x7684; Github &#x5BF9;&#x5E94;&#x7684; Repository &#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#x3002;</p>
+<p><strong>&#x64CD;&#x4F5C;&#x5982;&#x4E0B;&#xFF1A;</strong></p>
+<ol>
+<li>
+<p>&#x83B7;&#x53D6; Github &#x5BF9;&#x5E94;&#x7684; Repository &#x7684;&#x94FE;&#x63A5;&#x3002;</p>
+<ul>
+<li>&#x767B;&#x9646; Github&#xFF0C;&#x8FDB;&#x5165;&#x5230; <a href="http://ryanluoxu.github.io" target="_blank" rel="noopener">ryanluoxu.github.io</a></li>
+<li>&#x70B9;&#x51FB; Clone or download</li>
+<li>&#x590D;&#x5236; URL &#x5F85;&#x7528;</li>
+</ul>
+<p>&#x6211;&#x7684;&#x662F; <code>https://github.com/Ryanluoxu/ryanluoxu.github.io.git</code></p>
+</li>
+<li>
+<p>&#x4FEE;&#x6539;&#x535A;&#x5BA2;&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;</p>
+<ul>
+<li>&#x6253;&#x5F00;&#x914D;&#x7F6E;&#x6587;&#x4EF6; /d/blog/_config.yml &#xFF08;&#x4F7F;&#x7528; bash &#x91CC;&#x7684; vi &#x6216;&#x8005; notepad++&#xFF09;</li>
+<li>&#x627E;&#x5230; <code>#Deployment</code>&#xFF0C;&#x586B;&#x5165;&#x4EE5;&#x4E0B;&#x5185;&#x5BB9;&#xFF1A;</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:  </span><br><span class="line">	  type: git  </span><br><span class="line">	  repository: https://github.com/Ryanluoxu/ryanluoxu.github.io.git  </span><br><span class="line">	  branch: master</span><br></pre></td></tr></tbody></table></figure>
+<ol start="3">
+<li>
+<p>&#x90E8;&#x7F72;</p>
+<ul>
+<li>&#x56DE;&#x5230; Git Bash</li>
+<li>&#x8F93;&#x5165; <code>npm install hexo-deployer-git --save</code> &#x5B89;&#x88C5; hexo-deployer-git &#x6B64;&#x6B65;&#x9AA4;&#x53EA;&#x9700;&#x8981;&#x505A;&#x4E00;&#x6B21;&#x3002;</li>
+<li>&#x8F93;&#x5165; <code>hexo d</code></li>
+<li>&#x5F97;&#x5230; <code>INFO Deploy done: git</code> &#x5373;&#x4E3A;&#x90E8;&#x7F72;&#x6210;&#x529F;</li>
+</ul>
+<p>&#x4E4B;&#x524D;&#x6211;&#x4EEC;&#x521B;&#x5EFA;&#x7684; <a href="http://ReadMe.md" target="_blank" rel="noopener">ReadMe.md</a> &#x4F1A;&#x88AB;&#x81EA;&#x52A8;&#x8986;&#x76D6;&#x6389;&#x3002;</p>
+</li>
+<li>
+<p>&#x67E5;&#x770B;&#x6210;&#x679C;</p>
+<p>&#x524D;&#x5F80; <a href="http://ryanluoxu.github.io" target="_blank" rel="noopener">ryanluoxu.github.io</a> &#x5373;&#x53EF;&#x3002;</p>
+</li>
+</ol>
+<h2 id="&#x4F7F;&#x7528;-next-&#x4E3B;&#x9898;"><a class="header-anchor" href="#&#x4F7F;&#x7528;-next-&#x4E3B;&#x9898;">&#xB6;</a>&#x4F7F;&#x7528; Next &#x4E3B;&#x9898;</h2>
+<p><a href="https://hexo.io/themes/" target="_blank" rel="noopener">&#x66F4;&#x591A; Hexo &#x7684;&#x4E3B;&#x9898;&#x770B;&#x8FD9;&#x91CC;</a></p>
+<p>&#x8FD9;&#x91CC;&#x4EE5; Next &#x4E3A;&#x4F8B;&#x3002; &#x5927;&#x6982;&#x601D;&#x8DEF;&#x5C31;&#x662F;&#x628A;&#x6574;&#x4E2A;&#x4E3B;&#x9898;&#x7684;&#x6587;&#x4EF6;&#x514B;&#x9686;&#x5230;&#x6211;&#x4EEC;&#x7684;&#x4E3B;&#x9898;&#x6587;&#x4EF6;&#x5939;&#x4E2D;&#x3002;&#x5728;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#x6CE8;&#x660E;&#x4F7F;&#x7528;&#x8BE5;&#x4E3B;&#x9898;&#x3002;</p>
+<p><strong>&#x64CD;&#x4F5C;&#x5982;&#x4E0B;&#xFF1A;</strong></p>
+<ol>
+<li>
+<p>&#x8FD8;&#x662F;&#x56DE;&#x5230; Git Bash&#x3002; &#x8F93;&#x5165; <code>git clone https://github.com/iissnan/hexo-theme-next themes/next</code></p>
+<p>&#x8FD9;&#x6837;&#xFF0C;&#x8BE5;&#x4E3B;&#x9898;&#x7684;&#x6587;&#x4EF6;&#x5C31;&#x5168;&#x90E8;&#x514B;&#x9686;&#x5230; D:\blog\themes\next &#x4E0B;&#x9762;&#x3002;</p>
+</li>
+<li>
+<p>&#x4FEE;&#x6539;&#x535A;&#x5BA2;&#x914D;&#x7F6E;&#x6587;&#x4EF6;</p>
+<ul>
+<li>&#x6253;&#x5F00; D:\blog_config.yml</li>
+<li>&#x627E;&#x5230; <code>theme:</code></li>
+<li>&#x628A; Hexo &#x9ED8;&#x8BA4;&#x7684; lanscape &#x4FEE;&#x6539;&#x6210; next&#x3002; &#x5373; <code>theme: next</code></li>
+<li>&#x627E;&#x5230; <code># Site</code>&#xFF0C;&#x6DFB;&#x52A0;&#x535A;&#x5BA2;&#x540D;&#x79F0;&#xFF0C;&#x4F5C;&#x8005;&#x540D;&#x5B57;&#x7B49;&#x3002;</li>
+<li>&#x5728; <code>language</code> &#x540E;&#x9762;&#x586B;&#x5165; en &#x6216;&#x8005; zh-Hans&#xFF0C;&#x9009;&#x62E9;&#x82F1;&#x6587;&#x6216;&#x8005;&#x4E2D;&#x6587;&#x3002;</li>
+<li>&#x627E;&#x5230; <code># URL</code>, &#x586B;&#x5165; url&#x3002;&#x6BD4;&#x5982; <code>url: https://ryanluoxu.github.io</code></li>
+</ul>
+<p>&#x586B;&#x5165;&#x540D;&#x5B57;&#x540E;&#x4F1A;&#x6709;&#x5F88;&#x98CE;&#x9A9A;&#x7684; &#xA9; 2017  Ryan Luo Xu &#x7684;&#x5B57;&#x6837;&#x51FA;&#x73B0;&#x5728;&#x535A;&#x5BA2;&#x5E95;&#x90E8;&#x3002;</p>
+</li>
+<li>
+<p>&#x91CD;&#x65B0;&#x751F;&#x6210;&#x90E8;&#x7F72;&#x5373;&#x53EF;</p>
+<ul>
+<li>&#x56DE;&#x5230; Git Bash&#x3002;&#x8F93;&#x5165; <code>hexo g -d</code>&#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#x3002;</li>
+</ul>
+<p>&#x5148;&#x628A;&#x4FEE;&#x6539;&#x7684;&#x5185;&#x5BB9;&#x751F;&#x6210;&#x7F51;&#x9875;&#xFF0C;&#x518D;&#x90E8;&#x7F72;&#x3002;</p>
+</li>
+<li>
+<p>&#x67E5;&#x770B;&#x6210;&#x679C;</p>
+<p>&#x524D;&#x5F80; <a href="http://ryanluoxu.github.io" target="_blank" rel="noopener">ryanluoxu.github.io</a> &#x5373;&#x53EF;&#x3002;</p>
+</li>
+</ol>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>点击打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="atbulbs 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="atbulbs 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/03/前端开发-从入门到入门/" rel="prev" title="前端开发, 从入门到入门">
+                前端开发, 从入门到入门 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="atbulbs">
+            
+              <p class="site-author-name" itemprop="name">atbulbs</p>
+              <p class="site-description motion-element" itemprop="description"></></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+  
+  
+  <div class="site-state-item site-state-categories">
+    
+	  <a href="/categories/index.html">
+	
+      <span class="site-state-item-count">16</span>
+      <span class="site-state-item-name">分类</span>
+    </a>
+  </div>
+
+
+
+  
+  
+  <div class="site-state-item site-state-tags">
+    
+	  <a href="/tags/index.html">
+	
+      <span class="site-state-item-count">23</span>
+      <span class="site-state-item-name">标签</span>
+    </a>
+  </div>
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/atbulbs" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:atbulbs@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#github-pages"><span class="nav-number">1.</span> <span class="nav-text">¶Github Pages</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo"><span class="nav-number">2.</span> <span class="nav-text">¶Hexo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将本地-hexo-博客部署在-github-上"><span class="nav-number">3.</span> <span class="nav-text">¶将本地 Hexo 博客部署在 Github 上</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-next-主题"><span class="nav-number">4.</span> <span class="nav-text">¶使用 Next 主题</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">atbulbs</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

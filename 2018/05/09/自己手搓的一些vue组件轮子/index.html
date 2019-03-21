@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="组件化,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="a JasonLiao project: jsl-vue-h5  自己纯手工打造的一些轮子,一个vue的H5插件库, 按照375px宽度的UI图构建, 会转换为vw, 可按需引入,welcome npm install and happy hacking ~☺️   npm site: https://www.npmjs.com/package/jsl-vue-h5   demo online:">
+<meta name="keywords" content="组件化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自己手搓的一些vue组件轮子">
+<meta property="og:url" content="https://atbulbs.github.io/2018/05/09/自己手搓的一些vue组件轮子/index.html">
+<meta property="og:site_name" content="atbubls(Jason Liao)">
+<meta property="og:description" content="a JasonLiao project: jsl-vue-h5  自己纯手工打造的一些轮子,一个vue的H5插件库, 按照375px宽度的UI图构建, 会转换为vw, 可按需引入,welcome npm install and happy hacking ~☺️   npm site: https://www.npmjs.com/package/jsl-vue-h5   demo online:">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-21T08:40:21.908Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="自己手搓的一些vue组件轮子">
+<meta name="twitter:description" content="a JasonLiao project: jsl-vue-h5  自己纯手工打造的一些轮子,一个vue的H5插件库, 按照375px宽度的UI图构建, 会转换为vw, 可按需引入,welcome npm install and happy hacking ~☺️   npm site: https://www.npmjs.com/package/jsl-vue-h5   demo online:">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    
+    
+    emojis: {
+      className: 'github-emoji'
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://atbulbs.github.io/2018/05/09/自己手搓的一些vue组件轮子/">
+
+
+
+
+
+  <title>自己手搓的一些vue组件轮子 | atbubls(Jason Liao)</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">atbubls(Jason Liao)</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">more code, more exercise, more happy</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://atbulbs.github.io/2018/05/09/自己手搓的一些vue组件轮子/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="atbulbs">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="atbubls(Jason Liao)">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">自己手搓的一些vue组件轮子</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-09T07:05:04+08:00">
+                2018-05-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/vue/" itemprop="url" rel="index">
+                    <span itemprop="name">vue</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1>a JasonLiao project: jsl-vue-h5</h1>
+<blockquote>
+<p>&#x81EA;&#x5DF1;&#x7EAF;&#x624B;&#x5DE5;&#x6253;&#x9020;&#x7684;&#x4E00;&#x4E9B;&#x8F6E;&#x5B50;,&#x4E00;&#x4E2A;vue&#x7684;H5&#x63D2;&#x4EF6;&#x5E93;, &#x6309;&#x7167;375px&#x5BBD;&#x5EA6;&#x7684;UI&#x56FE;&#x6784;&#x5EFA;, &#x4F1A;&#x8F6C;&#x6362;&#x4E3A;vw, &#x53EF;&#x6309;&#x9700;&#x5F15;&#x5165;,welcome npm install and happy hacking ~&#x263A;&#xFE0F;</p>
+</blockquote>
+<blockquote>
+<p>npm site: <a href="https://www.npmjs.com/package/jsl-vue-h5" target="_blank" rel="noopener">https://www.npmjs.com/package/jsl-vue-h5</a></p>
+</blockquote>
+<blockquote>
+<p>demo online: <a href="https://atbulbs.github.io/jsl-vue-h5-demo-online/">https://atbulbs.github.io/jsl-vue-h5-demo-online/</a></p>
+</blockquote>
+<blockquote>
+<p>code demo: <a href="https://github.com/atbulbs/jsl-vue-h5-demo" target="_blank" rel="noopener">https://github.com/atbulbs/jsl-vue-h5-demo</a></p>
+</blockquote>
+<h2 id="install"><a class="header-anchor" href="#install">&#xB6;</a>install</h2>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install jsl-vue-h5 --save</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="import-and-use-it"><a class="header-anchor" href="#import-and-use-it">&#xB6;</a>import and use it</h2>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// main.js</span></span><br><span class="line"><span class="keyword">import</span> {</span><br><span class="line">  JslAvatar,</span><br><span class="line">  JslBtnScalableJump,</span><br><span class="line">  JslButton,</span><br><span class="line">  JslClose,</span><br><span class="line">  JslGrid,</span><br><span class="line">  JslGridItem,</span><br><span class="line">  JslLoading,</span><br><span class="line">  JslNavBar,</span><br><span class="line">  JslNomoreTip,</span><br><span class="line">  JslToast</span><br><span class="line">} <span class="keyword">from</span> <span class="string">&apos;jsl-vue-h5&apos;</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&apos;jsl-vue-h5/dist/jsl-vue-h5.min.css&apos;</span></span><br><span class="line"></span><br><span class="line">Vue.use(JslAvatar)</span><br><span class="line">Vue.use(JslBtnScalableJump)</span><br><span class="line">Vue.use(JslButton)</span><br><span class="line">Vue.use(JslClose)</span><br><span class="line">Vue.use(JslGrid)</span><br><span class="line">Vue.use(JslGridItem)</span><br><span class="line">Vue.use(JslLoading)</span><br><span class="line">Vue.use(JslNavBar)</span><br><span class="line">Vue.use(JslNomoreTip)</span><br><span class="line">Vue.use(JslToast)</span><br><span class="line"></span><br><span class="line"><span class="comment">// jsl-loading-demo.vue</span></span><br><span class="line">&lt;template&gt;</span><br><span class="line"> &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;root&quot;</span>&gt;</span><br><span class="line">   &lt;jsl-loading /&gt;</span><br><span class="line"> &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="documentation"><a class="header-anchor" href="#documentation">&#xB6;</a>documentation</h2>
+<h3 id="jsl-toast"><a class="header-anchor" href="#jsl-toast">&#xB6;</a>jsl-toast</h3>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.$jsl.toast(text, position, duaration)</span><br></pre></td></tr></tbody></table></figure>
+<a id="more"></a>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">params</th>
+<th style="text-align:center">type</th>
+<th style="text-align:center">remark</th>
+<th style="text-align:center">default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">text</td>
+<td style="text-align:center">String</td>
+<td style="text-align:center">toast&#x5185;&#x5BB9;</td>
+<td style="text-align:center">&#x2018;toast&#x2019;</td>
+</tr>
+<tr>
+<td style="text-align:center">position</td>
+<td style="text-align:center">String</td>
+<td style="text-align:center">toast&#x4F4D;&#x7F6E;, &#x53EF;&#x9009;  &#x2018;top&#x2019;, &#x2018;middle&#x2019;, &#x2018;bottom&#x2019;</td>
+<td style="text-align:center">&#x2018;middle&#x2019;</td>
+</tr>
+<tr>
+<td style="text-align:center">duartion</td>
+<td style="text-align:center">Number</td>
+<td style="text-align:center">toast&#x5C55;&#x793A;&#x7684;&#x6BEB;&#x79D2;&#x6570;</td>
+<td style="text-align:center">2500</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;toast-demo-root&quot;</span>&gt;</span><br><span class="line">    &lt;jsl-button</span><br><span class="line">      <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;toast-demo-btn&quot;</span></span><br><span class="line">      v-<span class="keyword">for</span>=<span class="string">&quot;(item, index) in btnList&quot;</span></span><br><span class="line">      :text=<span class="string">&quot;item.position + &apos; &apos; + item.duartion + &apos;ms&apos;&quot;</span></span><br><span class="line">      :key=<span class="string">&quot;index + &apos;toast-demo-item&apos;&quot;</span></span><br><span class="line">      @click.native=<span class="string">&quot;$jsl.toast(item.position + &apos; &apos; + item.duartion + &apos;ms&apos;, item.position, item.duartion)&quot;</span></span><br><span class="line">    /&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;script type=<span class="string">&quot;text/ecmascript-6&quot;</span>&gt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> {</span><br><span class="line">  data () {</span><br><span class="line">    <span class="keyword">return</span> {</span><br><span class="line">      btnList: [</span><br><span class="line">        {</span><br><span class="line">          position: <span class="string">&apos;top&apos;</span>,</span><br><span class="line">          duartion: <span class="number">3500</span></span><br><span class="line">        },</span><br><span class="line">        {</span><br><span class="line">          position: <span class="string">&apos;middle&apos;</span>,</span><br><span class="line">          duartion: <span class="number">2500</span></span><br><span class="line">        },</span><br><span class="line">        {</span><br><span class="line">          position: <span class="string">&apos;bottom&apos;</span>,</span><br><span class="line">          duartion: <span class="number">1500</span></span><br><span class="line">        }</span><br><span class="line">      ]</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="jsl-grid"><a class="header-anchor" href="#jsl-grid">&#xB6;</a>jsl-grid</h3>
+<blockquote>
+<p>API</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">props</th>
+<th style="text-align:center">type</th>
+<th style="text-align:center">remark</th>
+<th style="text-align:center">default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">width</td>
+<td style="text-align:center">Number</td>
+<td style="text-align:center">&#x6805;&#x683C;&#x7EC4;&#x4EF6;&#x7684;&#x5BBD;</td>
+<td style="text-align:center">375</td>
+</tr>
+<tr>
+<td style="text-align:center">height</td>
+<td style="text-align:center">Number</td>
+<td style="text-align:center">&#x6805;&#x683C;&#x7EC4;&#x4EF6;&#x7684;&#x9AD8;</td>
+<td style="text-align:center">375</td>
+</tr>
+<tr>
+<td style="text-align:center">row</td>
+<td style="text-align:center">Number</td>
+<td style="text-align:center">&#x6805;&#x683C;&#x7EC4;&#x4EF6;&#x7684;&#x884C;&#x6570;</td>
+<td style="text-align:center">4</td>
+</tr>
+<tr>
+<td style="text-align:center">column</td>
+<td style="text-align:center">Number</td>
+<td style="text-align:center">&#x6805;&#x683C;&#x7EC4;&#x4EF6;&#x7684;&#x5217;&#x6570;</td>
+<td style="text-align:center">5</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>demo code</p>
+</blockquote>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line"> &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;grid-demo-root&quot;</span>&gt;</span><br><span class="line">    &lt;jsl-grid</span><br><span class="line">      <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;grid&quot;</span></span><br><span class="line">      :row=<span class="string">&quot;3&quot;</span></span><br><span class="line">      :column=<span class="string">&quot;3&quot;</span></span><br><span class="line">    &gt;</span><br><span class="line">      &lt;jsl-grid-item</span><br><span class="line">        v-<span class="keyword">for</span>=<span class="string">&quot;(item, index) in list9&quot;</span></span><br><span class="line">        :key=<span class="string">&quot;index + &apos;grid-demo-item-1&apos;&quot;</span></span><br><span class="line">      &gt;</span><br><span class="line">        &lt;div&gt;{{ index }}&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>jsl-grid-item&gt;</span><br><span class="line">    &lt;<span class="regexp">/jsl-grid&gt;</span></span><br><span class="line"><span class="regexp">    &lt;jsl-grid</span></span><br><span class="line"><span class="regexp">      class=&quot;grid&quot;</span></span><br><span class="line"><span class="regexp">    &gt;</span></span><br><span class="line"><span class="regexp">      &lt;jsl-grid-item</span></span><br><span class="line"><span class="regexp">        v-for=&quot;(item, index) in list20&quot;</span></span><br><span class="line"><span class="regexp">        :key=&quot;index + &apos;grid-demo-item-2&apos;&quot;</span></span><br><span class="line"><span class="regexp">      &gt;</span></span><br><span class="line"><span class="regexp">        &lt;div&gt;{{ index }}&lt;/</span>div&gt;</span><br><span class="line">      &lt;<span class="regexp">/jsl-grid-item&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>jsl-grid&gt;</span><br><span class="line"> &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;script type=<span class="string">&quot;text/ecmascript-6&quot;</span>&gt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> {</span><br><span class="line">  data () {</span><br><span class="line">    <span class="keyword">return</span> {</span><br><span class="line">      list9: <span class="built_in">Array</span>(<span class="number">9</span>),</span><br><span class="line">      list20: <span class="built_in">Array</span>(<span class="number">20</span>)</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="jsl-btn-scalable-jump"><a class="header-anchor" href="#jsl-btn-scalable-jump">&#xB6;</a>jsl-btn-scalable-jump</h3>
+<blockquote>
+<p>API</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">props</th>
+<th style="text-align:center">type</th>
+<th style="text-align:center">remark</th>
+<th style="text-align:center">default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">toPage</td>
+<td style="text-align:center">undefined</td>
+<td style="text-align:center">&#x82E5;&#x4E3A;Number, &#x5219;go(num), &#x82E5;&#x4E3A;String, &#x5219;push&#x6B64;&#x8DEF;&#x7531;</td>
+<td style="text-align:center">375</td>
+</tr>
+<tr>
+<td style="text-align:center">query</td>
+<td style="text-align:center">Object</td>
+<td style="text-align:center">&#x8DEF;&#x7531;&#x8DF3;&#x8F6C;&#x643A;&#x5E26;&#x7684;&#x53C2;&#x6570;&#x5BF9;&#x8C61;, &#x4F1A;&#x62FC;&#x63A5;&#x4E3A;&#x67E5;&#x8BE2;&#x5B57;&#x7B26;&#x4E32;</td>
+<td style="text-align:center">undefined</td>
+</tr>
+<tr>
+<td style="text-align:center">text</td>
+<td style="text-align:center">String</td>
+<td style="text-align:center">&#x6309;&#x94AE;&#x7684;&#x6587;&#x5B57;</td>
+<td style="text-align:center">&#x2018;btn-scalable-jump&#x2019;</td>
+</tr>
+<tr>
+<td style="text-align:center">fontSize</td>
+<td style="text-align:center">Number</td>
+<td style="text-align:center">&#x6309;&#x94AE;&#x7684;&#x6587;&#x5B57;&#x5927;&#x5C0F;</td>
+<td style="text-align:center">14</td>
+</tr>
+<tr>
+<td style="text-align:center">color</td>
+<td style="text-align:center">String</td>
+<td style="text-align:center">&#x6309;&#x94AE;&#x7684;&#x6587;&#x5B57;&#x989C;&#x8272;</td>
+<td style="text-align:center">14</td>
+</tr>
+<tr>
+<td style="text-align:center">bgImg</td>
+<td style="text-align:center">String</td>
+<td style="text-align:center">&#x6309;&#x94AE;&#x7684;&#x80CC;&#x666F;&#x56FE;</td>
+<td style="text-align:center">undefined</td>
+</tr>
+<tr>
+<td style="text-align:center">bgColor</td>
+<td style="text-align:center">String</td>
+<td style="text-align:center">&#x6309;&#x94AE;&#x7684;&#x80CC;&#x666F;&#x989C;&#x8272;</td>
+<td style="text-align:center">&#x2018;#517DF7&#x2019;</td>
+</tr>
+<tr>
+<td style="text-align:center">radius</td>
+<td style="text-align:center">Number</td>
+<td style="text-align:center">&#x6309;&#x94AE;&#x7684;&#x8FB9;&#x6846;&#x5012;&#x89D2;&#x5F27;&#x5EA6;</td>
+<td style="text-align:center">12</td>
+</tr>
+<tr>
+<td style="text-align:center">width</td>
+<td style="text-align:center">Number</td>
+<td style="text-align:center">&#x6309;&#x94AE;&#x7684;&#x5BBD;&#x5EA6;</td>
+<td style="text-align:center">200</td>
+</tr>
+<tr>
+<td style="text-align:center">height</td>
+<td style="text-align:center">Number</td>
+<td style="text-align:center">&#x6309;&#x94AE;&#x7684;&#x9AD8;&#x5EA6;</td>
+<td style="text-align:center">50</td>
+</tr>
+<tr>
+<td style="text-align:center">lineHeight</td>
+<td style="text-align:center">Number</td>
+<td style="text-align:center">&#x6309;&#x94AE;&#x7684;&#x6587;&#x5B57;&#x884C;&#x5EA6;</td>
+<td style="text-align:center">50</td>
+</tr>
+<tr>
+<td style="text-align:center">top</td>
+<td style="text-align:center">Number</td>
+<td style="text-align:center">&#x6309;&#x94AE;&#x7EDD;&#x5BF9;&#x5B9A;&#x4F4D;&#x7684;top&#x503C;</td>
+<td style="text-align:center">50</td>
+</tr>
+<tr>
+<td style="text-align:center">left</td>
+<td style="text-align:center">Number</td>
+<td style="text-align:center">&#x6309;&#x94AE;&#x7EDD;&#x5BF9;&#x5B9A;&#x4F4D;&#x7684;lef&#x503C;</td>
+<td style="text-align:center">window.Number((375 / 2).toFixed(5))</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>demo code</p>
+</blockquote>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line"> &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;btn-scalable-jump-demo-root&quot;</span>&gt;</span><br><span class="line">   &lt;jsl-btn-scalable-jump</span><br><span class="line">    <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;btn&quot;</span></span><br><span class="line">    v-<span class="keyword">for</span>=<span class="string">&quot;(item, index) in btnList&quot;</span></span><br><span class="line">    :key=<span class="string">&quot;index + &apos;select&apos;&quot;</span></span><br><span class="line">    :toPage=<span class="string">&quot;item.toPage&quot;</span></span><br><span class="line">    :query=<span class="string">&quot;item.query&quot;</span></span><br><span class="line">    :top=<span class="string">&quot;item.top&quot;</span></span><br><span class="line">    :text=<span class="string">&quot;&apos;to&apos;+ &apos; &apos; + item.toPage&quot;</span></span><br><span class="line">   /&gt;</span><br><span class="line"> &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script type=<span class="string">&quot;text/ecmascript-6&quot;</span>&gt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> {</span><br><span class="line">  data () {</span><br><span class="line">    <span class="keyword">return</span> {</span><br><span class="line">      btnList: [</span><br><span class="line">        {</span><br><span class="line">          top: <span class="number">50</span>,</span><br><span class="line">          toPage: <span class="number">-1</span></span><br><span class="line">        },</span><br><span class="line">        {</span><br><span class="line">          top: <span class="number">250</span>,</span><br><span class="line">          toPage: <span class="string">&apos;grid-demo&apos;</span>,</span><br><span class="line">          query: {</span><br><span class="line">            id: <span class="string">&apos;123abc&apos;</span></span><br><span class="line">          }</span><br><span class="line">        },</span><br><span class="line">        {</span><br><span class="line">          top: <span class="number">450</span>,</span><br><span class="line">          toPage: <span class="string">&apos;button-demo&apos;</span></span><br><span class="line">        }</span><br><span class="line">      ]</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="jsl-avatar"><a class="header-anchor" href="#jsl-avatar">&#xB6;</a>jsl-avatar</h3>
+<blockquote>
+<p>API</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">props</th>
+<th style="text-align:center">type</th>
+<th style="text-align:center">remark</th>
+<th style="text-align:center">default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">size</td>
+<td style="text-align:center">Number</td>
+<td style="text-align:center">&#x5934;&#x50CF;&#x7684;&#x5C3A;&#x5BF8;</td>
+<td style="text-align:center">25</td>
+</tr>
+<tr>
+<td style="text-align:center">img</td>
+<td style="text-align:center">String</td>
+<td style="text-align:center">&#x5934;&#x50CF;&#x7684;&#x56FE;&#x7247;&#x94FE;&#x63A5;</td>
+<td style="text-align:center">&#x2018;<a href="https://avatars2.githubusercontent.com/u/31515577?s=460&amp;v=4" target="_blank" rel="noopener">https://avatars2.githubusercontent.com/u/31515577?s=460&amp;v=4</a>&#x2019;</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>demo code</p>
+</blockquote>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;avatar-demo-root&quot;</span>&gt;</span><br><span class="line">    &lt;jsl-avatar <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;avatar&quot;</span> /&gt;</span><br><span class="line">    &lt;jsl-avatar <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;avatar&quot;</span> size=<span class="string">&quot;55&quot;</span> /&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="jsl-button"><a class="header-anchor" href="#jsl-button">&#xB6;</a>jsl-button</h3>
+<blockquote>
+<p>API</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">props</th>
+<th style="text-align:center">type</th>
+<th style="text-align:center">remark</th>
+<th style="text-align:center">default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">width</td>
+<td style="text-align:center">Number</td>
+<td style="text-align:center">&#x6309;&#x94AE;&#x5BBD;&#x5EA6;</td>
+<td style="text-align:center">375</td>
+</tr>
+<tr>
+<td style="text-align:center">height</td>
+<td style="text-align:center">Number</td>
+<td style="text-align:center">&#x6309;&#x94AE;&#x9AD8;&#x5EA6;</td>
+<td style="text-align:center">57</td>
+</tr>
+<tr>
+<td style="text-align:center">radius</td>
+<td style="text-align:center">Number</td>
+<td style="text-align:center">&#x6309;&#x94AE;&#x8FB9;&#x6846;&#x5012;&#x89D2;&#x5F27;&#x5EA6;</td>
+<td style="text-align:center">30</td>
+</tr>
+<tr>
+<td style="text-align:center">text</td>
+<td style="text-align:center">String</td>
+<td style="text-align:center">&#x6309;&#x94AE;&#x6587;&#x5B57;</td>
+<td style="text-align:center">&#x2018;&#x6309;&#x94AE;&#x2019;</td>
+</tr>
+<tr>
+<td style="text-align:center">color</td>
+<td style="text-align:center">String</td>
+<td style="text-align:center">&#x6309;&#x94AE;&#x6587;&#x5B57;&#x989C;&#x8272;</td>
+<td style="text-align:center">&#x2018;#FCFCFC&#x2019;</td>
+</tr>
+<tr>
+<td style="text-align:center">fontSize</td>
+<td style="text-align:center">Number</td>
+<td style="text-align:center">&#x6309;&#x94AE;&#x6587;&#x5B57;&#x5927;&#x5C0F;</td>
+<td style="text-align:center">16</td>
+</tr>
+<tr>
+<td style="text-align:center">bgColor</td>
+<td style="text-align:center">String</td>
+<td style="text-align:center">&#x6309;&#x94AE;&#x80CC;&#x666F;&#x989C;&#x8272;</td>
+<td style="text-align:center">&#x2018;#517DF7&#x2019;</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>demo code</p>
+</blockquote>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;button-demo-root&quot;</span>&gt;</span><br><span class="line">    &lt;jsl-button</span><br><span class="line">      <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;btn&quot;</span></span><br><span class="line">      text=<span class="string">&quot;button&quot;</span></span><br><span class="line">    /&gt;</span><br><span class="line">    &lt;jsl-button</span><br><span class="line">      <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;btn&quot;</span></span><br><span class="line">      color=<span class="string">&quot;red&quot;</span></span><br><span class="line">      bgColor=<span class="string">&quot;green&quot;</span></span><br><span class="line">    /&gt;</span><br><span class="line">    &lt;jsl-button</span><br><span class="line">      <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;btn&quot;</span></span><br><span class="line">      color=<span class="string">&quot;#000&quot;</span></span><br><span class="line">      bgColor=<span class="string">&quot;#f00&quot;</span></span><br><span class="line">      radius=<span class="string">&quot;10&quot;</span></span><br><span class="line">      height=<span class="string">&quot;37&quot;</span></span><br><span class="line">    /&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="jsl-close"><a class="header-anchor" href="#jsl-close">&#xB6;</a>jsl-close</h3>
+<blockquote>
+<p>API</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">props</th>
+<th style="text-align:center">type</th>
+<th style="text-align:center">remark</th>
+<th style="text-align:center">default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">size</td>
+<td style="text-align:center">Number</td>
+<td style="text-align:center">&#x5173;&#x95ED;&#x56FE;&#x6807;&#x5C3A;&#x5BF8;</td>
+<td style="text-align:center">15</td>
+</tr>
+<tr>
+<td style="text-align:center">circle</td>
+<td style="text-align:center">Boolean</td>
+<td style="text-align:center">&#x5173;&#x95ED;&#x56FE;&#x6807;&#x662F;&#x5426;&#x5E26;&#x5706;&#x5708;</td>
+<td style="text-align:center">false</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>demo code</p>
+</blockquote>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;close-demo-root&quot;</span>&gt;</span><br><span class="line">    &lt;jsl-close <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;close&quot;</span> /&gt;</span><br><span class="line">    &lt;jsl-close</span><br><span class="line">      <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;close&quot;</span></span><br><span class="line">      circle</span><br><span class="line">      size=<span class="string">&quot;55&quot;</span></span><br><span class="line">    /&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="jsl-loading"><a class="header-anchor" href="#jsl-loading">&#xB6;</a>jsl-loading</h3>
+<blockquote>
+<p>API</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">props</th>
+<th style="text-align:center">type</th>
+<th style="text-align:center">remark</th>
+<th style="text-align:center">default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">rootWidth</td>
+<td style="text-align:center">Number</td>
+<td style="text-align:center">&#x7EC4;&#x4EF6;&#x7684;&#x5BBD;&#x5EA6;</td>
+<td style="text-align:center">250</td>
+</tr>
+<tr>
+<td style="text-align:center">rootHeight</td>
+<td style="text-align:center">Number</td>
+<td style="text-align:center">&#x7EC4;&#x4EF6;&#x7684;&#x9AD8;&#x5EA6;</td>
+<td style="text-align:center">250</td>
+</tr>
+<tr>
+<td style="text-align:center">rootTop</td>
+<td style="text-align:center">Number</td>
+<td style="text-align:center">&#x7EC4;&#x4EF6;&#x76F8;&#x5BF9;&#x5DF2;&#x5B9A;&#x4F4D;&#x7236;&#x7EA7;&#x7684;top</td>
+<td style="text-align:center">157</td>
+</tr>
+<tr>
+<td style="text-align:center">imgUrl</td>
+<td style="text-align:center">String</td>
+<td style="text-align:center">&#x56FE;&#x7247;&#x8D44;&#x6E90;</td>
+<td style="text-align:center">&#x7ECF;&#x5178;&#x7684;&#x83CA;&#x82B1;&#x56FE;</td>
+</tr>
+<tr>
+<td style="text-align:center">imgSize</td>
+<td style="text-align:center">Number</td>
+<td style="text-align:center">&#x56FE;&#x7247;&#x7684;&#x9AD8;&#x5BBD;</td>
+<td style="text-align:center">35</td>
+</tr>
+<tr>
+<td style="text-align:center">imgMargin</td>
+<td style="text-align:center">String</td>
+<td style="text-align:center">&#x56FE;&#x7247;&#x7684;margin</td>
+<td style="text-align:center">&#x2018;5vw auto&#x2019;</td>
+</tr>
+<tr>
+<td style="text-align:center">infoContent</td>
+<td style="text-align:center">String</td>
+<td style="text-align:center">&#x6587;&#x5B57;&#x4FE1;&#x606F;</td>
+<td style="text-align:center">&#x2018;&#x6B63;&#x5728;&#x52A0;&#x8F7D;&#x6570;&#x636E;&#x2026;&#x2019;</td>
+</tr>
+<tr>
+<td style="text-align:center">infoColor</td>
+<td style="text-align:center">String</td>
+<td style="text-align:center">&#x6587;&#x5B57;&#x989C;&#x8272;</td>
+<td style="text-align:center">&#x2018;#333&#x2019;</td>
+</tr>
+<tr>
+<td style="text-align:center">infoFontSize</td>
+<td style="text-align:center">Number</td>
+<td style="text-align:center">&#x6587;&#x5B57;&#x5927;&#x5C0F;</td>
+<td style="text-align:center">14</td>
+</tr>
+<tr>
+<td style="text-align:center">infoHeight</td>
+<td style="text-align:center">Number</td>
+<td style="text-align:center">&#x6587;&#x5B57;&#x9AD8;&#x5EA6;</td>
+<td style="text-align:center">25</td>
+</tr>
+<tr>
+<td style="text-align:center">infoLineHeight</td>
+<td style="text-align:center">Number</td>
+<td style="text-align:center">&#x6587;&#x5B57;&#x884C;&#x9AD8;</td>
+<td style="text-align:center">25</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>demo code</p>
+</blockquote>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line"> &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;loading-demo-root&quot;</span>&gt;</span><br><span class="line">   &lt;jsl-loading imgSize=<span class="string">&quot;25&quot;</span>/&gt;</span><br><span class="line"> &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="jsl-nav-bar"><a class="header-anchor" href="#jsl-nav-bar">&#xB6;</a>jsl-nav-bar</h3>
+<blockquote>
+<p>API</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">props</th>
+<th style="text-align:center">type</th>
+<th style="text-align:center">remark</th>
+<th style="text-align:center">default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">title</td>
+<td style="text-align:center">String</td>
+<td style="text-align:center">&#x5BFC;&#x822A;&#x6761;&#x7684;&#x6807;&#x9898;</td>
+<td style="text-align:center">&#x2018;&#x5BFC;&#x822A;&#x6761;&#x2019;</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>demo code</p>
+</blockquote>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line"> &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;navbar-demo-root&quot;</span>&gt;</span><br><span class="line">   &lt;jsl-nav-bar/&gt;</span><br><span class="line"> &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="jsl-nomore-tip"><a class="header-anchor" href="#jsl-nomore-tip">&#xB6;</a>jsl-nomore-tip</h3>
+<blockquote>
+<p>API</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">props</th>
+<th style="text-align:center">type</th>
+<th style="text-align:center">remark</th>
+<th style="text-align:center">default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">text</td>
+<td style="text-align:center">String</td>
+<td style="text-align:center">&#x6587;&#x5B57;&#x5185;&#x5BB9;</td>
+<td style="text-align:center">&#x2018;&#x4EB2;&#xFF0C;&#x6211;&#x4EEC;&#x662F;&#x6709;&#x5E95;&#x7EBF;&#x7684;&#x54E6;&#xFF5E;&#x2019;</td>
+</tr>
+<tr>
+<td style="text-align:center">lineWidth</td>
+<td style="text-align:center">Number</td>
+<td style="text-align:center">&#x7EC6;&#x7EBF;&#x7684;&#x957F;&#x5EA6;</td>
+<td style="text-align:center">34</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>demo code</p>
+</blockquote>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;nomore-tip-demo-root&quot;</span>&gt;</span><br><span class="line">    &lt;jsl-nomore-tip <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;demo&quot;</span> /&gt;</span><br><span class="line">    &lt;jsl-nomore-tip</span><br><span class="line">      <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;demo&quot;</span></span><br><span class="line">      text=<span class="string">&quot;&#x8FD9;&#x662F;&#x6211;&#x7684;&#x5E95;&#x7EBF;&quot;</span></span><br><span class="line">      lineWidth=<span class="string">&quot;100&quot;</span></span><br><span class="line">    /&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="&#x5F00;&#x53D1;&#x4E0E;&#x53D1;&#x5E03;&#x7684;&#x722C;&#x5751;&#x59FF;&#x52BF;"><a class="header-anchor" href="#&#x5F00;&#x53D1;&#x4E0E;&#x53D1;&#x5E03;&#x7684;&#x722C;&#x5751;&#x59FF;&#x52BF;">&#xB6;</a>&#x5F00;&#x53D1;&#x4E0E;&#x53D1;&#x5E03;&#x7684;&#x722C;&#x5751;&#x59FF;&#x52BF;</h2>
+<p>&#x751F;&#x4EA7;&#x65F6;&#x5165;&#x53E3;&#x6587;&#x4EF6; src/components/index.js</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&apos;styles/components/index&apos;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> loadingComponent <span class="keyword">from</span> <span class="string">&apos;./loading/loading&apos;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> JslLoading = {</span><br><span class="line">  install: <span class="function"><span class="keyword">function</span> (<span class="params">Vue</span>) </span>{</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">window</span> !== <span class="string">&apos;undefined&apos;</span> &amp;&amp; <span class="built_in">window</span>.Vue) {</span><br><span class="line">      Vue = <span class="built_in">window</span>.Vue</span><br><span class="line">    }</span><br><span class="line">    Vue.component(<span class="string">&apos;JslLoading&apos;</span>, loadingComponent)</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> {</span><br><span class="line">  JslLoading</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>webpack prod entry config</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> entryConfig = {</span><br><span class="line">  app: resolve(<span class="string">&apos;src/components/index.js&apos;</span>)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>webpack prod output config</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> outputConfig = {</span><br><span class="line">  path: resolve(<span class="string">&apos;dist&apos;</span>),</span><br><span class="line">  publicPath: <span class="string">&apos;&apos;</span>,</span><br><span class="line">  filename: <span class="string">&apos;jsl-vue-h5.min.js&apos;</span>,</span><br><span class="line">  library: <span class="string">&apos;JslVueH5&apos;</span>,</span><br><span class="line">  libraryTarget: <span class="string">&apos;umd&apos;</span>,</span><br><span class="line">  umdNamedDefine: <span class="literal">true</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>webpack prod externals config</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> externals = {</span><br><span class="line">  vue: {</span><br><span class="line">    root: <span class="string">&apos;Vue&apos;</span>,</span><br><span class="line">    commonjs: <span class="string">&apos;vue&apos;</span>,</span><br><span class="line">    commonjs2: <span class="string">&apos;vue&apos;</span>,</span><br><span class="line">    amd: <span class="string">&apos;vue&apos;</span></span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>webpack prod plugin config</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> prodPlugins = [</span><br><span class="line">  <span class="keyword">new</span> MiniCssExtractPlugin({</span><br><span class="line">    filename: <span class="string">&apos;jsl-vue-h5.min.css&apos;</span></span><br><span class="line">  })</span><br><span class="line">]</span><br></pre></td></tr></tbody></table></figure>
+<p>package.json&#x914D;&#x7F6E;&#x5982;&#x4E0B;</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">{</span><br><span class="line">  <span class="string">&quot;name&quot;</span>: <span class="string">&quot;jsl-vue-h5&quot;</span>,</span><br><span class="line">  <span class="string">&quot;version&quot;</span>: <span class="string">&quot;0.0.8&quot;</span>,</span><br><span class="line">  <span class="string">&quot;description&quot;</span>: <span class="string">&quot;some Vue.js components and plugins for mobile H5 development&quot;</span>,</span><br><span class="line">  <span class="string">&quot;author&quot;</span>: <span class="string">&quot;atbulbs &lt;atbulbs@gmail.com&gt;&quot;</span>,</span><br><span class="line">  <span class="string">&quot;private&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="string">&quot;main&quot;</span>: <span class="string">&quot;dist/jsl-vue-h5.min.js&quot;</span>,</span><br><span class="line">    <span class="string">&quot;repository&quot;</span>: {</span><br><span class="line">    <span class="string">&quot;type&quot;</span>: <span class="string">&quot;git&quot;</span>,</span><br><span class="line">    <span class="string">&quot;url&quot;</span>: <span class="string">&quot;git+https://github.com/atbulbs/jsl-vue-h5.git&quot;</span></span><br><span class="line">  },</span><br><span class="line">  <span class="string">&quot;files&quot;</span>: [</span><br><span class="line">    <span class="string">&quot;dist&quot;</span>,</span><br><span class="line">    <span class="string">&quot;src&quot;</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="string">&quot;keywords&quot;</span>: [</span><br><span class="line">    <span class="string">&quot;vue&quot;</span>,</span><br><span class="line">    <span class="string">&quot;h5&quot;</span>,</span><br><span class="line">    <span class="string">&quot;mobile&quot;</span>,</span><br><span class="line">    <span class="string">&quot;wechat&quot;</span>,</span><br><span class="line">    <span class="string">&quot;loading&quot;</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="string">&quot;license&quot;</span>: <span class="string">&quot;MIT&quot;</span>,</span><br><span class="line">  <span class="string">&quot;homepage&quot;</span>: <span class="string">&quot;https://github.com/atbulbs/jsl-vue-h5.git#readme&quot;</span>,</span><br><span class="line">  <span class="comment">// &quot;scripts&quot;: { ... },</span></span><br><span class="line">  <span class="comment">// &quot;dependencies&quot;: { ... },</span></span><br><span class="line">  <span class="comment">// &quot;devDependencies&quot;: { ... }</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x672C;&#x5730;&#x5F00;&#x53D1;&#x5B8C;&#x6210;&#x540E;</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &#x6253;&#x5305;</span></span><br><span class="line">$ npm run build</span><br><span class="line"><span class="comment"># &#x751F;&#x6210; .tgz &#x6587;&#x4EF6;</span></span><br><span class="line">$ npm pack</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x82E5;npm&#x6E90;&#x4E3A;&#x6DD8;&#x5B9D;&#x955C;&#x50CF;, &#x9700;&#x8981;&#x5207;&#x6362;&#x6E90;&#x4E3A; <a href="https://registry.npmjs.org/" target="_blank" rel="noopener">https://registry.npmjs.org/</a></p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &#x67E5;&#x770B;npm&#x6E90;</span></span><br><span class="line">$ npm config list</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x82E5;&#x4E3A;&#x6DD8;&#x5B9D;&#x955C;&#x50CF;</span></span><br><span class="line">$ npm config rm registry</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x9700;&#x8981;&#x5148;&#x6CE8;&#x518C;&#x767B;&#x5F55;npm, &#x518D;&#x53D1;&#x5E03;</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &#x767B;&#x5F55;, &#x586B;&#x5199;&#x7528;&#x6237;&#x540D;, &#x5BC6;&#x7801;, &#x90AE;&#x7BB1;</span></span><br><span class="line">$ npm login</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x53D1;&#x5E03;</span></span><br><span class="line">$ npm publish</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x6BCF;&#x6B21;&#x53D1;&#x5E03;&#x65F6;, &#x9700;&#x8981;&#x4F7F;&#x7528;&#x65B0;&#x7684;&#x7248;&#x672C;&#x53F7;, &#x4FEE;&#x6539;package.json&#x91CC;&#x7684;version, &#x6216;&#x8005;&#x5220;&#x9664;&#x4E4B;&#x524D;&#x7684;&#x7248;&#x672C;&#x53F7;&#x518D;&#x53D1;&#x5E03;</p>
+<h2 id="tip-webpack-config"><a class="header-anchor" href="#tip-webpack-config">&#xB6;</a>tip: webpack config</h2>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// dev config &gt; module &gt; rules</span></span><br><span class="line"><span class="comment">// rules: [</span></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">  {</span><br><span class="line">    test: <span class="regexp">/\.css$/</span>,</span><br><span class="line">    use: [</span><br><span class="line">      {</span><br><span class="line">        loader: <span class="string">&apos;style-loader&apos;</span></span><br><span class="line">      },</span><br><span class="line">      {</span><br><span class="line">        loader: <span class="string">&apos;css-loader&apos;</span></span><br><span class="line">        <span class="comment">// options: {</span></span><br><span class="line">        <span class="comment">//   modules: false</span></span><br><span class="line">        <span class="comment">// }</span></span><br><span class="line">      }</span><br><span class="line">    ]</span><br><span class="line">  }</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="comment">// ]</span></span><br></pre></td></tr></tbody></table></figure>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>点击打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="atbulbs 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="atbulbs 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/组件化/" rel="tag"># 组件化</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/08/浅谈http/" rel="next" title="浅谈http">
+                <i class="fa fa-chevron-left"></i> 浅谈http
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/01/从深拷贝谈类型检测/" rel="prev" title="从深拷贝谈类型检测">
+                从深拷贝谈类型检测 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="atbulbs">
+            
+              <p class="site-author-name" itemprop="name">atbulbs</p>
+              <p class="site-description motion-element" itemprop="description"></></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+  
+  
+  <div class="site-state-item site-state-categories">
+    
+	  <a href="/categories/index.html">
+	
+      <span class="site-state-item-count">16</span>
+      <span class="site-state-item-name">分类</span>
+    </a>
+  </div>
+
+
+
+  
+  
+  <div class="site-state-item site-state-tags">
+    
+	  <a href="/tags/index.html">
+	
+      <span class="site-state-item-count">23</span>
+      <span class="site-state-item-name">标签</span>
+    </a>
+  </div>
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/atbulbs" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:atbulbs@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">a JasonLiao project: jsl-vue-h5</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#install"><span class="nav-number">1.1.</span> <span class="nav-text">¶install</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#import-and-use-it"><span class="nav-number">1.2.</span> <span class="nav-text">¶import and use it</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#documentation"><span class="nav-number">1.3.</span> <span class="nav-text">¶documentation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#jsl-toast"><span class="nav-number">1.3.1.</span> <span class="nav-text">¶jsl-toast</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jsl-grid"><span class="nav-number">1.3.2.</span> <span class="nav-text">¶jsl-grid</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jsl-btn-scalable-jump"><span class="nav-number">1.3.3.</span> <span class="nav-text">¶jsl-btn-scalable-jump</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jsl-avatar"><span class="nav-number">1.3.4.</span> <span class="nav-text">¶jsl-avatar</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jsl-button"><span class="nav-number">1.3.5.</span> <span class="nav-text">¶jsl-button</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jsl-close"><span class="nav-number">1.3.6.</span> <span class="nav-text">¶jsl-close</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jsl-loading"><span class="nav-number">1.3.7.</span> <span class="nav-text">¶jsl-loading</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jsl-nav-bar"><span class="nav-number">1.3.8.</span> <span class="nav-text">¶jsl-nav-bar</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jsl-nomore-tip"><span class="nav-number">1.3.9.</span> <span class="nav-text">¶jsl-nomore-tip</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开发与发布的爬坑姿势"><span class="nav-number">1.4.</span> <span class="nav-text">¶开发与发布的爬坑姿势</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tip-webpack-config"><span class="nav-number">1.5.</span> <span class="nav-text">¶tip: webpack config</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">atbulbs</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

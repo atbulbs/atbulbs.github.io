@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="¶this是什么        函数是语句的容器, 而this代表函数调用invocation时的上下文环境context ¶this从哪里来        每个函数默认会接收两个附加的参数, this和arguments ¶this的5种应用场景">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="this is it in JavaScript">
+<meta property="og:url" content="https://atbulbs.github.io/2018/07/01/this is it  in JavaScript /index.html">
+<meta property="og:site_name" content="atbubls(Jason Liao)">
+<meta property="og:description" content="¶this是什么        函数是语句的容器, 而this代表函数调用invocation时的上下文环境context ¶this从哪里来        每个函数默认会接收两个附加的参数, this和arguments ¶this的5种应用场景">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://atbulbs.github.io/images/this/window.png">
+<meta property="og:image" content="https://atbulbs.github.io/images/this/global.png">
+<meta property="og:image" content="https://atbulbs.github.io/images/this/window-obj.png">
+<meta property="og:image" content="https://atbulbs.github.io/images/this/global-obj.png">
+<meta property="og:image" content="https://atbulbs.github.io/images/this/new.png">
+<meta property="og:updated_time" content="2019-03-21T08:40:21.905Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="this is it in JavaScript">
+<meta name="twitter:description" content="¶this是什么        函数是语句的容器, 而this代表函数调用invocation时的上下文环境context ¶this从哪里来        每个函数默认会接收两个附加的参数, this和arguments ¶this的5种应用场景">
+<meta name="twitter:image" content="https://atbulbs.github.io/images/this/window.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    
+    
+    emojis: {
+      className: 'github-emoji'
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://atbulbs.github.io/2018/07/01/this is it  in JavaScript /">
+
+
+
+
+
+  <title>this is it in JavaScript | atbubls(Jason Liao)</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">atbubls(Jason Liao)</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">more code, more exercise, more happy</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://atbulbs.github.io/2018/07/01/this is it  in JavaScript /">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="atbulbs">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="atbubls(Jason Liao)">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">this is it in JavaScript</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-01T08:32:13+08:00">
+                2018-07-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="this&#x662F;&#x4EC0;&#x4E48;"><a class="header-anchor" href="#this&#x662F;&#x4EC0;&#x4E48;">&#xB6;</a>this&#x662F;&#x4EC0;&#x4E48;</h2>
+<p>&#xA0; &#xA0; &#xA0; &#xA0;&#x51FD;&#x6570;&#x662F;&#x8BED;&#x53E5;&#x7684;&#x5BB9;&#x5668;, &#x800C;this&#x4EE3;&#x8868;&#x51FD;&#x6570;&#x8C03;&#x7528;invocation&#x65F6;&#x7684;&#x4E0A;&#x4E0B;&#x6587;&#x73AF;&#x5883;context</p>
+<h2 id="this&#x4ECE;&#x54EA;&#x91CC;&#x6765;"><a class="header-anchor" href="#this&#x4ECE;&#x54EA;&#x91CC;&#x6765;">&#xB6;</a>this&#x4ECE;&#x54EA;&#x91CC;&#x6765;</h2>
+<p>&#xA0; &#xA0; &#xA0; &#xA0;&#x6BCF;&#x4E2A;&#x51FD;&#x6570;&#x9ED8;&#x8BA4;&#x4F1A;&#x63A5;&#x6536;&#x4E24;&#x4E2A;&#x9644;&#x52A0;&#x7684;&#x53C2;&#x6570;, this&#x548C;arguments</p>
+<h2 id="this&#x7684;5&#x79CD;&#x5E94;&#x7528;&#x573A;&#x666F;"><a class="header-anchor" href="#this&#x7684;5&#x79CD;&#x5E94;&#x7528;&#x573A;&#x666F;">&#xB6;</a>this&#x7684;5&#x79CD;&#x5E94;&#x7528;&#x573A;&#x666F;</h2>
+<a id="more"></a>
+<ol>
+<li>
+<p>&#x51FD;&#x6570;&#x8C03;&#x7528;<br>
+&#xA0; &#xA0; &#xA0; &#xA0;&#x5F53;&#x51FD;&#x6570;&#x4E0D;&#x4F5C;&#x4E3A;&#x5BBF;&#x4E3B;&#x5168;&#x5C40;Global&#x5BF9;&#x8C61;(&#x6D4F;&#x89C8;&#x5668;&#x91CC;&#x4E3A;window, node.js&#x91CC;&#x4E3A;global)&#x4EE5;&#x5916;&#x7684;&#x5BF9;&#x8C61;&#x7684;&#x65B9;&#x6CD5;&#x6765;&#x8C03;&#x7528;&#x65F6;, this&#x6307;&#x5411;&#x5168;&#x5C40;&#x5BF9;&#x8C61;<br>
+<img src="/images/this/window.png" alt="window"><br>
+<img src="/images/this/global.png" alt="global"></p>
+</li>
+<li>
+<p>&#x65B9;&#x6CD5;&#x8C03;&#x7528;<br>
+&#xA0; &#xA0; &#xA0; &#xA0;&#x5F53;&#x51FD;&#x6570;&#x4F5C;&#x4E3A;&#x5BBF;&#x4E3B;&#x5168;&#x5C40;Global&#x5BF9;&#x8C61;(&#x6D4F;&#x89C8;&#x5668;&#x91CC;&#x4E3A;window, node.js&#x91CC;&#x4E3A;global)&#x4EE5;&#x5916;&#x7684;&#x5BF9;&#x8C61;&#x7684;&#x65B9;&#x6CD5;&#x6765;&#x8C03;&#x7528;&#x65F6;, this&#x6307;&#x5411;&#x8BE5;&#x65B9;&#x6CD5;&#x7684;&#x62E5;&#x6709;&#x8005;&#x5BF9;&#x8C61;<br>
+<img src="/images/this/window-obj.png" alt="window-obj"><br>
+<img src="/images/this/global-obj.png" alt="global-obj"></p>
+</li>
+<li>
+<p>&#x6784;&#x9020;&#x5668;&#x8C03;&#x7528;<br>
+&#xA0; &#xA0; &#xA0; &#xA0;&#x5F53;&#x51FD;&#x6570;&#x88AB;new&#x8C03;&#x7528;&#x65F6;, this&#x6307;&#x5411;&#x8FDE;&#x63A5;&#x5230;&#x8BE5;&#x51FD;&#x6570;&#x539F;&#x578B;&#x5BF9;&#x8C61;&#x7684;&#x65B0;&#x5BF9;&#x8C61;<br>
+<img src="/images/this/new.png" alt="new"></p>
+</li>
+<li>
+<p>&#x8F6C;&#x79FB;&#x4E0A;&#x4E0B;&#x6587;&#x8C03;&#x7528;<br>
+&#xA0; &#xA0; &#xA0; &#xA0;apply, call, bind&#x662F;&#x51FD;&#x6570;&#x7684;&#x65B9;&#x6CD5;, &#x4F1A;&#x5C06;&#x51FD;&#x6570;&#x6267;&#x884C;&#x65F6;&#x7684;this&#x6307;&#x5411;&#x4F5C;&#x4E3A;&#x53C2;&#x6570;&#x4F20;&#x5165;&#x7684;&#x5BF9;&#x8C61;</p>
+</li>
+<li>
+<p>&#x7BAD;&#x5934;&#x51FD;&#x6570;&#x8C03;&#x7528;<br>
+&#xA0; &#xA0; &#xA0; &#xA0;&#x7BAD;&#x5934;&#x51FD;&#x6570;&#x4E2D;&#x7684;this&#x6307;&#x5411;&#x5B9A;&#x4E49;&#x65F6;&#x6240;&#x5728;&#x7684;&#x5BF9;&#x8C61;, &#x800C;&#x4E0D;&#x662F;&#x4F7F;&#x7528;&#x65F6;&#x6240;&#x5728;&#x7684;&#x5BF9;&#x8C61;</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// &#x501F;&#x7528;&#x962E;&#x5927;&#x5927;&#x7684;&#x6817;&#x5B50;</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span> (<span class="params"></span>) </span>{</span><br><span class="line">  setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> {</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&apos;id:&apos;</span>, <span class="keyword">this</span>.id)</span><br><span class="line">  }, <span class="number">100</span>)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> id = <span class="number">21</span></span><br><span class="line"></span><br><span class="line">foo.call({ <span class="attr">id</span>: <span class="number">42</span> })</span><br><span class="line"><span class="comment">// id: 42</span></span><br></pre></td></tr></tbody></table></figure>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>点击打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="atbulbs 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="atbulbs 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/18/一个用Vue开发H5的webpack工程构建/" rel="next" title="一个用Vue开发H5的webpack工程构建">
+                <i class="fa fa-chevron-left"></i> 一个用Vue开发H5的webpack工程构建
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/11/axios的二次封装/" rel="prev" title="axios的二次封装">
+                axios的二次封装 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="atbulbs">
+            
+              <p class="site-author-name" itemprop="name">atbulbs</p>
+              <p class="site-description motion-element" itemprop="description"></></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+  
+  
+  <div class="site-state-item site-state-categories">
+    
+	  <a href="/categories/index.html">
+	
+      <span class="site-state-item-count">16</span>
+      <span class="site-state-item-name">分类</span>
+    </a>
+  </div>
+
+
+
+  
+  
+  <div class="site-state-item site-state-tags">
+    
+	  <a href="/tags/index.html">
+	
+      <span class="site-state-item-count">23</span>
+      <span class="site-state-item-name">标签</span>
+    </a>
+  </div>
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/atbulbs" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:atbulbs@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#this是什么"><span class="nav-number">1.</span> <span class="nav-text">¶this是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#this从哪里来"><span class="nav-number">2.</span> <span class="nav-text">¶this从哪里来</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#this的5种应用场景"><span class="nav-number">3.</span> <span class="nav-text">¶this的5种应用场景</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">atbulbs</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

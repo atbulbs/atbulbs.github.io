@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="移动端开发,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="通过阅读此篇文章, 你将有如下收获         1. 什么是vw适配        2. vw适配的兼容性        3. 如何在移动端H5项目webpack构建中引入vw适配        4. 大漠老师vw适配方案中依赖安装的注(pa)意(keng)事(zi)项(shi)        5. 我为小伙伴们准备的一波福利: 开箱📦即用的vw配置webpack构建">
+<meta name="keywords" content="移动端开发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动端vw适配方案">
+<meta property="og:url" content="https://atbulbs.github.io/2018/11/18/2018-11-18移动端VW适配方案/index.html">
+<meta property="og:site_name" content="atbubls(Jason Liao)">
+<meta property="og:description" content="通过阅读此篇文章, 你将有如下收获         1. 什么是vw适配        2. vw适配的兼容性        3. 如何在移动端H5项目webpack构建中引入vw适配        4. 大漠老师vw适配方案中依赖安装的注(pa)意(keng)事(zi)项(shi)        5. 我为小伙伴们准备的一波福利: 开箱📦即用的vw配置webpack构建">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://atbulbs.github.io/images/vw-ajust/pvu.png">
+<meta property="og:image" content="https://atbulbs.github.io/images/vw-ajust/vub.png">
+<meta property="og:image" content="https://atbulbs.github.io/images/vw-ajust/vw-buggyfill.png">
+<meta property="og:image" content="https://atbulbs.github.io/images/vw-ajust/vw-test.png">
+<meta property="og:image" content="https://atbulbs.github.io/images/vw-ajust/preset-env.png">
+<meta property="og:image" content="https://atbulbs.github.io/images/vw-ajust/err-no-postcss-import.png">
+<meta property="og:image" content="https://atbulbs.github.io/images/vw-ajust/err-no-postcss-url.png">
+<meta property="og:image" content="https://atbulbs.github.io/images/vw-ajust/err-preset-advanced.png">
+<meta property="og:updated_time" content="2019-03-21T08:40:21.902Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="移动端vw适配方案">
+<meta name="twitter:description" content="通过阅读此篇文章, 你将有如下收获         1. 什么是vw适配        2. vw适配的兼容性        3. 如何在移动端H5项目webpack构建中引入vw适配        4. 大漠老师vw适配方案中依赖安装的注(pa)意(keng)事(zi)项(shi)        5. 我为小伙伴们准备的一波福利: 开箱📦即用的vw配置webpack构建">
+<meta name="twitter:image" content="https://atbulbs.github.io/images/vw-ajust/pvu.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    
+    
+    emojis: {
+      className: 'github-emoji'
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://atbulbs.github.io/2018/11/18/2018-11-18移动端VW适配方案/">
+
+
+
+
+
+  <title>移动端vw适配方案 | atbubls(Jason Liao)</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">atbubls(Jason Liao)</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">more code, more exercise, more happy</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://atbulbs.github.io/2018/11/18/2018-11-18移动端VW适配方案/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="atbulbs">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="atbubls(Jason Liao)">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">移动端vw适配方案</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-18T12:15:17+08:00">
+                2018-11-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/移动端开发/" itemprop="url" rel="index">
+                    <span itemprop="name">移动端开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>&#x901A;&#x8FC7;&#x9605;&#x8BFB;&#x6B64;&#x7BC7;&#x6587;&#x7AE0;, &#x4F60;&#x5C06;&#x6709;&#x5982;&#x4E0B;&#x6536;&#x83B7;</p>
+</blockquote>
+<p>&#xA0; &#xA0; &#xA0; &#xA0;1. &#x4EC0;&#x4E48;&#x662F;<code>vw</code>&#x9002;&#x914D;<br>
+&#xA0; &#xA0; &#xA0; &#xA0;2. <code>vw</code>&#x9002;&#x914D;&#x7684;&#x517C;&#x5BB9;&#x6027;<br>
+&#xA0; &#xA0; &#xA0; &#xA0;3. &#x5982;&#x4F55;&#x5728;&#x79FB;&#x52A8;&#x7AEF;H5&#x9879;&#x76EE;<code>webpack</code>&#x6784;&#x5EFA;&#x4E2D;&#x5F15;&#x5165;<code>vw</code>&#x9002;&#x914D;<br>
+&#xA0; &#xA0; &#xA0; &#xA0;4. &#x5927;&#x6F20;&#x8001;&#x5E08;<code>vw</code>&#x9002;&#x914D;&#x65B9;&#x6848;&#x4E2D;&#x4F9D;&#x8D56;&#x5B89;&#x88C5;&#x7684;&#x6CE8;(pa)&#x610F;(keng)&#x4E8B;(zi)&#x9879;(shi)<br>
+&#xA0; &#xA0; &#xA0; &#xA0;5. &#x6211;&#x4E3A;&#x5C0F;&#x4F19;&#x4F34;&#x4EEC;&#x51C6;&#x5907;&#x7684;&#x4E00;&#x6CE2;&#x798F;&#x5229;: &#x5F00;&#x7BB1;&#x1F4E6;&#x5373;&#x7528;&#x7684;<code>vw</code>&#x914D;&#x7F6E;<code>webpack</code>&#x6784;&#x5EFA;<br>
+&#xA0; &#xA0; &#xA0; &#xA0;6. &#x5B9E;&#x9645;&#x5F00;&#x53D1;&#x4E2D;<code>vw</code>&#x9002;&#x914D;&#x7684;&#x5E94;&#x7528;<br>
+&#xA0; &#xA0; &#xA0; &#xA0;7. <code>vw</code>&#x9002;&#x914D;&#x7684;&#x5751;&#x4EE5;&#x53CA;&#x722C;&#x5751;&#x59FF;&#x52BF;<br>
+&#xA0; &#xA0; &#xA0; &#xA0;8. &#x6587;&#x7AE0;&#x672B;&#x5C3E;&#x6709;&#x5F69;&#x86CB;&#x54DF;&#x1F60D;&#x98A0;&#x8986;&#x4F60;&#x7684;&#x5F00;(ban)&#x53D1;(zhuan)&#x4F53;&#x9A8C;</p>
+<a id="more"></a>
+<h1>&#x4E00;. &#x4EC0;&#x4E48;&#x662F;<code>vw</code>&#x9002;&#x914D;</h1>
+<h2 id="1-1-vw-&#x76F8;&#x5BF9;&#x4E8E;&#x89C6;&#x7A97;&#x7684;&#x5BBD;&#x5EA6;-&#x89C6;&#x7A97;&#x5BBD;&#x5EA6;&#x662F;100vw-&#x5373;window-innerwidth-window-innerheight&#x5927;&#x5C0F;-&#x4E0D;&#x5305;&#x542B;&#x4EFB;&#x52A1;&#x680F;&#x6807;&#x9898;&#x680F;&#x4EE5;&#x53CA;&#x5E95;&#x90E8;&#x5DE5;&#x5177;&#x680F;&#x7684;&#x6D4F;&#x89C8;&#x5668;&#x533A;&#x57DF;&#x5927;&#x5C0F;"><a class="header-anchor" href="#1-1-vw-&#x76F8;&#x5BF9;&#x4E8E;&#x89C6;&#x7A97;&#x7684;&#x5BBD;&#x5EA6;-&#x89C6;&#x7A97;&#x5BBD;&#x5EA6;&#x662F;100vw-&#x5373;window-innerwidth-window-innerheight&#x5927;&#x5C0F;-&#x4E0D;&#x5305;&#x542B;&#x4EFB;&#x52A1;&#x680F;&#x6807;&#x9898;&#x680F;&#x4EE5;&#x53CA;&#x5E95;&#x90E8;&#x5DE5;&#x5177;&#x680F;&#x7684;&#x6D4F;&#x89C8;&#x5668;&#x533A;&#x57DF;&#x5927;&#x5C0F;">&#xB6;</a>1.1 vw &#x76F8;&#x5BF9;&#x4E8E;&#x89C6;&#x7A97;&#x7684;&#x5BBD;&#x5EA6;:&#x89C6;&#x7A97;&#x5BBD;&#x5EA6;&#x662F;100vw, &#x5373;window.innerWidth/window.innerHeight&#x5927;&#x5C0F;&#xFF0C;&#x4E0D;&#x5305;&#x542B;&#x4EFB;&#x52A1;&#x680F;&#x6807;&#x9898;&#x680F;&#x4EE5;&#x53CA;&#x5E95;&#x90E8;&#x5DE5;&#x5177;&#x680F;&#x7684;&#x6D4F;&#x89C8;&#x5668;&#x533A;&#x57DF;&#x5927;&#x5C0F;</h2>
+<h2 id="1-2-css&#x4E16;&#x754C;-&#x4F5C;&#x8005;&#x5F20;&#x946B;&#x65ED;&#x8001;&#x5E08;&#x7684;&#x89C6;&#x533A;&#x76F8;&#x5173;&#x5355;&#x4F4D;vw-vh-&#x7B80;&#x4ECB;&#x4EE5;&#x53CA;&#x53EF;&#x5B9E;&#x9645;&#x5E94;&#x7528;&#x573A;&#x666F;"><a class="header-anchor" href="#1-2-css&#x4E16;&#x754C;-&#x4F5C;&#x8005;&#x5F20;&#x946B;&#x65ED;&#x8001;&#x5E08;&#x7684;&#x89C6;&#x533A;&#x76F8;&#x5173;&#x5355;&#x4F4D;vw-vh-&#x7B80;&#x4ECB;&#x4EE5;&#x53CA;&#x53EF;&#x5B9E;&#x9645;&#x5E94;&#x7528;&#x573A;&#x666F;">&#xB6;</a>1.2 &lt;&lt;CSS&#x4E16;&#x754C;&gt;&gt;&#x4F5C;&#x8005;&#x5F20;&#x946B;&#x65ED;&#x8001;&#x5E08;&#x7684;<a href="https://www.zhangxinxu.com/wordpress/2012/09/new-viewport-relative-units-vw-vh-vm-vmin/" target="_blank" rel="noopener">&#x89C6;&#x533A;&#x76F8;&#x5173;&#x5355;&#x4F4D;vw, vh&#x2026;&#x7B80;&#x4ECB;&#x4EE5;&#x53CA;&#x53EF;&#x5B9E;&#x9645;&#x5E94;&#x7528;&#x573A;&#x666F;</a></h2>
+<h1>&#x4E8C;. <code>vw</code>&#x9002;&#x914D;&#x7684;&#x517C;&#x5BB9;&#x6027;</h1>
+<h3 id="2-1-&#x53EF;&#x4F7F;&#x7528;viewport&#x7684;polyfill&#x65B9;&#x6848;&#x6765;&#x5B8C;&#x7F8E;&#x89E3;&#x51B3;-postcss-viewport-units&#x4E0E;&#x5B83;&#x7684;&#x597D;&#x57FA;&#x53CB;viewport-units-buggyfill"><a class="header-anchor" href="#2-1-&#x53EF;&#x4F7F;&#x7528;viewport&#x7684;polyfill&#x65B9;&#x6848;&#x6765;&#x5B8C;&#x7F8E;&#x89E3;&#x51B3;-postcss-viewport-units&#x4E0E;&#x5B83;&#x7684;&#x597D;&#x57FA;&#x53CB;viewport-units-buggyfill">&#xB6;</a>2.1 &#x53EF;&#x4F7F;&#x7528;<code>viewport</code>&#x7684;polyfill&#x65B9;&#x6848;&#x6765;&#x5B8C;&#x7F8E;&#x89E3;&#x51B3;:<a href="https://github.com/springuper/postcss-viewport-units" target="_blank" rel="noopener">postcss-viewport-units</a>&#x4E0E;&#x5B83;&#x7684;&#x597D;&#x57FA;&#x53CB;<a href="https://github.com/rodneyrehm/viewport-units-buggyfill" target="_blank" rel="noopener">viewport-units-buggyfill</a></h3>
+<p><img src="/images/vw-ajust/pvu.png" alt="pvu"></p>
+<h4 id="2-1-1-&#x539F;&#x7406;"><a class="header-anchor" href="#2-1-1-&#x539F;&#x7406;">&#xB6;</a>2.1.1 &#x539F;&#x7406;</h4>
+<p>&#xA0; &#xA0; &#xA0; &#xA0;<code>postcss-viewport-units</code>&#x81EA;&#x52A8;&#x6DFB;&#x52A0;content, <code>viewport-units-buggyfill</code>&#x518D;&#x628A;&#x6839;&#x636E;content&#x91CC;&#x7684;&#x6570;&#x636E;&#x628A;vw&#x5355;&#x4F4D;&#x8F6C;&#x4E3A;px&#x5355;&#x4F4D;, &#x5982;&#x4E0B;&#x56FE;<br>
+<img src="/images/vw-ajust/vub.png" alt="vub"></p>
+<h3 id="2-1-2-&#x5982;&#x4F55;&#x4F7F;&#x7528;"><a class="header-anchor" href="#2-1-2-&#x5982;&#x4F55;&#x4F7F;&#x7528;">&#xB6;</a>2.1.2 &#x5982;&#x4F55;&#x4F7F;&#x7528;</h3>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm i -S viewport-units-buggyfill</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vub = <span class="built_in">require</span>(<span class="string">&apos;viewport-units-buggyfill&apos;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">&apos;load&apos;</span>, () =&gt; {</span><br><span class="line">  vub.init({ <span class="attr">hacks</span>: <span class="built_in">window</span>.viewportUnitsBuggyfillHacks })</span><br><span class="line">})</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* &#x5BF9;&#x56FE;&#x7247;&#x7684;&#x7279;&#x6B8A;&#x5904;&#x7406; */</span></span><br><span class="line"><span class="selector-tag">img</span> { </span><br><span class="line">  <span class="attribute">content</span>: normal <span class="meta">!important</span>; </span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="2-2-&#x517C;&#x5BB9;&#x7684;&#x8303;&#x56F4;"><a class="header-anchor" href="#2-2-&#x517C;&#x5BB9;&#x7684;&#x8303;&#x56F4;">&#xB6;</a>2.2 &#x517C;&#x5BB9;&#x7684;&#x8303;&#x56F4;</h3>
+<p><img src="/images/vw-ajust/vw-buggyfill.png" alt="vw-buggyfill"></p>
+<h3 id="2-3-&#x6D4B;&#x8BD5;&#x7528;&#x4F8B;"><a class="header-anchor" href="#2-3-&#x6D4B;&#x8BD5;&#x7528;&#x4F8B;">&#xB6;</a>2.3 &#x6D4B;&#x8BD5;&#x7528;&#x4F8B;</h3>
+<p><img src="/images/vw-ajust/vw-test.png" alt="vw-test"></p>
+<h1>&#x4E09;. &#x5982;&#x4F55;&#x5728;&#x79FB;&#x52A8;&#x7AEF;H5&#x9879;&#x76EE;<code>webpack</code>&#x6784;&#x5EFA;&#x4E2D;&#x5F15;&#x5165;<code>vw</code>&#x9002;&#x914D;</h1>
+<h2 id="3-1-&#x5927;&#x6F20;&#x8001;&#x5E08;&#x7684;&#x539F;&#x6587;&#x94FE;&#x63A5;"><a class="header-anchor" href="#3-1-&#x5927;&#x6F20;&#x8001;&#x5E08;&#x7684;&#x539F;&#x6587;&#x94FE;&#x63A5;">&#xB6;</a>3.1 &#x5927;&#x6F20;&#x8001;&#x5E08;&#x7684;&#x539F;&#x6587;&#x94FE;&#x63A5;</h2>
+<p><a href="https://www.w3cplus.com/mobile/vw-layout-in-vue.html" target="_blank" rel="noopener">&#x5982;&#x4F55;&#x5728;Vue&#x9879;&#x76EE;&#x4E2D;&#x4F7F;&#x7528;vw&#x5B9E;&#x73B0;&#x79FB;&#x52A8;&#x7AEF;&#x9002;&#x914D;(&#x8BF7;&#x6233;)</a></p>
+<h2 id="3-2-&#x5927;&#x6F20;&#x8001;&#x5E08;&#x6240;&#x7528;postcss-plugins&#x548C;&#x914D;&#x7F6E;&#x7684;&#x8BF4;&#x660E;"><a class="header-anchor" href="#3-2-&#x5927;&#x6F20;&#x8001;&#x5E08;&#x6240;&#x7528;postcss-plugins&#x548C;&#x914D;&#x7F6E;&#x7684;&#x8BF4;&#x660E;">&#xB6;</a>3.2 &#x5927;&#x6F20;&#x8001;&#x5E08;&#x6240;&#x7528;<code>postcss plugins</code>&#x548C;&#x914D;&#x7F6E;&#x7684;&#x8BF4;&#x660E;</h2>
+<h3 id="3-2-1-&#x63D2;&#x4E00;&#x5634;-&#x4EC0;&#x4E48;&#x662F;postcss"><a class="header-anchor" href="#3-2-1-&#x63D2;&#x4E00;&#x5634;-&#x4EC0;&#x4E48;&#x662F;postcss">&#xB6;</a>3.2.1 &#x63D2;&#x4E00;&#x5634;, &#x4EC0;&#x4E48;&#x662F;<code>postcss</code></h3>
+<p>&#xA0; &#xA0; &#xA0; &#xA0;<code>postcss</code>&#x662F;&#x4E00;&#x4E2A;&#x5E73;&#x53F0;&#xFF0C;&#x5176;&#x672C;&#x8EAB;&#x4E0D;&#x5BF9; <code>CSS</code>&#x8FDB;&#x884C;&#x5904;&#x7406;&#xFF0C;&#x4F46;&#x662F;&#x901A;&#x8FC7;&#x5728;&#x8BE5;&#x5E73;&#x53F0;&#x4E0A;&#x96C6;&#x6210;&#x63D2;&#x4EF6;&#xFF0C;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x5BF9;<code>CSS</code>&#x7684;&#x64CD;&#x4F5C;&#x3002;</p>
+<h3 id="3-2-2-&#x6838;&#x5FC3;postcss-plugins-postcss-px-to-viewport"><a class="header-anchor" href="#3-2-2-&#x6838;&#x5FC3;postcss-plugins-postcss-px-to-viewport">&#xB6;</a>3.2.2 &#x6838;&#x5FC3;<code>postcss plugins</code>: <code>postcss-px-to-viewport</code></h3>
+<p>&#xA0; &#xA0; &#xA0; &#xA0;&#x628A;<code>px</code>&#x5355;&#x4F4D;&#x8F6C;&#x6362;&#x4E3A;<code>vw</code>&#x3001;<code>vh</code>&#x3001;<code>vmin</code>&#x6216;&#x8005;<code>vmax</code>&#x8FD9;&#x6837;&#x7684;&#x89C6;&#x7A97;&#x5355;&#x4F4D;</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// your-project/.postcssrc.js</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = {</span><br><span class="line">  <span class="string">&quot;plugins&quot;</span>: {</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="string">&quot;postcss-px-to-viewport&quot;</span>: {</span><br><span class="line">    viewportWidth: <span class="number">375</span>,      <span class="comment">// &#x89C6;&#x7A97;&#x7684;&#x5BBD;&#x5EA6;&#xFF0C;&#x5BF9;&#x5E94;&#x7684;&#x662F;&#x6211;&#x4EEC;&#x8BBE;&#x8BA1;&#x7A3F;&#x7684;&#x5BBD;&#x5EA6;&#xFF0C;&#x4E00;&#x822C;&#x662F;375</span></span><br><span class="line">    viewportHeight: <span class="number">667</span>,    <span class="comment">// &#x89C6;&#x7A97;&#x7684;&#x9AD8;&#x5EA6;&#xFF0C;&#x6839;&#x636E;750&#x8BBE;&#x5907;&#x7684;&#x5BBD;&#x5EA6;&#x6765;&#x6307;&#x5B9A;&#xFF0C;&#x4E00;&#x822C;&#x6307;&#x5B9A;667&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x4E0D;&#x914D;&#x7F6E;</span></span><br><span class="line">    unitPrecision: <span class="number">3</span>,        <span class="comment">// &#x6307;&#x5B9A;`px`&#x8F6C;&#x6362;&#x4E3A;&#x89C6;&#x7A97;&#x5355;&#x4F4D;&#x503C;&#x7684;&#x5C0F;&#x6570;&#x4F4D;&#x6570;(&#x5F88;&#x591A;&#x65F6;&#x5019;&#x65E0;&#x6CD5;&#x6574;&#x9664;)</span></span><br><span class="line">    viewportUnit: <span class="string">&apos;vw&apos;</span>,      <span class="comment">// &#x6307;&#x5B9A;&#x9700;&#x8981;&#x8F6C;&#x6362;&#x6210;&#x7684;&#x89C6;&#x7A97;&#x5355;&#x4F4D;&#xFF0C;&#x5EFA;&#x8BAE;&#x4F7F;&#x7528;vw</span></span><br><span class="line">    selectorBlackList: [<span class="string">&apos;.ignore&apos;</span>, <span class="string">&apos;.hairlines&apos;</span>],  <span class="comment">// &#x6307;&#x5B9A;&#x4E0D;&#x8F6C;&#x6362;&#x4E3A;&#x89C6;&#x7A97;&#x5355;&#x4F4D;&#x7684;&#x7C7B;&#xFF0C;&#x53EF;&#x4EE5;&#x81EA;&#x5B9A;&#x4E49;&#xFF0C;&#x53EF;&#x4EE5;&#x65E0;&#x9650;&#x6DFB;&#x52A0;,&#x5EFA;&#x8BAE;&#x5B9A;&#x4E49;&#x4E00;&#x81F3;&#x4E24;&#x4E2A;&#x901A;&#x7528;&#x7684;&#x7C7B;&#x540D;</span></span><br><span class="line">    minPixelValue: <span class="number">1</span>,       <span class="comment">// &#x5C0F;&#x4E8E;&#x6216;&#x7B49;&#x4E8E;`1px`&#x4E0D;&#x8F6C;&#x6362;&#x4E3A;&#x89C6;&#x7A97;&#x5355;&#x4F4D;&#xFF0C;&#x4F60;&#x4E5F;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x4E3A;&#x4F60;&#x60F3;&#x8981;&#x7684;&#x503C;</span></span><br><span class="line">    mediaQuery: <span class="literal">false</span>       <span class="comment">// &#x5141;&#x8BB8;&#x5728;&#x5A92;&#x4F53;&#x67E5;&#x8BE2;&#x4E2D;&#x8F6C;&#x6362;`px`</span></span><br><span class="line">}</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="3-2-2-postcss-import"><a class="header-anchor" href="#3-2-2-postcss-import">&#xB6;</a>3.2.2 <code>postcss-import</code></h3>
+<p>&#xA0; &#xA0; &#xA0; &#xA0;&#x89E3;&#x51B3;<code>@import</code>&#x5F15;&#x5165;&#x8DEF;&#x5F84;&#x95EE;&#x9898;, &#x914D;&#x5408;<code>postcss-url</code>&#x8BA9;&#x4F60;&#x5F15;&#x5165;&#x6587;&#x4EF6;&#x53D8;&#x5F97;&#x66F4;&#x8F7B;&#x677E;</p>
+<h3 id="3-2-3-postcss-url"><a class="header-anchor" href="#3-2-3-postcss-url">&#xB6;</a>3.2.3 <code>postcss-url</code></h3>
+<p>&#xA0; &#xA0; &#xA0; &#xA0;&#x5904;&#x7406;&#x6587;&#x4EF6;&#xFF0C;&#x6BD4;&#x5982;&#x56FE;&#x7247;&#x6587;&#x4EF6;&#x3001;&#x5B57;&#x4F53;&#x6587;&#x4EF6;&#x7B49;&#x5F15;&#x7528;&#x8DEF;&#x5F84;</p>
+<h3 id="3-2-4-autoprefixer"><a class="header-anchor" href="#3-2-4-autoprefixer">&#xB6;</a>3.2.4 <code>autoprefixer</code></h3>
+<p>&#xA0; &#xA0; &#xA0; &#xA0;&#x8BA9;&#x4F60;&#x5728;&#x7F16;&#x7801;&#x65F6;&#x4E0D;&#x518D;&#x9700;&#x8981;&#x8003;&#x8651;&#x4EFB;&#x4F55;&#x6D4F;&#x89C8;&#x5668;&#x524D;&#x7F00;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x53EF;&#x4EE5;&#x4E13;&#x5FC3;&#x64B8;&#x7801;</p>
+<h3 id="3-2-5-postcss-cssnext"><a class="header-anchor" href="#3-2-5-postcss-cssnext">&#xB6;</a>3.2.5 <code>postcss-cssnext</code></h3>
+<p>&#xA0; &#xA0; &#xA0; &#xA0;&#x8BE5;&#x63D2;&#x4EF6;&#x53EF;&#x4EE5;&#x8BA9;&#x6211;&#x4EEC;&#x4F7F;&#x7528;<code>CSS</code>&#x672A;&#x6765;&#x7684;&#x7279;&#x6027;&#xFF0C;&#x5176;&#x4F1A;&#x5BF9;&#x8FD9;&#x4E9B;&#x7279;&#x6027;&#x505A;&#x76F8;&#x5173;&#x7684;&#x517C;&#x5BB9;&#x6027;&#x5904;&#x7406;</p>
+<h3 id="3-2-6-cssnano"><a class="header-anchor" href="#3-2-6-cssnano">&#xB6;</a>3.2.6 <code>cssnano</code></h3>
+<p>&#xA0; &#xA0; &#xA0; &#xA0;&#x538B;&#x7F29;&#x548C;&#x6E05;&#x7406;<code>CSS</code>&#x4EE3;&#x7801;&#x3002;&#x5728;<code>webpack</code>&#x4E2D;&#xFF0C;<code>cssnano</code>&#x548C;<code>css-loader</code>&#x6346;&#x7ED1;&#x5728;&#x4E00;&#x8D77;&#xFF0C;&#x6240;&#x4EE5;&#x4E0D;&#x9700;&#x8981;&#x81EA;&#x5DF1;&#x52A0;&#x8F7D;&#x5B83;. &#x8BB0;&#x5F97;&#x5C06;<code>postcss-zindex</code>&#x8BBE;&#x7F6E;&#x4E3A;<code>false</code>, &#x5426;&#x5219;<code>z-index</code>&#x7684;&#x503C;&#x5C31;&#x4F1A;&#x91CD;&#x7F6E;&#x4E3A;1</p>
+<h3 id="3-2-7-postcss-aspect-ratio-mini"><a class="header-anchor" href="#3-2-7-postcss-aspect-ratio-mini">&#xB6;</a>3.2.7 <code>postcss-aspect-ratio-mini</code></h3>
+<p>&#xA0; &#xA0; &#xA0; &#xA0;&#x5904;&#x7406;&#x5143;&#x7D20;&#x5BB9;&#x5668;&#x5BBD;&#x9AD8;&#x6BD4;</p>
+<h3 id="3-2-8-postcss-write-svg"><a class="header-anchor" href="#3-2-8-postcss-write-svg">&#xB6;</a>3.2.8 <code>postcss-write-svg</code></h3>
+<p>&#xA0; &#xA0; &#xA0; &#xA0;&#x5904;&#x7406;&#x79FB;&#x52A8;&#x7AEF;1px&#x7684;&#x89E3;&#x51B3;&#x65B9;&#x6848;,&#x8BE5;&#x63D2;&#x4EF6;&#x4E3B;&#x8981;&#x4F7F;&#x7528;&#x7684;&#x662F;border-image&#x548C;background&#x6765;&#x505A;1px&#x7684;&#x76F8;&#x5173;&#x5904;&#x7406;</p>
+<h3 id="3-2-9-postcss-viewport-units"><a class="header-anchor" href="#3-2-9-postcss-viewport-units">&#xB6;</a>3.2.9 <code>postcss-viewport-units</code></h3>
+<p>&#xA0; &#xA0; &#xA0; &#xA0;&#x7ED9;CSS&#x7684;&#x5C5E;&#x6027;&#x6DFB;&#x52A0;content&#x7684;&#x5C5E;&#x6027;&#xFF0C;&#x914D;&#x5408;viewport-units-buggyfill&#x5E93;&#x7ED9;vw&#x3001;vh&#x3001;vmin&#x548C;vmax&#x505A;&#x9002;&#x914D;&#x7684;&#x64CD;&#x4F5C;, &#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x524D;&#x9762;&#x63D0;&#x5230;&#x7684;&#x89E3;&#x51B3;&#x517C;&#x5BB9;&#x6027;&#x7684;&#x6838;&#x5FC3;&#x63D2;&#x4EF6;</p>
+<h1>&#x56DB;. &#x5927;&#x6F20;&#x8001;&#x5E08;vw&#x9002;&#x914D;&#x65B9;&#x6848;&#x4E2D;&#x4F9D;&#x8D56;&#x5B89;&#x88C5;&#x7684;&#x6CE8;(pa)&#x610F;(keng)&#x4E8B;(zi)&#x9879;(shi)</h1>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -D postcss-aspect-ratio-mini postcss-px-to-viewport postcss-write-svg postcss-cssnext postcss-viewport-units cssnano</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// your-project/.postcssrc.js</span></span><br><span class="line"><span class="built_in">module</span>.exports = {</span><br><span class="line">    <span class="string">&quot;plugins&quot;</span>: {</span><br><span class="line">        <span class="string">&quot;postcss-import&quot;</span>: {},</span><br><span class="line">        <span class="string">&quot;postcss-url&quot;</span>: {},</span><br><span class="line">        <span class="string">&quot;postcss-aspect-ratio-mini&quot;</span>: {}, </span><br><span class="line">        <span class="string">&quot;postcss-write-svg&quot;</span>: {</span><br><span class="line">            utf8: <span class="literal">false</span></span><br><span class="line">        },</span><br><span class="line">        <span class="string">&quot;postcss-cssnext&quot;</span>: {},</span><br><span class="line">        <span class="string">&quot;postcss-px-to-viewport&quot;</span>: {</span><br><span class="line">            viewportWidth: <span class="number">375</span>,     <span class="comment">// (Number) The width of the viewport.</span></span><br><span class="line">            viewportHeight: <span class="number">667</span>,    <span class="comment">// (Number) The height of the viewport.</span></span><br><span class="line">            unitPrecision: <span class="number">3</span>,       <span class="comment">// (Number) The decimal numbers to allow the REM units to grow to.</span></span><br><span class="line">            viewportUnit: <span class="string">&apos;vw&apos;</span>,     <span class="comment">// (String) Expected units.</span></span><br><span class="line">            selectorBlackList: [<span class="string">&apos;.ignore&apos;</span>, <span class="string">&apos;.hairlines&apos;</span>],  <span class="comment">// (Array) The selectors to ignore and leave as px.</span></span><br><span class="line">            minPixelValue: <span class="number">1</span>,       <span class="comment">// (Number) Set the minimum pixel value to replace.</span></span><br><span class="line">            mediaQuery: <span class="literal">false</span>       <span class="comment">// (Boolean) Allow px to be converted in media queries.</span></span><br><span class="line">        }, </span><br><span class="line">        <span class="string">&quot;postcss-viewport-units&quot;</span>:{},</span><br><span class="line">        <span class="string">&quot;cssnano&quot;</span>: {</span><br><span class="line">            preset: <span class="string">&quot;advanced&quot;</span>,</span><br><span class="line">            autoprefixer: <span class="literal">false</span>,</span><br><span class="line">            <span class="string">&quot;postcss-zindex&quot;</span>: <span class="literal">false</span></span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>&#xA0; &#xA0; &#xA0; &#xA0;&#x5982;&#x679C;&#x4F60;&#x8DDF;&#x7740;&#x5927;&#x6F20;&#x8001;&#x5E08;&#x4E00;&#x987F;&#x731B;&#x64CD;&#x4F5C;, &#x5B89;&#x88C5;&#x4F9D;&#x8D56;&#x65F6;&#x4F60;&#x4F1A;&#x53D1;&#x73B0;&#x53EF;&#x80FD;&#x4F1A;&#x51FA;&#x73B0;&#x4EE5;&#x4E0B;&#x95EE;&#x9898;:</p>
+<h2 id="4-1-postcss-cssnext&#x63D2;&#x4EF6;&#x88AB;&#x5E9F;&#x5F03;-&#x63A8;&#x8350;&#x7528;postcss-preset-env"><a class="header-anchor" href="#4-1-postcss-cssnext&#x63D2;&#x4EF6;&#x88AB;&#x5E9F;&#x5F03;-&#x63A8;&#x8350;&#x7528;postcss-preset-env">&#xB6;</a>4.1 <code>postcss-cssnext</code>&#x63D2;&#x4EF6;&#x88AB;&#x5E9F;&#x5F03;, &#x63A8;&#x8350;&#x7528;<code>postcss-preset-env</code></h2>
+<blockquote>
+<p>&#x95EE;&#x9898;:</p>
+</blockquote>
+<p><img src="/images/vw-ajust/preset-env.png" alt="preset-env"></p>
+<blockquote>
+<p>&#x89E3;&#x51B3;:</p>
+</blockquote>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm un -D postcss-cssnext</span><br><span class="line">$ npm i -D postcss-preset-env</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// your-project/.postcssrc.js</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = {</span><br><span class="line">  <span class="string">&quot;plugins&quot;</span>: {</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    - <span class="string">&quot;postcss-cssnext&quot;</span>: {},</span><br><span class="line">    + <span class="string">&quot;postcss-preset-env&quot;</span>: {},</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="4-2-&#x5982;&#x679C;&#x4F60;&#x7528;vue-cli3&#x4F1A;-&#x7F3A;&#x5C11;&#x90E8;&#x5206;-&#x4F9D;&#x8D56;"><a class="header-anchor" href="#4-2-&#x5982;&#x679C;&#x4F60;&#x7528;vue-cli3&#x4F1A;-&#x7F3A;&#x5C11;&#x90E8;&#x5206;-&#x4F9D;&#x8D56;">&#xB6;</a>4.2 &#x5982;&#x679C;&#x4F60;&#x7528;<code>vue cli3</code>&#x4F1A;&#x7F3A;&#x5C11;&#x90E8;&#x5206;&#x4F9D;&#x8D56;</h2>
+<blockquote>
+<p>&#x95EE;&#x9898;:</p>
+</blockquote>
+<p><img src="/images/vw-ajust/err-no-postcss-import.png" alt="preset-env"><br>
+<img src="/images/vw-ajust/err-no-postcss-url.png" alt="preset-env"></p>
+<blockquote>
+<p>&#x89E3;&#x51B3;:</p>
+</blockquote>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm i -D postcss-<span class="keyword">import</span> postcss-url</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="4-3-cssnano-&#x7684;preset&#x4F7F;&#x7528;&#x4E86;advanced-&#x9700;&#x8981;&#x5B89;&#x88C5;&#x5BF9;&#x5E94;&#x4F9D;&#x8D56;"><a class="header-anchor" href="#4-3-cssnano-&#x7684;preset&#x4F7F;&#x7528;&#x4E86;advanced-&#x9700;&#x8981;&#x5B89;&#x88C5;&#x5BF9;&#x5E94;&#x4F9D;&#x8D56;">&#xB6;</a>4.3 <code>cssnano</code>&#x7684;<code>preset</code>&#x4F7F;&#x7528;&#x4E86;<code>advanced</code>, &#x9700;&#x8981;&#x5B89;&#x88C5;&#x5BF9;&#x5E94;&#x4F9D;&#x8D56;</h2>
+<blockquote>
+<p>&#x95EE;&#x9898;:</p>
+</blockquote>
+<p><img src="/images/vw-ajust/err-preset-advanced.png" alt="cssnano-advance"></p>
+<blockquote>
+<p>&#x89E3;&#x51B3;:</p>
+</blockquote>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm i -D cssnano-preset-advanced</span><br></pre></td></tr></tbody></table></figure>
+<h1>&#x4E94;. &#x6211;&#x4E3A;&#x5C0F;&#x4F19;&#x4F34;&#x4EEC;&#x51C6;&#x5907;&#x7684;&#x4E00;&#x6CE2;&#x798F;&#x5229;: &#x5F00;&#x7BB1;&#x1F4E6;&#x5373;&#x7528;&#x7684;<code>vw</code>&#x914D;&#x7F6E;<code>webpack</code>&#x6784;&#x5EFA;</h1>
+<h2 id="5-1-&#x91C7;&#x7528;&#x6700;&#x65B0;npm&#x4F9D;&#x8D56;&#x7248;&#x672C;&#x7684;&#x8C6A;&#x534E;&#x914D;&#x7F6E;-&#x53EF;npm-check-update"><a class="header-anchor" href="#5-1-&#x91C7;&#x7528;&#x6700;&#x65B0;npm&#x4F9D;&#x8D56;&#x7248;&#x672C;&#x7684;&#x8C6A;&#x534E;&#x914D;&#x7F6E;-&#x53EF;npm-check-update">&#xB6;</a>5.1 &#x91C7;&#x7528;&#x6700;&#x65B0;<code>npm</code>&#x4F9D;&#x8D56;&#x7248;&#x672C;&#x7684;&#x8C6A;&#x534E;&#x914D;&#x7F6E;, &#x53EF;<code>npm-check-update</code></h2>
+<p><a href="https://github.com/atbulbs/jsl-webpack-vue-h5" target="_blank" rel="noopener">jsl-webpack-vue-h5&#x1F60E; &#x6B22;&#x8FCE;star&#x2B50;&#xFE0F;</a></p>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="string">&quot;devDependencies&quot;</span>: {</span><br><span class="line">    <span class="string">&quot;@babel/core&quot;</span>: <span class="string">&quot;^7.1.6&quot;</span>,</span><br><span class="line">    <span class="string">&quot;babel-loader&quot;</span>: <span class="string">&quot;^8.0.4&quot;</span>,</span><br><span class="line">    <span class="string">&quot;vue-loader&quot;</span>: <span class="string">&quot;^15.4.2&quot;</span>,</span><br><span class="line">    <span class="string">&quot;webpack&quot;</span>: <span class="string">&quot;^4.25.1&quot;</span>,</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  }</span><br><span class="line"><span class="comment">// ...</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="5-2-&#x91C7;&#x7528;vue-cli2&#x7684;&#x914D;&#x7F6E;"><a class="header-anchor" href="#5-2-&#x91C7;&#x7528;vue-cli2&#x7684;&#x914D;&#x7F6E;">&#xB6;</a>5.2 &#x91C7;&#x7528;<code>vue-cli2</code>&#x7684;&#x914D;&#x7F6E;</h2>
+<p><a href="https://github.com/atbulbs/jsl-vue-cli2-vw-layout" target="_blank" rel="noopener">jsl-vue-cli2-vw-layout</a></p>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="string">&quot;devDependencies&quot;</span>: {</span><br><span class="line">    <span class="string">&quot;babel/core&quot;</span>: <span class="string">&quot;^6.22.1&quot;</span>,</span><br><span class="line">    <span class="string">&quot;babel-loader&quot;</span>: <span class="string">&quot;^7.1.1&quot;</span>,</span><br><span class="line">    <span class="string">&quot;vue-loader&quot;</span>: <span class="string">&quot;^13.3.0&quot;</span>,</span><br><span class="line">    <span class="string">&quot;webpack&quot;</span>: <span class="string">&quot;^3.6.0&quot;</span>,</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  }</span><br><span class="line"><span class="comment">// ...</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="5-3-&#x91C7;&#x7528;vue-cli3&#x7684;&#x914D;&#x7F6E;"><a class="header-anchor" href="#5-3-&#x91C7;&#x7528;vue-cli3&#x7684;&#x914D;&#x7F6E;">&#xB6;</a>5.3 &#x91C7;&#x7528;<code>vue-cli3</code>&#x7684;&#x914D;&#x7F6E;</h2>
+<p><a href="https://github.com/atbulbs/jsl-vue-cli3-vw-layout" target="_blank" rel="noopener">jsl-vue-cli3-vw-layout</a></p>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="string">&quot;devDependencies&quot;</span>: {</span><br><span class="line">    <span class="string">&quot;@vue/cli-plugin-babel&quot;</span>: <span class="string">&quot;^3.1.1&quot;</span>,</span><br><span class="line">    <span class="string">&quot;@vue/cli-service&quot;</span>: <span class="string">&quot;^3.1.4&quot;</span>,</span><br><span class="line">    <span class="comment">// ..</span></span><br><span class="line">  }</span><br><span class="line"><span class="comment">// ...</span></span><br></pre></td></tr></tbody></table></figure>
+<h1>&#x516D;. &#x5B9E;&#x9645;&#x5F00;&#x53D1;&#x4E2D;<code>vw</code>&#x9002;&#x914D;&#x7684;&#x5E94;&#x7528;</h1>
+<h2 id="6-1-&#x5728;css&#x4E2D;&#x5199;&#x6837;&#x5F0F;"><a class="header-anchor" href="#6-1-&#x5728;css&#x4E2D;&#x5199;&#x6837;&#x5F0F;">&#xB6;</a>6.1 &#x5728;<code>css</code>&#x4E2D;&#x5199;&#x6837;&#x5F0F;</h2>
+<p>&#xA0; &#xA0; &#xA0; &#xA0;&#x5728;&#x5B9E;&#x9645;&#x64B8;&#x7801;&#x8FC7;&#x7A0B;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x8FDB;&#x884C;&#x4EFB;&#x4F55;&#x7684;&#x8BA1;&#x7B97;&#xFF0C;&#x76F4;&#x63A5;&#x5728;&#x4EE3;&#x7801;&#x4E2D;&#x6839;&#x636E;UI&#x7A3F;&#x5199;px, &#x5982;</p>
+<figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.test</span> {</span><br><span class="line">    <span class="attribute">border</span>: .<span class="number">5px</span> solid black;</span><br><span class="line">    <span class="attribute">border-bottom-width</span>: <span class="number">4px</span>;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">14px</span>;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>&#xA0; &#xA0; &#xA0; &#xA0;&#x7F16;&#x8BD1;&#x51FA;&#x6765;&#x7684;CSS&#xFF1A;</p>
+<figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.test</span> {</span><br><span class="line">    <span class="attribute">border</span>: .<span class="number">5px</span> solid <span class="number">#000</span>;</span><br><span class="line">    <span class="attribute">border-bottom-width</span>: <span class="number">1.667vw</span>;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">3.733vw</span>;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">5.333vw</span>;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="6-2-&#x5728;js&#x548C;template&#x4E2D;&#x5199;&#x6837;&#x5F0F;-&#x6211;&#x4EEC;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x8F6C;&#x6362;&#x6570;&#x5B57;&#x4E3A;vw&#x7684;&#x5DE5;&#x5177;&#x7C7B;"><a class="header-anchor" href="#6-2-&#x5728;js&#x548C;template&#x4E2D;&#x5199;&#x6837;&#x5F0F;-&#x6211;&#x4EEC;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x8F6C;&#x6362;&#x6570;&#x5B57;&#x4E3A;vw&#x7684;&#x5DE5;&#x5177;&#x7C7B;">&#xB6;</a>6.2 &#x5728;<code>js</code>&#x548C;<code>template</code>&#x4E2D;&#x5199;&#x6837;&#x5F0F;, &#x6211;&#x4EEC;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x8F6C;&#x6362;&#x6570;&#x5B57;&#x4E3A;vw&#x7684;&#x5DE5;&#x5177;&#x7C7B;</h2>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// your project/src/shared/utils.js</span></span><br><span class="line"><span class="keyword">const</span> toVw = <span class="function">(<span class="params">num</span>) =&gt;</span> {</span><br><span class="line">  <span class="keyword">return</span> ((<span class="built_in">window</span>.Number(num).toFixed(<span class="number">5</span>) / <span class="number">375</span>) * <span class="number">100</span>).toFixed(<span class="number">5</span>) + <span class="string">&apos;vw&apos;</span></span><br><span class="line">}</span><br><span class="line"><span class="keyword">const</span> UTILS = { toVw }</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> UTILS</span><br><span class="line"></span><br><span class="line"><span class="comment">// your project/src/components/test.vue</span></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div</span><br><span class="line">    :style=<span class="string">&quot;{</span></span><br><span class="line"><span class="string">        width: toVw(size),</span></span><br><span class="line"><span class="string">        height: toVw(size)</span></span><br><span class="line"><span class="string">      }&quot;</span></span><br><span class="line">  &gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;script type=<span class="string">&quot;text/ecmascript-6&quot;</span>&gt;</span><br><span class="line"><span class="keyword">import</span> UTILS <span class="keyword">from</span> <span class="string">&apos;shared/utils&apos;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> {</span><br><span class="line">  props: {</span><br><span class="line">    size: {</span><br><span class="line">      <span class="keyword">default</span>: <span class="number">15</span></span><br><span class="line">    }</span><br><span class="line">  },</span><br><span class="line">  methods: {</span><br><span class="line">    toVw (num) {</span><br><span class="line">      <span class="keyword">return</span> UTILS.toVw(num)</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+<h1>&#x4E03;. <code>vw</code>&#x9002;&#x914D;&#x7684;&#x5751;&#x4EE5;&#x53CA;&#x722C;&#x5751;&#x59FF;&#x52BF;(&#x6B22;&#x8FCE;&#x8865;&#x5145;<a href="mailto:atbulbs@gmail.com" target="_blank" rel="noopener">atbulbs@gmail.com</a>)</h1>
+<h2 id="7-1-&#x6CE8;&#x610F;viewport&#x7684;&#x53D8;&#x5316;"><a class="header-anchor" href="#7-1-&#x6CE8;&#x610F;viewport&#x7684;&#x53D8;&#x5316;">&#xB6;</a>7.1 &#x6CE8;&#x610F;<code>viewport</code>&#x7684;&#x53D8;&#x5316;</h2>
+<p>&#xA0; &#xA0; &#xA0; &#xA0;&#x5982;&#x679C;&#x4F60;&#x5728;&#x6837;&#x5F0F;&#x4E2D;&#x4F7F;&#x7528;&#x4E86;vh&#x5355;&#x4F4D;, &#x8BF7;&#x6CE8;&#x610F;&#x67D0;&#x4E9B;webView&#x91CC;&#x952E;&#x76D8;&#x5F39;&#x51FA;&#x65F6;, 100vh&#x5BF9;&#x5E94;&#x7684;&#x5B9E;&#x9645;&#x9AD8;&#x5EA6;&#x4F1A;&#x53D8;&#x5C0F;</p>
+<h2 id="7-2-html2canvas"><a class="header-anchor" href="#7-2-html2canvas">&#xB6;</a>7.2 <code>html2canvas</code></h2>
+<p>&#xA0; &#xA0; &#xA0; &#xA0;&#x5982;&#x679C;&#x4F60;&#x6709;&#x5728;&#x524D;&#x7AEF;&#x622A;&#x5C4F;&#x7684;&#x9700;&#x6C42;, &#x521A;&#x597D;&#x4F60;&#x7528;&#x5230;&#x4E86;html2canvas&#x63D2;&#x4EF6;, &#x800C;&#x4E14;&#x521A;&#x597D;&#x8981;&#x9002;&#x914D;ios&#x4F4E;&#x7248;&#x672C;&#x673A;&#x578B;, &#x8BF7;&#x4F7F;&#x7528;0.5.0-beta4&#x7248;&#x672C;, &#x5E76;&#x4E14;&#x628A;&#x52A0;&#x4E86;css-content&#x7684;&#x6807;&#x7B7E;&#x7684;&#x5185;&#x5BB9;&#x7F6E;&#x7A7A;</p>
+<figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.target-el</span> {</span><br><span class="line">  <span class="attribute">content</span>: <span class="string">&quot;&quot;</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h1>&#x516B;. &#x8BF4;&#x597D;&#x7684;&#x5F69;&#x1F36D;&#x86CB;&#x1F95A;</h1>
+<h2 id="8-1-&#x5F69;&#x86CB;a-stylus&#x8BA9;&#x4F60;-&#x7528;&#x66F4;&#x4F18;&#x96C5;-bowtie-&#x59FF;&#x52BF;&#x7684;&#x64B8;&#x4E1A;&#x52A1;&#x4EE3;&#x7801;"><a class="header-anchor" href="#8-1-&#x5F69;&#x86CB;a-stylus&#x8BA9;&#x4F60;-&#x7528;&#x66F4;&#x4F18;&#x96C5;-bowtie-&#x59FF;&#x52BF;&#x7684;&#x64B8;&#x4E1A;&#x52A1;&#x4EE3;&#x7801;">&#xB6;</a>8.1 &#x5F69;&#x86CB;a: <a href="https://atbulbs.github.io/2018/10/15/2018-10-15stylus%E8%AE%A9%E4%BD%A0%E7%94%A8%E6%9B%B4%E9%AA%9A%E7%9A%84%E5%A7%BF%E5%8A%BF%E5%86%99css/"><code>stylus</code>&#x8BA9;&#x4F60;&#x7528;&#x66F4;&#x4F18;&#x96C5;<span class="github-emoji" style="color: transparent;background:no-repeat url(https://assets-cdn.github.com/images/icons/emoji/bowtie.png?v8) center/contain" data-src="https://assets-cdn.github.com/images/icons/emoji/bowtie.png?v8"> </span>&#x59FF;&#x52BF;&#x7684;&#x64B8;&#x4E1A;&#x52A1;&#x4EE3;&#x7801;</a></h2>
+<h2 id="8-2-&#x5F69;&#x86CB;b-user-snippets-&#x548C;-emmet-zen-coding-&#x8BA9;&#x4F60;&#x6210;&#x4E3A;&#x98CE;&#x4E00;&#x822C;&#x7684;&#x7231;-ban-&#x7801;-zhuan-&#x4ED5;-de-&#x1F602;"><a class="header-anchor" href="#8-2-&#x5F69;&#x86CB;b-user-snippets-&#x548C;-emmet-zen-coding-&#x8BA9;&#x4F60;&#x6210;&#x4E3A;&#x98CE;&#x4E00;&#x822C;&#x7684;&#x7231;-ban-&#x7801;-zhuan-&#x4ED5;-de-&#x1F602;">&#xB6;</a>8.2 &#x5F69;&#x86CB;b: <a href="https://atbulbs.github.io/2018/11/18/2018-11-11%E4%BD%A0%E6%83%B3%E6%88%90%E4%B8%BA%E9%A3%8E%E4%B8%80%E8%88%AC%E7%9A%84%E7%88%B1(ban)%E7%A0%81(zhuan)%E4%BB%95(de)%E4%B9%88/"><code>user snippets</code> &#x548C; <code>emmet</code>/<code>zen coding</code> &#x8BA9;&#x4F60;&#x6210;&#x4E3A;&#x98CE;&#x4E00;&#x822C;&#x7684;&#x7231;(ban)&#x7801;(zhuan)&#x4ED5;(de)&#x1F602;</a></h2>
+<p>happy hacking~!</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>点击打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="atbulbs 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="atbulbs 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/移动端开发/" rel="tag"># 移动端开发</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/25/npm tools/" rel="next" title="npm tools">
+                <i class="fa fa-chevron-left"></i> npm tools
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/18/2018-11-11你想成为风一般的爱(ban)码(zhuan)仕(de)么/" rel="prev" title="你想成为风一般的爱(ban)码(zhuan)仕(de)么">
+                你想成为风一般的爱(ban)码(zhuan)仕(de)么 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="atbulbs">
+            
+              <p class="site-author-name" itemprop="name">atbulbs</p>
+              <p class="site-description motion-element" itemprop="description"></></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+  
+  
+  <div class="site-state-item site-state-categories">
+    
+	  <a href="/categories/index.html">
+	
+      <span class="site-state-item-count">16</span>
+      <span class="site-state-item-name">分类</span>
+    </a>
+  </div>
+
+
+
+  
+  
+  <div class="site-state-item site-state-tags">
+    
+	  <a href="/tags/index.html">
+	
+      <span class="site-state-item-count">23</span>
+      <span class="site-state-item-name">标签</span>
+    </a>
+  </div>
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/atbulbs" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:atbulbs@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">一. 什么是vw适配</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-vw-相对于视窗的宽度-视窗宽度是100vw-即window-innerwidth-window-innerheight大小-不包含任务栏标题栏以及底部工具栏的浏览器区域大小"><span class="nav-number">1.1.</span> <span class="nav-text">¶1.1 vw 相对于视窗的宽度:视窗宽度是100vw, 即window.innerWidth/window.innerHeight大小，不包含任务栏标题栏以及底部工具栏的浏览器区域大小</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-css世界-作者张鑫旭老师的视区相关单位vw-vh-简介以及可实际应用场景"><span class="nav-number">1.2.</span> <span class="nav-text">¶1.2 &lt;&lt;CSS世界&gt;&gt;作者张鑫旭老师的视区相关单位vw, vh…简介以及可实际应用场景</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">二. vw适配的兼容性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-可使用viewport的polyfill方案来完美解决-postcss-viewport-units与它的好基友viewport-units-buggyfill"><span class="nav-number">2.0.1.</span> <span class="nav-text">¶2.1 可使用viewport的polyfill方案来完美解决:postcss-viewport-units与它的好基友viewport-units-buggyfill</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-1-原理"><span class="nav-number">2.0.1.1.</span> <span class="nav-text">¶2.1.1 原理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-2-如何使用"><span class="nav-number">2.0.2.</span> <span class="nav-text">¶2.1.2 如何使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-兼容的范围"><span class="nav-number">2.0.3.</span> <span class="nav-text">¶2.2 兼容的范围</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-测试用例"><span class="nav-number">2.0.4.</span> <span class="nav-text">¶2.3 测试用例</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">三. 如何在移动端H5项目webpack构建中引入vw适配</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-大漠老师的原文链接"><span class="nav-number">3.1.</span> <span class="nav-text">¶3.1 大漠老师的原文链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-大漠老师所用postcss-plugins和配置的说明"><span class="nav-number">3.2.</span> <span class="nav-text">¶3.2 大漠老师所用postcss plugins和配置的说明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-1-插一嘴-什么是postcss"><span class="nav-number">3.2.1.</span> <span class="nav-text">¶3.2.1 插一嘴, 什么是postcss</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-2-核心postcss-plugins-postcss-px-to-viewport"><span class="nav-number">3.2.2.</span> <span class="nav-text">¶3.2.2 核心postcss plugins: postcss-px-to-viewport</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-2-postcss-import"><span class="nav-number">3.2.3.</span> <span class="nav-text">¶3.2.2 postcss-import</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-3-postcss-url"><span class="nav-number">3.2.4.</span> <span class="nav-text">¶3.2.3 postcss-url</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-4-autoprefixer"><span class="nav-number">3.2.5.</span> <span class="nav-text">¶3.2.4 autoprefixer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-5-postcss-cssnext"><span class="nav-number">3.2.6.</span> <span class="nav-text">¶3.2.5 postcss-cssnext</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-6-cssnano"><span class="nav-number">3.2.7.</span> <span class="nav-text">¶3.2.6 cssnano</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-7-postcss-aspect-ratio-mini"><span class="nav-number">3.2.8.</span> <span class="nav-text">¶3.2.7 postcss-aspect-ratio-mini</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-8-postcss-write-svg"><span class="nav-number">3.2.9.</span> <span class="nav-text">¶3.2.8 postcss-write-svg</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-9-postcss-viewport-units"><span class="nav-number">3.2.10.</span> <span class="nav-text">¶3.2.9 postcss-viewport-units</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">四. 大漠老师vw适配方案中依赖安装的注(pa)意(keng)事(zi)项(shi)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-postcss-cssnext插件被废弃-推荐用postcss-preset-env"><span class="nav-number">4.1.</span> <span class="nav-text">¶4.1 postcss-cssnext插件被废弃, 推荐用postcss-preset-env</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-如果你用vue-cli3会-缺少部分-依赖"><span class="nav-number">4.2.</span> <span class="nav-text">¶4.2 如果你用vue cli3会缺少部分依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-cssnano-的preset使用了advanced-需要安装对应依赖"><span class="nav-number">4.3.</span> <span class="nav-text">¶4.3 cssnano的preset使用了advanced, 需要安装对应依赖</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">五. 我为小伙伴们准备的一波福利: 开箱📦即用的vw配置webpack构建</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-采用最新npm依赖版本的豪华配置-可npm-check-update"><span class="nav-number">5.1.</span> <span class="nav-text">¶5.1 采用最新npm依赖版本的豪华配置, 可npm-check-update</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-采用vue-cli2的配置"><span class="nav-number">5.2.</span> <span class="nav-text">¶5.2 采用vue-cli2的配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-采用vue-cli3的配置"><span class="nav-number">5.3.</span> <span class="nav-text">¶5.3 采用vue-cli3的配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">6.</span> <span class="nav-text">六. 实际开发中vw适配的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-在css中写样式"><span class="nav-number">6.1.</span> <span class="nav-text">¶6.1 在css中写样式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-在js和template中写样式-我们定义一个转换数字为vw的工具类"><span class="nav-number">6.2.</span> <span class="nav-text">¶6.2 在js和template中写样式, 我们定义一个转换数字为vw的工具类</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">7.</span> <span class="nav-text">七. vw适配的坑以及爬坑姿势(欢迎补充atbulbs@gmail.com)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#7-1-注意viewport的变化"><span class="nav-number">7.1.</span> <span class="nav-text">¶7.1 注意viewport的变化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-2-html2canvas"><span class="nav-number">7.2.</span> <span class="nav-text">¶7.2 html2canvas</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">8.</span> <span class="nav-text">八. 说好的彩🍭蛋🥚</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#8-1-彩蛋a-stylus让你-用更优雅-bowtie-姿势的撸业务代码"><span class="nav-number">8.1.</span> <span class="nav-text">¶8.1 彩蛋a: stylus让你用更优雅 姿势的撸业务代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-2-彩蛋b-user-snippets-和-emmet-zen-coding-让你成为风一般的爱-ban-码-zhuan-仕-de-😂"><span class="nav-number">8.2.</span> <span class="nav-text">¶8.2 彩蛋b: user snippets 和 emmet/zen coding 让你成为风一般的爱(ban)码(zhuan)仕(de)😂</span></a></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">atbulbs</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

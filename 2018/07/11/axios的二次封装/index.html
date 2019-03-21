@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="axios,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="¶一切尽在码中 ¶src/api/axios.config.js  axios配置">
+<meta name="keywords" content="axios">
+<meta property="og:type" content="article">
+<meta property="og:title" content="axios的二次封装">
+<meta property="og:url" content="https://atbulbs.github.io/2018/07/11/axios的二次封装/index.html">
+<meta property="og:site_name" content="atbubls(Jason Liao)">
+<meta property="og:description" content="¶一切尽在码中 ¶src/api/axios.config.js  axios配置">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-21T08:40:21.903Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="axios的二次封装">
+<meta name="twitter:description" content="¶一切尽在码中 ¶src/api/axios.config.js  axios配置">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    
+    
+    emojis: {
+      className: 'github-emoji'
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://atbulbs.github.io/2018/07/11/axios的二次封装/">
+
+
+
+
+
+  <title>axios的二次封装 | atbubls(Jason Liao)</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">atbubls(Jason Liao)</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">more code, more exercise, more happy</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://atbulbs.github.io/2018/07/11/axios的二次封装/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="atbulbs">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="atbubls(Jason Liao)">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">axios的二次封装</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-11T16:08:17+08:00">
+                2018-07-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/http/" itemprop="url" rel="index">
+                    <span itemprop="name">http</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="&#x4E00;&#x5207;&#x5C3D;&#x5728;&#x7801;&#x4E2D;"><a class="header-anchor" href="#&#x4E00;&#x5207;&#x5C3D;&#x5728;&#x7801;&#x4E2D;">&#xB6;</a>&#x4E00;&#x5207;&#x5C3D;&#x5728;&#x7801;&#x4E2D;</h3>
+<h4 id="src-api-axios-config-js-axios&#x914D;&#x7F6E;"><a class="header-anchor" href="#src-api-axios-config-js-axios&#x914D;&#x7F6E;">&#xB6;</a>src/api/axios.config.js  axios&#x914D;&#x7F6E;</h4>
+<a id="more"></a>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&apos;axios&apos;</span></span><br><span class="line"><span class="keyword">import</span> {</span><br><span class="line">  defaultTimeout,</span><br><span class="line">  defaultContentType,</span><br><span class="line">  statusCodeMap</span><br><span class="line">} <span class="keyword">from</span> <span class="string">&apos;shared/constants-define&apos;</span></span><br><span class="line"></span><br><span class="line">axios.defaults.timeout = defaultTimeout</span><br><span class="line">axios.defaults.headers.post[<span class="string">&apos;Content-Type&apos;</span>] = defaultContentType</span><br><span class="line"></span><br><span class="line">axios.interceptors.request.use(</span><br><span class="line">  config =&gt; {</span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">window</span>.navigator.onLine) {</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&apos;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;&#x5931;&#x8D25;&#xFF0C;&#x8BF7;&#x68C0;&#x67E5;&#x60A8;&#x7684;&#x7F51;&#x7EDC;&#x8BBE;&#x7F6E;&apos;</span>)</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">Promise</span>.resolve({ <span class="attr">msg</span>: <span class="string">&apos;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;&#x5931;&#x8D25;&#xFF0C;&#x8BF7;&#x68C0;&#x67E5;&#x60A8;&#x7684;&#x7F51;&#x7EDC;&#x8BBE;&#x7F6E;&apos;</span> })</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> config</span><br><span class="line">  },</span><br><span class="line">  err =&gt; {</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&apos;req_err: &apos;</span>, err)</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Promise</span>.reject(err)</span><br><span class="line">  }</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">axios.interceptors.response.use(</span><br><span class="line">  res =&gt; {</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line">  },</span><br><span class="line">  err =&gt; {</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&apos;res_err: &apos;</span>, err)</span><br><span class="line">    <span class="keyword">if</span> (err.code === <span class="string">&apos;ECONNABORTED&apos;</span>) {</span><br><span class="line">      <span class="built_in">console</span>.dir(err)</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&apos;&#x8BF7;&#x6C42;&#x8D85;&#x65F6;&apos;</span>)</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">Promise</span>.reject(err)</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">if</span> (!err) {</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">const</span> statusCode = err.response.status</span><br><span class="line">    <span class="built_in">console</span>.log(statusCodeMap[statusCode] || <span class="string">&apos;&#x672A;&#x77E5;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;&#x9519;&#x8BEF;&apos;</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Promise</span>.reject(err)</span><br><span class="line">  }</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> get = <span class="keyword">async</span> (url, params = {}, headers = {}) =&gt; {</span><br><span class="line">  <span class="keyword">const</span> res = <span class="keyword">await</span> axios.get(url, { params, headers })</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Promise</span>.resolve(res)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> post = <span class="keyword">async</span> (url, data) =&gt; {</span><br><span class="line">  <span class="keyword">const</span> res = <span class="keyword">await</span> axios({</span><br><span class="line">    method: <span class="string">&apos;post&apos;</span>,</span><br><span class="line">    url,</span><br><span class="line">    data</span><br><span class="line">  })</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Promise</span>.resolve(res)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> { get, post }</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="src-shared-consts-define-js-axios&#x914D;&#x7F6E;&#x6240;&#x9700;&#x7684;&#x5E38;&#x91CF;&#x5B9A;&#x4E49;"><a class="header-anchor" href="#src-shared-consts-define-js-axios&#x914D;&#x7F6E;&#x6240;&#x9700;&#x7684;&#x5E38;&#x91CF;&#x5B9A;&#x4E49;">&#xB6;</a>src/shared/consts-define.js  axios&#x914D;&#x7F6E;&#x6240;&#x9700;&#x7684;&#x5E38;&#x91CF;&#x5B9A;&#x4E49;</h4>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> defaultTimeout = <span class="number">10000</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> defaultContentType = <span class="string">&apos;application/x-www-form-urlencoded;charset=UTF-8&apos;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> statusCodeMap = {</span><br><span class="line">  <span class="number">301</span>: <span class="string">&apos;&#x6C38;&#x4E45;&#x91CD;&#x5B9A;&#x5411;&apos;</span>,</span><br><span class="line">  <span class="number">400</span>: <span class="string">&apos;&#x8BF7;&#x6C42;&#x8BED;&#x6CD5;&#x9519;&#x8BEF;&apos;</span>,</span><br><span class="line">  <span class="number">401</span>: <span class="string">&apos;&#x672A;&#x6388;&#x6743;&apos;</span>,</span><br><span class="line">  <span class="number">403</span>: <span class="string">&apos;&#x7981;&#x6B62;&#x8BBF;&#x95EE;&apos;</span>,</span><br><span class="line">  <span class="number">404</span>: <span class="string">&apos;&#x6CA1;&#x6709;&#x8D44;&#x6E90;&apos;</span>,</span><br><span class="line">  <span class="number">500</span>: <span class="string">&apos;&#x670D;&#x52A1;&#x5668;&#x9519;&#x8BEF;&apos;</span>,</span><br><span class="line">  <span class="number">503</span>: <span class="string">&apos;&#x670D;&#x52A1;&#x5668;&#x9519;&#x8BEF;&apos;</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="src-api-user-js-&#x8C03;&#x7528;axios"><a class="header-anchor" href="#src-api-user-js-&#x8C03;&#x7528;axios">&#xB6;</a>src/api/user.js  &#x8C03;&#x7528;axios</h4>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> $ <span class="keyword">from</span> <span class="string">&apos;api/axios.config&apos;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">getUserIntegral</span> (<span class="params">headers</span>) </span>{</span><br><span class="line">  <span class="keyword">return</span> $.get(<span class="string">&apos;/webcast/userIntegral&apos;</span>, {}, headers)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>点击打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="atbulbs 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="atbulbs 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/axios/" rel="tag"># axios</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/01/this is it  in JavaScript /" rel="next" title="this is it in JavaScript">
+                <i class="fa fa-chevron-left"></i> this is it in JavaScript
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/25/判断数组的排序/" rel="prev" title="判断数组的排序">
+                判断数组的排序 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="atbulbs">
+            
+              <p class="site-author-name" itemprop="name">atbulbs</p>
+              <p class="site-description motion-element" itemprop="description"></></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+  
+  
+  <div class="site-state-item site-state-categories">
+    
+	  <a href="/categories/index.html">
+	
+      <span class="site-state-item-count">16</span>
+      <span class="site-state-item-name">分类</span>
+    </a>
+  </div>
+
+
+
+  
+  
+  <div class="site-state-item site-state-tags">
+    
+	  <a href="/tags/index.html">
+	
+      <span class="site-state-item-count">23</span>
+      <span class="site-state-item-name">标签</span>
+    </a>
+  </div>
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/atbulbs" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:atbulbs@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一切尽在码中"><span class="nav-number">1.</span> <span class="nav-text">¶一切尽在码中</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#src-api-axios-config-js-axios配置"><span class="nav-number">1.1.</span> <span class="nav-text">¶src/api/axios.config.js  axios配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#src-shared-consts-define-js-axios配置所需的常量定义"><span class="nav-number">1.2.</span> <span class="nav-text">¶src/shared/consts-define.js  axios配置所需的常量定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#src-api-user-js-调用axios"><span class="nav-number">1.3.</span> <span class="nav-text">¶src/api/user.js  调用axios</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">atbulbs</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
