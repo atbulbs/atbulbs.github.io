@@ -1943,7 +1943,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #d9cc0d;
+  background: #6cb6f0;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3259,6 +3259,8 @@ img.github-emoji {
   animation: heartAnimate 1.33s ease-in-out infinite;
 }
 .with-love {
+  margin: 7px;
+  text-align: center;
   color: #fa6431;
 }
 @-moz-keyframes heartAnimate {
