@@ -272,7 +272,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://atbulbs.github.io/2018/11/30/2018-11-30webpack4的一些操作/">
+    <link itemprop="mainEntityOfPage" href="https://atbulbs.github.io/2019/04/07/2019-04-07webpack4代码分割/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="atbulbs">
@@ -291,7 +291,336 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/30/2018-11-30webpack4的一些操作/" itemprop="url">webpack4的一些操作</a></h1>
+                <a class="post-title-link" href="/2019/04/07/2019-04-07webpack4代码分割/" itemprop="url">webpack4代码分割</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-07T00:00:00+08:00">
+                2019-04-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端工程/" itemprop="url" rel="index">
+                    <span itemprop="name">前端工程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1>&#x4EE3;&#x7801;&#x5206;&#x5272;</h1>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack&#x914D;&#x7F6E;</span></span><br><span class="line">output: {</span><br><span class="line">  path: path.resolve(<span class="string">&apos;./output&apos;</span>),</span><br><span class="line">  filename: <span class="string">&apos;[name].[hash].bundle.js&apos;</span>,</span><br><span class="line">  chunkFilename: <span class="string">&apos;[name].[chunkhash].chunk.js&apos;</span></span><br><span class="line">},</span><br><span class="line">optimization: {</span><br><span class="line">  splitChunks: {</span><br><span class="line">    chunks: <span class="string">&apos;all&apos;</span>, <span class="comment">// &#x9ED8;&#x8BA4;&#x53EA;&#x4F5C;&#x7528;&#x4E8E;&#x5F02;&#x6B65;&#x6A21;&#x5757;&#xFF0C;&#x4E3A;`all`&#x65F6;&#x5BF9;&#x6240;&#x6709;&#x6A21;&#x5757;&#x751F;&#x6548;,`initial`&#x5BF9;&#x540C;&#x6B65;&#x6A21;&#x5757;&#x6709;&#x6548;</span></span><br><span class="line">    minSize: <span class="number">1</span>, <span class="comment">// &#x5408;&#x5E76;&#x524D;&#x6A21;&#x5757;&#x6587;&#x4EF6;&#x7684;&#x4F53;&#x79EF;</span></span><br><span class="line">    minChunks: <span class="number">1</span>, <span class="comment">//&#x6700;&#x5C11;&#x88AB;&#x5F15;&#x7528;&#x6B21;&#x6570;</span></span><br><span class="line">    maxAsyncRequests: <span class="number">5</span>, <span class="comment">// &#x6309;&#x9700;&#x52A0;&#x8F7D;&#x65F6;&#x5019;&#x6700;&#x5927;&#x7684;&#x5E76;&#x884C;&#x8BF7;&#x6C42;&#x6570;</span></span><br><span class="line">    maxInitialRequests: <span class="number">3</span>, <span class="comment">// &#x4E00;&#x4E2A;&#x5165;&#x53E3;&#x6700;&#x5927;&#x7684;&#x5E76;&#x884C;&#x8BF7;&#x6C42;&#x6570;</span></span><br><span class="line">    automaticNameDelimiter: <span class="string">&apos;~&apos;</span>, <span class="comment">// &#x81EA;&#x52A8;&#x547D;&#x540D;&#x8FDE;&#x63A5;&#x7B26;</span></span><br><span class="line">    cacheGroups: {</span><br><span class="line">      vendors: {</span><br><span class="line">        test: <span class="regexp">/[\\/]node_modules[\\/]/</span>,</span><br><span class="line">        minChunks:<span class="number">1</span>, <span class="comment">// &#x6700;&#x5C11;&#x88AB;&#x5F15;&#x7528;&#x6B21;&#x6570;</span></span><br><span class="line">        priority: <span class="number">-10</span> <span class="comment">// &#x4F18;&#x5148;&#x7EA7;&#x66F4;&#x9AD8;</span></span><br><span class="line">      },</span><br><span class="line">      commons: {</span><br><span class="line">        test: <span class="regexp">/[\\/]src[\\/]lib[\\/]/</span>,</span><br><span class="line">        minChunks: <span class="number">1</span>, <span class="comment">// &#x6700;&#x5C11;&#x88AB;&#x5F15;&#x7528;&#x6B21;&#x6570;</span></span><br><span class="line">        priority: <span class="number">-20</span></span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">},</span><br></pre></td></tr></tbody></table></figure><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://atbulbs.github.io/2019/02/23/2019-03-11你不知道的webpack/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="atbulbs">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="atbubls(Jason Liao)">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/23/2019-03-11你不知道的webpack/" itemprop="url">你不知道的webpack</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-23T00:00:00+08:00">
+                2019-02-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端工程/" itemprop="url" rel="index">
+                    <span itemprop="name">前端工程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1>webpack&#x7684;&#x6838;&#x5FC3;&#x5B9A;&#x4E49;</h1>
+<p>&#x4E00;&#x4E2A;&#x6A21;&#x5757;&#x6253;&#x5305;&#x5668;(&#x80FD;&#x8BC6;&#x522B;ES Moudule&#x548C;CommonJS&#x89C4;&#x8303;&#x548C;&#x5176;&#x4ED6;&#x5982;css&#x7B49;&#x683C;&#x5F0F;&#x7684;&#x6587;&#x4EF6;)</p>
+<h1>&#x63D0;&#x9AD8;&#x6784;&#x5EFA;&#x548C;&#x6253;&#x5305;&#x6548;&#x7387;</h1>
+<ul>
+<li>&#x8BA9;node&#x548C;webpack&#x7248;&#x672C;&#x6700;&#x65B0;</li>
+</ul>
+<h1>package.json&#x6587;&#x4EF6;</h1>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">{</span><br><span class="line">  <span class="string">&quot;private&quot;</span>: <span class="literal">true</span>, <span class="comment">// &#x79C1;&#x6709;&#x9879;&#x76EE;, &#x4E0D;&#x4F1A;&#x88AB;&#x53D1;&#x5E03;&#x5230;npm&#x7EBF;&#x4E0A;&#x4ED3;&#x5E93;</span></span><br><span class="line">  <span class="string">&quot;main&quot;</span>: <span class="string">&quot;index.js&quot;</span>, <span class="comment">// &#x88AB;&#x5916;&#x90E8;&#x5F15;&#x7528;&#x7684;js&#x6587;&#x4EF6;</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h1>npm script</h1>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ npm init -y <span class="comment"># &#x7528;&#x9ED8;&#x8BA4;&#x914D;&#x7F6E;&#x521D;&#x59CB;&#x9879;&#x76EE;</span></span><br><span class="line">$ npm info webpack <span class="comment"># &#x67E5;&#x770B;&#x5305;&#x7684;&#x5386;&#x53F2;&#x7248;&#x672C;&#x53F7;</span></span><br><span class="line">$ npx webpack -v <span class="comment"># &#x4F7F;&#x7528;nodemodules&#x91CC;&#x7684;&#x5305;</span></span><br></pre></td></tr></tbody></table></figure>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://atbulbs.github.io/2018/11/30/2018-11-30webpack4处理本地js库/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="atbulbs">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="atbubls(Jason Liao)">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/30/2018-11-30webpack4处理本地js库/" itemprop="url">webpack4处理本地js库</a></h1>
         
 
         <div class="post-meta">
@@ -369,7 +698,7 @@
 <h1>生产时打包本地js库</h1>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/11/30/2018-11-30webpack4的一些操作/" rel="contents">
+            <a class="btn" href="/2018/11/30/2018-11-30webpack4处理本地js库/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1352,7 +1681,7 @@ protected 只能在类的内部和子类访问</li>
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://atbulbs.github.io/2018/10/17/linux避免误删/">
+    <link itemprop="mainEntityOfPage" href="https://atbulbs.github.io/2018/10/17/mac iterm2快捷键/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="atbulbs">
@@ -1371,153 +1700,7 @@ protected 只能在类的内部和子类访问</li>
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/10/17/linux避免误删/" itemprop="url">linux避免误删</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-17T16:08:17+08:00">
-                2018-10-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span></span><br><span class="line">$ <span class="built_in">cd</span> ../../home</span><br><span class="line">$ mkdir -p ~/.Trash</span><br><span class="line">$ vi ~/.bashrc</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/10/17/linux避免误删/" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://atbulbs.github.io/2018/10/17/mac vscode快捷键/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="atbulbs">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="atbubls(Jason Liao)">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/17/mac vscode快捷键/" itemprop="url">mac vscode快捷键</a></h1>
+                <a class="post-title-link" href="/2018/10/17/mac iterm2快捷键/" itemprop="url">mac iterm2快捷键</a></h1>
         
 
         <div class="post-meta">
@@ -1590,169 +1773,31 @@ protected 只能在类的内部和子类访问</li>
 
       
         
-          <ul>
-<li>多处光标 <code>option + 鼠标左键</code></li>
-<li>向下插入一行 <code>command + enter</code></li>
-<li>向上插入一行 <code>shift + command + enter</code></li>
+          
+            <ul>
+<li>&#x5207;&#x6362;&#x6807;&#x7B7E; <code>command + left / right</code></li>
 </ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/10/17/mac vscode快捷键/" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://atbulbs.github.io/2018/10/17/mac系统快捷键/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="atbulbs">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="atbubls(Jason Liao)">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/17/mac系统快捷键/" itemprop="url">mac系统快捷键</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-17T16:08:17+08:00">
-                2018-10-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
+<p>&#x53C2;&#x8003;<a href="https://blog.csdn.net/ws1352864983/article/details/51512904" target="_blank" rel="noopener">https://blog.csdn.net/ws1352864983/article/details/51512904</a></p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
           
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/mac/" itemprop="url" rel="index">
-                    <span itemprop="name">mac</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <ul>
-<li>关闭窗口 / 标签 <code>command + W</code></li>
-<li>浏览器 / 终端 新建标签 <code>command + T</code></li>
-<li>mini窗口最小化 <code>command + M</code></li>
-<li>窗口最大化和还原 <code>command + ctrol + F</code></li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/10/17/mac系统快捷键/" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -1841,7 +1886,7 @@ protected 只能在类的内部和子类访问</li>
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
