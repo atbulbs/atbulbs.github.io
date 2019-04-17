@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="JavaScript,">
+  <meta name="keywords" content="git,">
 
 
 
@@ -86,18 +86,18 @@
 
 
 
-<meta name="description" content="¶实现深拷贝, 思路: 判断待拷贝的属性是否为数组或对象然后递归">
-<meta name="keywords" content="JavaScript">
+<meta name="description" content="&amp;#x73B0;&amp;#x8C61;: push&amp;#x4EE3;&amp;#x7801;&amp;#x65F6;gitlog&amp;#x51FA;&amp;#x73B0; remote: HTTP Basic: Access denied &amp;#x539F;&amp;#x56E0;: git&amp;#x4ED3;&amp;#x5E93;&amp;#x8BBE;&amp;#x7F6E;&amp;#x4E86;&amp;#x6743;&amp;#x9650;, You won&amp;#x2019;t b">
+<meta name="keywords" content="git">
 <meta property="og:type" content="article">
-<meta property="og:title" content="从深拷贝谈类型检测">
-<meta property="og:url" content="https://atbulbs.github.io/2018/06/01/从深拷贝谈类型检测/index.html">
+<meta property="og:title" content="更改git提交的协议">
+<meta property="og:url" content="https://atbulbs.github.io/2019/04/17/2019-04-17更改git提交的协议/index.html">
 <meta property="og:site_name" content="atbubls(Jason Liao)">
-<meta property="og:description" content="¶实现深拷贝, 思路: 判断待拷贝的属性是否为数组或对象然后递归">
+<meta property="og:description" content="&amp;#x73B0;&amp;#x8C61;: push&amp;#x4EE3;&amp;#x7801;&amp;#x65F6;gitlog&amp;#x51FA;&amp;#x73B0; remote: HTTP Basic: Access denied &amp;#x539F;&amp;#x56E0;: git&amp;#x4ED3;&amp;#x5E93;&amp;#x8BBE;&amp;#x7F6E;&amp;#x4E86;&amp;#x6743;&amp;#x9650;, You won&amp;#x2019;t b">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-21T08:40:21.906Z">
+<meta property="og:updated_time" content="2019-04-17T07:53:51.031Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="从深拷贝谈类型检测">
-<meta name="twitter:description" content="¶实现深拷贝, 思路: 判断待拷贝的属性是否为数组或对象然后递归">
+<meta name="twitter:title" content="更改git提交的协议">
+<meta name="twitter:description" content="&amp;#x73B0;&amp;#x8C61;: push&amp;#x4EE3;&amp;#x7801;&amp;#x65F6;gitlog&amp;#x51FA;&amp;#x73B0; remote: HTTP Basic: Access denied &amp;#x539F;&amp;#x56E0;: git&amp;#x4ED3;&amp;#x5E93;&amp;#x8BBE;&amp;#x7F6E;&amp;#x4E86;&amp;#x6743;&amp;#x9650;, You won&amp;#x2019;t b">
 
 
 
@@ -132,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="https://atbulbs.github.io/2018/06/01/从深拷贝谈类型检测/">
+  <link rel="canonical" href="https://atbulbs.github.io/2019/04/17/2019-04-17更改git提交的协议/">
 
 
 
 
 
-  <title>从深拷贝谈类型检测 | atbubls(Jason Liao)</title>
+  <title>更改git提交的协议 | atbubls(Jason Liao)</title>
   
 
 
@@ -276,7 +276,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://atbulbs.github.io/2018/06/01/从深拷贝谈类型检测/">
+    <link itemprop="mainEntityOfPage" href="https://atbulbs.github.io/2019/04/17/2019-04-17更改git提交的协议/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="atbulbs">
@@ -293,7 +293,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">从深拷贝谈类型检测</h1>
+          <h1 class="post-title" itemprop="name headline">更改git提交的协议</h1>
         
 
         <div class="post-meta">
@@ -305,8 +305,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-01T08:26:13+08:00">
-                2018-06-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-17T00:00:00+08:00">
+                2019-04-17
               </time>
             
 
@@ -328,8 +328,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaScript</span>
+                  <a href="/categories/版本控制/" itemprop="url" rel="index">
+                    <span itemprop="name">版本控制</span>
                   </a>
                 </span>
 
@@ -365,26 +365,11 @@
       
 
       
-        <h3 id="&#x5B9E;&#x73B0;&#x6DF1;&#x62F7;&#x8D1D;-&#x601D;&#x8DEF;-&#x5224;&#x65AD;&#x5F85;&#x62F7;&#x8D1D;&#x7684;&#x5C5E;&#x6027;&#x662F;&#x5426;&#x4E3A;&#x6570;&#x7EC4;&#x6216;&#x5BF9;&#x8C61;&#x7136;&#x540E;&#x9012;&#x5F52;"><a class="header-anchor" href="#&#x5B9E;&#x73B0;&#x6DF1;&#x62F7;&#x8D1D;-&#x601D;&#x8DEF;-&#x5224;&#x65AD;&#x5F85;&#x62F7;&#x8D1D;&#x7684;&#x5C5E;&#x6027;&#x662F;&#x5426;&#x4E3A;&#x6570;&#x7EC4;&#x6216;&#x5BF9;&#x8C61;&#x7136;&#x540E;&#x9012;&#x5F52;">&#xB6;</a>&#x5B9E;&#x73B0;&#x6DF1;&#x62F7;&#x8D1D;, &#x601D;&#x8DEF;: &#x5224;&#x65AD;&#x5F85;&#x62F7;&#x8D1D;&#x7684;&#x5C5E;&#x6027;&#x662F;&#x5426;&#x4E3A;&#x6570;&#x7EC4;&#x6216;&#x5BF9;&#x8C61;&#x7136;&#x540E;&#x9012;&#x5F52;</h3>
-<a id="more"></a>
-<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deepCopy</span> (<span class="params">p, c = {}</span>) </span>{	</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i <span class="keyword">in</span> p) {</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> p[i] === <span class="string">&apos;object&apos;</span>) {	</span><br><span class="line">      c[i] = p[i].constructor === <span class="built_in">Array</span> ? [] : {}</span><br><span class="line">      deepCopy(p[i], c[i])</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      c[i] = p[i]	</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span> c</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> testP = {</span><br><span class="line">  a: {</span><br><span class="line">    a1: <span class="string">&apos;a1&apos;</span></span><br><span class="line">  },</span><br><span class="line">  b: [<span class="string">&apos;b1&apos;</span>, {</span><br><span class="line">    b2: <span class="string">&apos;b2&apos;</span></span><br><span class="line">  }],</span><br><span class="line">  c: <span class="string">&apos;c&apos;</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> testRes = deepCopy(testP)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(testRes)</span><br></pre></td></tr></tbody></table></figure>
-<h3 id="typeof"><a class="header-anchor" href="#typeof">&#xB6;</a>typeof</h3>
-<ol>
-<li>&#x2018;number&#x2019;</li>
-<li>&#x2018;string&#x2019;</li>
-<li>&#x2018;boolean&#x2019;</li>
-<li>&#x2018;undefined&#x2019;</li>
-<li>&#x2018;null&#x2019;</li>
-<li>&#x2018;symbol&#x2019;</li>
-<li>&#x2018;object&#x2019;</li>
-<li>&#x2018;function&#x2019;</li>
-</ol>
-<p>&#x5176;&#x4E2D;&#x6570;&#x7EC4;&#x548C;&#x5BF9;&#x8C61;&#x90FD;&#x4F1A;&#x8FD4;&#x56DE; &#x2018;object&#x2019;</p>
-<h3 id="instanceof"><a class="header-anchor" href="#instanceof">&#xB6;</a>instanceof</h3>
-<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[] <span class="keyword">instanceof</span> <span class="built_in">Array</span> <span class="comment">//true</span></span><br><span class="line">[] <span class="keyword">instanceof</span> <span class="built_in">Object</span> <span class="comment">//true</span></span><br></pre></td></tr></tbody></table></figure>
-<h3 id="object-prototype-tostring-call"><a class="header-anchor" href="#object-prototype-tostring-call">&#xB6;</a>Object.prototype.toString.call</h3>
-<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.prototype.toString.call([]) <span class="comment">// &apos;[object Array]&apos;</span></span><br><span class="line"><span class="built_in">Object</span>.prototype.toString.call({}) <span class="comment">// &apos;[object Object]&apos;</span></span><br><span class="line"><span class="built_in">Object</span>.prototype.toString.call(<span class="number">1</span>) <span class="comment">// &apos;[object Number]&apos;</span></span><br><span class="line"><span class="built_in">Object</span>.prototype.toString.call(<span class="string">&apos;1&apos;</span>) <span class="comment">// &apos;[object String]&apos;</span></span><br><span class="line"><span class="built_in">Object</span>.prototype.toString.call(<span class="literal">true</span>) <span class="comment">// &apos;[object Boolean]&apos;</span></span><br></pre></td></tr></tbody></table></figure>
-<script>
+        <p>&#x73B0;&#x8C61;: push&#x4EE3;&#x7801;&#x65F6;gitlog&#x51FA;&#x73B0; remote: HTTP Basic: Access denied</p>
+<p>&#x539F;&#x56E0;: git&#x4ED3;&#x5E93;&#x8BBE;&#x7F6E;&#x4E86;&#x6743;&#x9650;, You won&#x2019;t be able to pull or push project code via HTTPS until you create a personal access token on your account(&#x5927;&#x767D;&#x8BDD;: &#x65E0;&#x6CD5;&#x4F7F;&#x7528;HTTPS&#x534F;&#x8BAE;)</p>
+<p>&#x89E3;&#x51B3;&#x65B9;&#x6848;: &#x4FEE;&#x6539;&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;&#x5730;&#x5740;&#x4E3A;ssh&#x534F;&#x8BAE;&#x7684;&#x5730;&#x5740;</p>
+<p>&#x5177;&#x4F53;&#x64CD;&#x4F5C;&#x5982;&#x4E0B;:</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &#x4E24;&#x79CD;&#x65B9;&#x6CD5;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1 &#x4FEE;&#x6539;</span></span><br><span class="line">$ git remote <span class="built_in">set</span>-url origin [url]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2 &#x5148;&#x5220;&#x540E;&#x52A0;</span></span><br><span class="line">$ git remote rm origin</span><br><span class="line">$ git remote add origin [url]</span><br></pre></td></tr></tbody></table></figure><script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
@@ -448,7 +433,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+            <a href="/tags/git/" rel="tag"># git</a>
           
         </div>
       
@@ -461,8 +446,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/09/自己手搓的一些vue组件轮子/" rel="next" title="自己手搓的一些vue组件轮子">
-                <i class="fa fa-chevron-left"></i> 自己手搓的一些vue组件轮子
+              <a href="/2019/02/23/2019-03-11你不知道的webpack/" rel="next" title="你不知道的webpack">
+                <i class="fa fa-chevron-left"></i> 你不知道的webpack
               </a>
             
           </div>
@@ -470,10 +455,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/06/01/你对你的对象有多少了解/" rel="prev" title="你对你的对象有多少了解">
-                你对你的对象有多少了解 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -525,17 +506,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -621,22 +593,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现深拷贝-思路-判断待拷贝的属性是否为数组或对象然后递归"><span class="nav-number">1.</span> <span class="nav-text">¶实现深拷贝, 思路: 判断待拷贝的属性是否为数组或对象然后递归</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#typeof"><span class="nav-number">2.</span> <span class="nav-text">¶typeof</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#instanceof"><span class="nav-number">3.</span> <span class="nav-text">¶instanceof</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#object-prototype-tostring-call"><span class="nav-number">4.</span> <span class="nav-text">¶Object.prototype.toString.call</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       

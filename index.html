@@ -272,7 +272,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://atbulbs.github.io/2019/04/07/2019-04-07webpack4代码分割/">
+    <link itemprop="mainEntityOfPage" href="https://atbulbs.github.io/2019/04/17/2019-04-17更改git提交的协议/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="atbulbs">
@@ -291,7 +291,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/04/07/2019-04-07webpack4代码分割/" itemprop="url">webpack4代码分割</a></h1>
+                <a class="post-title-link" href="/2019/04/17/2019-04-17更改git提交的协议/" itemprop="url">更改git提交的协议</a></h1>
         
 
         <div class="post-meta">
@@ -303,8 +303,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-07T00:00:00+08:00">
-                2019-04-07
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-17T00:00:00+08:00">
+                2019-04-17
               </time>
             
 
@@ -326,8 +326,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端工程/" itemprop="url" rel="index">
-                    <span itemprop="name">前端工程</span>
+                  <a href="/categories/版本控制/" itemprop="url" rel="index">
+                    <span itemprop="name">版本控制</span>
                   </a>
                 </span>
 
@@ -365,8 +365,11 @@
       
         
           
-            <h1>&#x4EE3;&#x7801;&#x5206;&#x5272;</h1>
-<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack&#x914D;&#x7F6E;</span></span><br><span class="line">output: {</span><br><span class="line">  path: path.resolve(<span class="string">&apos;./output&apos;</span>),</span><br><span class="line">  filename: <span class="string">&apos;[name].[hash].bundle.js&apos;</span>,</span><br><span class="line">  chunkFilename: <span class="string">&apos;[name].[chunkhash].chunk.js&apos;</span></span><br><span class="line">},</span><br><span class="line">optimization: {</span><br><span class="line">  splitChunks: {</span><br><span class="line">    chunks: <span class="string">&apos;all&apos;</span>, <span class="comment">// &#x9ED8;&#x8BA4;&#x53EA;&#x4F5C;&#x7528;&#x4E8E;&#x5F02;&#x6B65;&#x6A21;&#x5757;&#xFF0C;&#x4E3A;`all`&#x65F6;&#x5BF9;&#x6240;&#x6709;&#x6A21;&#x5757;&#x751F;&#x6548;,`initial`&#x5BF9;&#x540C;&#x6B65;&#x6A21;&#x5757;&#x6709;&#x6548;</span></span><br><span class="line">    minSize: <span class="number">1</span>, <span class="comment">// &#x5408;&#x5E76;&#x524D;&#x6A21;&#x5757;&#x6587;&#x4EF6;&#x7684;&#x4F53;&#x79EF;</span></span><br><span class="line">    minChunks: <span class="number">1</span>, <span class="comment">//&#x6700;&#x5C11;&#x88AB;&#x5F15;&#x7528;&#x6B21;&#x6570;</span></span><br><span class="line">    maxAsyncRequests: <span class="number">5</span>, <span class="comment">// &#x6309;&#x9700;&#x52A0;&#x8F7D;&#x65F6;&#x5019;&#x6700;&#x5927;&#x7684;&#x5E76;&#x884C;&#x8BF7;&#x6C42;&#x6570;</span></span><br><span class="line">    maxInitialRequests: <span class="number">3</span>, <span class="comment">// &#x4E00;&#x4E2A;&#x5165;&#x53E3;&#x6700;&#x5927;&#x7684;&#x5E76;&#x884C;&#x8BF7;&#x6C42;&#x6570;</span></span><br><span class="line">    automaticNameDelimiter: <span class="string">&apos;~&apos;</span>, <span class="comment">// &#x81EA;&#x52A8;&#x547D;&#x540D;&#x8FDE;&#x63A5;&#x7B26;</span></span><br><span class="line">    cacheGroups: {</span><br><span class="line">      vendors: {</span><br><span class="line">        test: <span class="regexp">/[\\/]node_modules[\\/]/</span>,</span><br><span class="line">        minChunks:<span class="number">1</span>, <span class="comment">// &#x6700;&#x5C11;&#x88AB;&#x5F15;&#x7528;&#x6B21;&#x6570;</span></span><br><span class="line">        priority: <span class="number">-10</span> <span class="comment">// &#x4F18;&#x5148;&#x7EA7;&#x66F4;&#x9AD8;</span></span><br><span class="line">      },</span><br><span class="line">      commons: {</span><br><span class="line">        test: <span class="regexp">/[\\/]src[\\/]lib[\\/]/</span>,</span><br><span class="line">        minChunks: <span class="number">1</span>, <span class="comment">// &#x6700;&#x5C11;&#x88AB;&#x5F15;&#x7528;&#x6B21;&#x6570;</span></span><br><span class="line">        priority: <span class="number">-20</span></span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">},</span><br></pre></td></tr></tbody></table></figure><script>
+            <p>&#x73B0;&#x8C61;: push&#x4EE3;&#x7801;&#x65F6;gitlog&#x51FA;&#x73B0; remote: HTTP Basic: Access denied</p>
+<p>&#x539F;&#x56E0;: git&#x4ED3;&#x5E93;&#x8BBE;&#x7F6E;&#x4E86;&#x6743;&#x9650;, You won&#x2019;t be able to pull or push project code via HTTPS until you create a personal access token on your account(&#x5927;&#x767D;&#x8BDD;: &#x65E0;&#x6CD5;&#x4F7F;&#x7528;HTTPS&#x534F;&#x8BAE;)</p>
+<p>&#x89E3;&#x51B3;&#x65B9;&#x6848;: &#x4FEE;&#x6539;&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;&#x5730;&#x5740;&#x4E3A;ssh&#x534F;&#x8BAE;&#x7684;&#x5730;&#x5740;</p>
+<p>&#x5177;&#x4F53;&#x64CD;&#x4F5C;&#x5982;&#x4E0B;:</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &#x4E24;&#x79CD;&#x65B9;&#x6CD5;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1 &#x4FEE;&#x6539;</span></span><br><span class="line">$ git remote <span class="built_in">set</span>-url origin [url]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2 &#x5148;&#x5220;&#x540E;&#x52A0;</span></span><br><span class="line">$ git remote rm origin</span><br><span class="line">$ git remote add origin [url]</span><br></pre></td></tr></tbody></table></figure><script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
@@ -1493,6 +1496,169 @@ protected 只能在类的内部和子类访问</li>
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://atbulbs.github.io/2018/10/17/mac iterm2快捷键/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="atbulbs">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="atbubls(Jason Liao)">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/17/mac iterm2快捷键/" itemprop="url">mac iterm2快捷键</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-17T16:08:17+08:00">
+                2018-10-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/mac/" itemprop="url" rel="index">
+                    <span itemprop="name">mac</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>&#x5207;&#x6362;&#x6807;&#x7B7E; <code>command + left / right</code></li>
+</ul>
+<p>&#x53C2;&#x8003;<a href="https://blog.csdn.net/ws1352864983/article/details/51512904" target="_blank" rel="noopener">https://blog.csdn.net/ws1352864983/article/details/51512904</a></p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://atbulbs.github.io/2018/10/17/linux常用命令/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1634,152 +1800,6 @@ protected 只能在类的内部和子类访问</li>
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://atbulbs.github.io/2018/10/17/linux避免误删/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="atbulbs">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="atbubls(Jason Liao)">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/17/linux避免误删/" itemprop="url">linux避免误删</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-17T16:08:17+08:00">
-                2018-10-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span></span><br><span class="line">$ <span class="built_in">cd</span> ../../home</span><br><span class="line">$ mkdir -p ~/.Trash</span><br><span class="line">$ vi ~/.bashrc</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/10/17/linux避免误删/" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1848,7 +1868,7 @@ protected 只能在类的内部和子类访问</li>
     
 	  <a href="/categories/index.html">
 	
-      <span class="site-state-item-count">16</span>
+      <span class="site-state-item-count">17</span>
       <span class="site-state-item-name">分类</span>
     </a>
   </div>
@@ -1861,7 +1881,7 @@ protected 只能在类的内部和子类访问</li>
     
 	  <a href="/tags/index.html">
 	
-      <span class="site-state-item-count">23</span>
+      <span class="site-state-item-count">24</span>
       <span class="site-state-item-name">标签</span>
     </a>
   </div>
