@@ -366,8 +366,21 @@
         
           
             <h1>&#x642D;&#x5EFA;&#x73AF;&#x5883;</h1>
-<p><a href="https://flutter.dev/community/china" target="_blank" rel="noopener">Flutter SDK https://flutter.dev/docs/get-started/install/macos</a></p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">export</span> PUB_HOSTED_URL=https://pub.flutter-io.cn</span><br><span class="line">$ <span class="built_in">export</span> FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn</span><br><span class="line">$ git <span class="built_in">clone</span> -b dev https://github.com/flutter/flutter.git</span><br><span class="line">$ <span class="built_in">export</span> PATH=<span class="string">&quot;<span class="variable">$PWD</span>/flutter/bin:<span class="variable">$PATH</span>&quot;</span></span><br><span class="line">$ <span class="built_in">cd</span> ./flutter</span><br><span class="line">$ flutter doctor</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li><a href="https://flutter.dev/community/china" target="_blank" rel="noopener">Flutter SDK https://flutter.dev/docs/get-started/install/macos</a></li>
+<li>&#x5B89;&#x88C5;xcode</li>
+<li>&#x5B89;&#x88C5;&#x5B89;&#x5353;studio&#x5E76;&#x5B89;&#x88C5;flutter, dart&#x63D2;&#x4EF6;, sdk tools</li>
+<li>&#x5B89;&#x88C5;vscode&#x7684;flutter&#x63D2;&#x4EF6;</li>
+</ul>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">export</span> PUB_HOSTED_URL=https://pub.flutter-io.cn</span><br><span class="line">$ <span class="built_in">export</span> FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn</span><br><span class="line">$ git <span class="built_in">clone</span> -b dev https://github.com/flutter/flutter.git</span><br><span class="line">$ <span class="built_in">export</span> PATH=<span class="string">&quot;<span class="variable">$PWD</span>/flutter/bin:<span class="variable">$PATH</span>&quot;</span></span><br><span class="line">$ <span class="built_in">cd</span> ./flutter</span><br><span class="line">$ flutter doctor</span><br><span class="line"><span class="comment"># &#x6C38;&#x4E45;&#x6DFB;&#x52A0;flutter&#x5230;PATH, &#x53C2;&#x8003;</span></span><br><span class="line">$ <span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/Users/jsl/flutter/bin</span><br><span class="line">$ <span class="built_in">source</span> <span class="variable">$HOME</span>/.bash_profile</span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$PATH</span></span><br></pre></td></tr></tbody></table></figure>
+<p>android studio</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">//Macintosh HD&#x2069; &#x25B8; &#x2068;Users&#x2069; &#x25B8; &#x2068;&#x4F60;&#x7684;&#x7528;&#x6237;&#x540D; &#x25B8; &#x2068;.bash_profile</span><br><span class="line"><span class="comment">#Android &#x73AF;&#x5883;&#x53D8;&#x91CF;</span></span><br><span class="line"><span class="built_in">export</span> ANDROID_HOME=/Users/&#x4F60;&#x7684;&#x7528;&#x6237;&#x540D;/Library/Android/sdk</span><br><span class="line"><span class="comment">#Android &#x6A21;&#x62DF;&#x5668;&#x8DEF;&#x5F84;</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">${PATH}</span>:<span class="variable">${ANDROID_HOME}</span>/emulator</span><br><span class="line"><span class="comment">#Android tools &#x8DEF;&#x5F84;</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">${PATH}</span>:<span class="variable">${ANDROID_HOME}</span>/tools</span><br><span class="line"><span class="comment">#Android &#x5E73;&#x53F0;&#x5DE5;&#x5177;&#x8DEF;&#x5F84;</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">${PATH}</span>:<span class="variable">${ANDROID_HOME}</span>/platform-tools</span><br><span class="line"><span class="comment">#Android NDK&#x8DEF;&#x5F84;</span></span><br><span class="line">ANDROID_NDK_HOME=/Users/&#x4F60;&#x7684;&#x7528;&#x6237;&#x540D;/Library/Android/ndk/android-ndk-r10e</span><br><span class="line"><span class="comment">#FLutter&#x955C;&#x50CF;</span></span><br><span class="line"><span class="built_in">export</span> PUB_HOSTED_URL=https://pub.flutter-io.cn</span><br><span class="line"><span class="built_in">export</span> FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn</span><br><span class="line"><span class="comment">#Flutter&#x73AF;&#x5883;&#x53D8;&#x91CF;</span></span><br><span class="line"><span class="built_in">export</span> PATH=/Users/jph/Documents/flutter/bin:<span class="variable">$PATH</span></span><br></pre></td></tr></tbody></table></figure>
+<p>xcode</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &#x914D;&#x7F6E;cli tool</span></span><br><span class="line">$ sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer</span><br><span class="line"><span class="comment"># &#x542F;&#x52A8;&#x4E00;&#x4E2A;ios&#x6A21;&#x62DF;&#x5668;</span></span><br><span class="line">$ open -a Simulator</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x521B;&#x5EFA;flutter&#x9879;&#x76EE;</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ flutter create app_name</span><br><span class="line"><span class="comment"># &#x8FDB;&#x5165;&#x9879;&#x76EE;&#x76EE;&#x5F55;</span></span><br><span class="line">$ <span class="built_in">cd</span> ap_name</span><br><span class="line"><span class="comment"># &#x542F;&#x52A8;&#x9879;&#x76EE;</span></span><br><span class="line">$ flutter run</span><br></pre></td></tr></tbody></table></figure>
+<p>ios&#x771F;&#x673A;&#x8C03;&#x8BD5;</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &#x4E00;&#x4E0B;&#x547D;&#x4EE4;&#x82E5;&#x51FA;&#x9519;, &#x8FD0;&#x884C; brew doctor</span></span><br><span class="line">$ brew update</span><br><span class="line">$ brew install --HEAD usbmuxd</span><br><span class="line">$ brew link usbmuxd</span><br><span class="line">$ brew install --HEAD libimobiledevice</span><br><span class="line">$ brew install ideviceinstaller ios-deploy cocoapods</span><br><span class="line">$ pod setup</span><br></pre></td></tr></tbody></table></figure>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1063,6 +1076,152 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://atbulbs.github.io/2018/11/18/2018-11-11你想成为风一般的爱(ban)码(zhuan)仕(de)么/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="atbulbs">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="atbubls(Jason Liao)">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/18/2018-11-11你想成为风一般的爱(ban)码(zhuan)仕(de)么/" itemprop="url">你想成为风一般的爱(ban)码(zhuan)仕(de)么</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-18T12:15:17+08:00">
+                2018-11-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发效率/" itemprop="url" rel="index">
+                    <span itemprop="name">开发效率</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1>user snippets用户自定义代码片段, 贴上我的</h1>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/11/18/2018-11-11你想成为风一般的爱(ban)码(zhuan)仕(de)么/" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://atbulbs.github.io/2018/11/18/2018-11-18移动端VW适配方案/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1169,152 +1328,6 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/11/18/2018-11-18移动端VW适配方案/" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://atbulbs.github.io/2018/11/18/2018-11-11你想成为风一般的爱(ban)码(zhuan)仕(de)么/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="atbulbs">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="atbubls(Jason Liao)">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/18/2018-11-11你想成为风一般的爱(ban)码(zhuan)仕(de)么/" itemprop="url">你想成为风一般的爱(ban)码(zhuan)仕(de)么</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-18T12:15:17+08:00">
-                2018-11-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/开发效率/" itemprop="url" rel="index">
-                    <span itemprop="name">开发效率</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1>user snippets用户自定义代码片段, 贴上我的</h1>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/18/2018-11-11你想成为风一般的爱(ban)码(zhuan)仕(de)么/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
