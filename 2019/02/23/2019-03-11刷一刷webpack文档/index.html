@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="atbubls(Jason Liao)">
 <meta property="og:description" content="webpack的核心定义 一个模块打包器(能识别ES Moudule和CommonJS规范和其他如css等格式的文件) 提高构建和打包效率  让node和webpack版本最新  package.json文件 1234&amp;#123;  &quot;private&quot;: true, // 私有项目, 不会被发布到npm线上仓库  &quot;main&quot;: &quot;index.js&quot;, // 被外部引用的js文件&amp;#125; np">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-26T04:00:23.995Z">
+<meta property="og:updated_time" content="2019-05-07T06:13:15.114Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="刷一刷webpack文档">
 <meta name="twitter:description" content="webpack的核心定义 一个模块打包器(能识别ES Moudule和CommonJS规范和其他如css等格式的文件) 提高构建和打包效率  让node和webpack版本最新  package.json文件 1234&amp;#123;  &quot;private&quot;: true, // 私有项目, 不会被发布到npm线上仓库  &quot;main&quot;: &quot;index.js&quot;, // 被外部引用的js文件&amp;#125; np">
@@ -379,7 +379,7 @@
 <h1>entry config</h1>
 <figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">entry: <span class="string">&apos;./src/index.js&apos;</span></span><br><span class="line"><span class="comment">// &#x5176;&#x5B9E;&#x662F;&#x5982;&#x4E0B;&#x7684;&#x7B80;&#x5199;</span></span><br><span class="line">entry: {</span><br><span class="line">  main: <span class="string">&apos;./src/index.js&apos;</span>,</span><br><span class="line">  sub: <span class="string">&apos;./src/index.js&apos;</span>,</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 <h1>output config</h1>
-<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// https://webpack.js.org/guides/output-management</span></span><br><span class="line">output: {</span><br><span class="line">  publicPath: <span class="string">&apos;http://cdn.com.cn&apos;</span>,</span><br><span class="line">  <span class="comment">// name&#x4F1A;&#x5BF9;&#x5E94; main &#x548C; sub</span></span><br><span class="line">  filename: <span class="string">&apos;[name].[hash].bundle.js&apos;</span>,</span><br><span class="line">  path: path.resolve(__dirname, <span class="string">&apos;dist&apos;</span>),</span><br><span class="line">  chunkFilename: <span class="string">&apos;[name].[chunkhash].chunk.js&apos;</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// https://webpack.js.org/guides/output-management</span></span><br><span class="line">output: {</span><br><span class="line">  publicPath: <span class="string">&apos;http://cdn.com.cn&apos;</span>,</span><br><span class="line">  <span class="comment">// name&#x4F1A;&#x5BF9;&#x5E94; main &#x548C; sub</span></span><br><span class="line">  filename: <span class="string">&apos;[name].[hash].bundle.js&apos;</span>,</span><br><span class="line">  path: path.resolve(__dirname, <span class="string">&apos;dist&apos;</span>),</span><br><span class="line">  chunkFilename: <span class="string">&apos;[name].[chunkhash].chunk.js&apos;</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// &#x5BF9;&#x4E0D;&#x540C;&#x7684;entry, &#x6253;&#x5305;&#x7684;output&#x6587;&#x4EF6;&#x540D;&#x79F0;&#x4E0D;&#x4E00;&#x6837;, &#x5982;&#x6709;&#x7684;&#x52A0;hash, &#x6709;&#x7684;&#x4E0D;&#x9700;&#x8981;hash</span></span><br><span class="line"><span class="comment">// https://webpack.js.org/configuration/output/#outputfilename</span></span><br><span class="line"><span class="built_in">module</span>.exports = {</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  output: {</span><br><span class="line">    filename: <span class="function">(<span class="params">chunkData</span>) =&gt;</span> {</span><br><span class="line">      <span class="keyword">return</span> chunkData.chunk.name === <span class="string">&apos;main&apos;</span> ? <span class="string">&apos;[name].js&apos;</span>: <span class="string">&apos;[name]/[name].js&apos;</span></span><br><span class="line">    },</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 <h1>mode config</h1>
 <figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mode: <span class="string">&apos;development&apos;</span> <span class="comment">// &#x4EE3;&#x7801;&#x4E0D;&#x4F1A;&#x88AB;&#x538B;&#x7F29;, &#x9ED8;&#x8BA4;&#x4E3A; production, &#x4EE3;&#x7801;&#x4F1A;&#x88AB;&#x538B;&#x7F29;</span></span><br></pre></td></tr></tbody></table></figure>
 <h1>loader &#x975E;js&#x6A21;&#x5757;&#x7684;&#x6253;&#x5305;</h1>
@@ -528,8 +528,8 @@ prefeching/preloading&#x53EF;&#x5B9E;&#x73B0;&#x7F51;&#x9875;&#x7A7A;&#x95F2;&#x
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/30/2018-11-30webpack4处理本地js库/" rel="next" title="webpack4处理本地js库">
-                <i class="fa fa-chevron-left"></i> webpack4处理本地js库
+              <a href="/2019/02/23/2019-02-23快速搭建mac前端开发环境/" rel="next" title="快速搭建mac前端开发环境">
+                <i class="fa fa-chevron-left"></i> 快速搭建mac前端开发环境
               </a>
             
           </div>
@@ -538,8 +538,8 @@ prefeching/preloading&#x53EF;&#x5B9E;&#x73B0;&#x7F51;&#x9875;&#x7A7A;&#x95F2;&#x
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/02/23/2019-02-23快速搭建mac前端开发环境/" rel="prev" title="快速搭建mac前端开发环境">
-                快速搭建mac前端开发环境 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/04/17/2019-04-17更改git提交的协议/" rel="prev" title="更改git提交的协议">
+                更改git提交的协议 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -622,7 +622,7 @@ prefeching/preloading&#x53EF;&#x5B9E;&#x73B0;&#x7F51;&#x9875;&#x7A7A;&#x95F2;&#x
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -635,7 +635,7 @@ prefeching/preloading&#x53EF;&#x5B9E;&#x73B0;&#x7F51;&#x9875;&#x7A7A;&#x95F2;&#x
     
 	  <a href="/categories/index.html">
 	
-      <span class="site-state-item-count">18</span>
+      <span class="site-state-item-count">19</span>
       <span class="site-state-item-name">分类</span>
     </a>
   </div>
@@ -648,7 +648,7 @@ prefeching/preloading&#x53EF;&#x5B9E;&#x73B0;&#x7F51;&#x9875;&#x7A7A;&#x95F2;&#x
     
 	  <a href="/tags/index.html">
 	
-      <span class="site-state-item-count">26</span>
+      <span class="site-state-item-count">27</span>
       <span class="site-state-item-name">标签</span>
     </a>
   </div>
