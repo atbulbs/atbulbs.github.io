@@ -378,6 +378,17 @@
 亲测微信小程序webview支持</p>
 <h3 id="demo"><a class="header-anchor" href="#demo">¶</a>demo</h3>
 <p><a href="https://www.audero.it/demo/vibration-api-demo.html" target="_blank" rel="noopener">https://www.audero.it/demo/vibration-api-demo.html</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.navigator.vibrate(<span class="number">1000</span>)</span><br><span class="line"><span class="built_in">window</span>.navigator.vibrate([<span class="number">1000</span>, <span class="number">1000</span>, <span class="number">2000</span>, <span class="number">1000</span>, <span class="number">3000</span>])</span><br><span class="line"><span class="comment">// 取消震动</span></span><br><span class="line"><span class="built_in">window</span>.navigator.vibrate(<span class="number">0</span>)</span><br><span class="line"><span class="built_in">window</span>.navigator.vibrate([])</span><br><span class="line"><span class="built_in">window</span>.navigator.vibrate([<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
+<h2 id="battery-status-电池状态"><a class="header-anchor" href="#battery-status-电池状态">¶</a>Battery Status 电池状态</h2>
+<p>官方文档: <a href="https://www.w3.org/TR/battery-status/" target="_blank" rel="noopener">https://www.w3.org/TR/battery-status/</a></p>
+<h3 id="应用场景-v2"><a class="header-anchor" href="#应用场景-v2">¶</a>应用场景</h3>
+<ul>
+<li>根据电池状态做相应节能处理, 改善用户体验, 延长电池寿命</li>
+<li>在电池耗尽之前保存关键数据, 防止数据丢失</li>
+</ul>
+<h3 id="兼容性-v2"><a class="header-anchor" href="#兼容性-v2">¶</a>兼容性</h3>
+<p>compatibility: <a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/getBattery#Browser_compatibility" target="_blank" rel="noopener">https://developer.mozilla.org/en-US/docs/Web/API/Navigator/getBattery#Browser_compatibility</a><br>
+亲测微信小程序webview支持</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/05/07/2019-05-07Fantastic H5 API/" rel="contents">
@@ -931,161 +942,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://atbulbs.github.io/2019/02/23/2019-03-11刷一刷webpack文档/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="atbulbs">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="atbubls(Jason Liao)">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/02/23/2019-03-11刷一刷webpack文档/" itemprop="url">刷一刷webpack文档</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-23T00:00:00+08:00">
-                2019-02-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端工程/" itemprop="url" rel="index">
-                    <span itemprop="name">前端工程</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1>webpack的核心定义</h1>
-<p>一个模块打包器(能识别ES Moudule和CommonJS规范和其他如css等格式的文件)</p>
-<h1>提高构建和打包效率</h1>
-<ul>
-<li>让node和webpack版本最新</li>
-</ul>
-<h1>package.json文件</h1>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"private"</span>: <span class="literal">true</span>, <span class="comment">// 私有项目, 不会被发布到npm线上仓库</span></span><br><span class="line">  <span class="string">"main"</span>: <span class="string">"index.js"</span>, <span class="comment">// 被外部引用的js文件</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1>npm script</h1>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ npm init -y <span class="comment"># 用默认配置初始项目</span></span><br><span class="line">$ npm info webpack <span class="comment"># 查看包的历史版本号</span></span><br><span class="line">$ npx webpack -v <span class="comment"># 使用nodemodules里的包</span></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/02/23/2019-03-11刷一刷webpack文档/" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://atbulbs.github.io/2019/02/23/2019-02-23快速搭建mac前端开发环境/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1203,6 +1059,161 @@
           });
       </script>
           
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://atbulbs.github.io/2019/02/23/2019-03-11刷一刷webpack文档/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="atbulbs">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="atbubls(Jason Liao)">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/23/2019-03-11刷一刷webpack文档/" itemprop="url">刷一刷webpack文档</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-23T00:00:00+08:00">
+                2019-02-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端工程/" itemprop="url" rel="index">
+                    <span itemprop="name">前端工程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1>webpack的核心定义</h1>
+<p>一个模块打包器(能识别ES Moudule和CommonJS规范和其他如css等格式的文件)</p>
+<h1>提高构建和打包效率</h1>
+<ul>
+<li>让node和webpack版本最新</li>
+</ul>
+<h1>package.json文件</h1>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"private"</span>: <span class="literal">true</span>, <span class="comment">// 私有项目, 不会被发布到npm线上仓库</span></span><br><span class="line">  <span class="string">"main"</span>: <span class="string">"index.js"</span>, <span class="comment">// 被外部引用的js文件</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1>npm script</h1>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ npm init -y <span class="comment"># 用默认配置初始项目</span></span><br><span class="line">$ npm info webpack <span class="comment"># 查看包的历史版本号</span></span><br><span class="line">$ npx webpack -v <span class="comment"># 使用nodemodules里的包</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/02/23/2019-03-11刷一刷webpack文档/" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
