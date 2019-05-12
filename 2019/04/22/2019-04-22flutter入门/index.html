@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="flutter,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="¶安装软件和插件  Flutter SDK https://flutter.dev/docs/get-started/install/macos 安装xcode 安装安卓studio并安装flutter, dart插件, sdk tools 安装vscode的flutter插件  ¶flutter配置 12345678910$ export PUB_HOSTED_URL=https://pub.f">
+<meta name="keywords" content="flutter">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flutter入门">
+<meta property="og:url" content="https://atbulbs.github.io/2019/04/22/2019-04-22flutter入门/index.html">
+<meta property="og:site_name" content="atbubls(Jason Liao)">
+<meta property="og:description" content="¶安装软件和插件  Flutter SDK https://flutter.dev/docs/get-started/install/macos 安装xcode 安装安卓studio并安装flutter, dart插件, sdk tools 安装vscode的flutter插件  ¶flutter配置 12345678910$ export PUB_HOSTED_URL=https://pub.f">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-12T06:18:19.535Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Flutter入门">
+<meta name="twitter:description" content="¶安装软件和插件  Flutter SDK https://flutter.dev/docs/get-started/install/macos 安装xcode 安装安卓studio并安装flutter, dart插件, sdk tools 安装vscode的flutter插件  ¶flutter配置 12345678910$ export PUB_HOSTED_URL=https://pub.f">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    
+    
+    emojis: {
+      className: 'github-emoji'
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://atbulbs.github.io/2019/04/22/2019-04-22flutter入门/">
+
+
+
+
+
+  <title>Flutter入门 | atbubls(Jason Liao)</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://www.github.com/atbulbs" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">atbubls(Jason Liao)</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">more exercises, more happiness</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://atbulbs.github.io/2019/04/22/2019-04-22flutter入门/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="atbulbs">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="atbubls(Jason Liao)">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Flutter入门</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-22T00:00:00+08:00">
+                2019-04-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/flutter/" itemprop="url" rel="index">
+                    <span itemprop="name">flutter</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="&#x5B89;&#x88C5;&#x8F6F;&#x4EF6;&#x548C;&#x63D2;&#x4EF6;"><a class="header-anchor" href="#&#x5B89;&#x88C5;&#x8F6F;&#x4EF6;&#x548C;&#x63D2;&#x4EF6;">&#xB6;</a>&#x5B89;&#x88C5;&#x8F6F;&#x4EF6;&#x548C;&#x63D2;&#x4EF6;</h2>
+<ul>
+<li><a href="https://flutter.dev/community/china" target="_blank" rel="noopener">Flutter SDK https://flutter.dev/docs/get-started/install/macos</a></li>
+<li>&#x5B89;&#x88C5;xcode</li>
+<li>&#x5B89;&#x88C5;&#x5B89;&#x5353;studio&#x5E76;&#x5B89;&#x88C5;flutter, dart&#x63D2;&#x4EF6;, sdk tools</li>
+<li>&#x5B89;&#x88C5;vscode&#x7684;flutter&#x63D2;&#x4EF6;</li>
+</ul>
+<h3 id="flutter&#x914D;&#x7F6E;"><a class="header-anchor" href="#flutter&#x914D;&#x7F6E;">&#xB6;</a>flutter&#x914D;&#x7F6E;</h3>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">export</span> PUB_HOSTED_URL=https://pub.flutter-io.cn</span><br><span class="line">$ <span class="built_in">export</span> FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn</span><br><span class="line">$ git <span class="built_in">clone</span> -b dev https://github.com/flutter/flutter.git</span><br><span class="line">$ <span class="built_in">export</span> PATH=<span class="string">&quot;<span class="variable">$PWD</span>/flutter/bin:<span class="variable">$PATH</span>&quot;</span></span><br><span class="line">$ <span class="built_in">cd</span> ./flutter</span><br><span class="line">$ flutter doctor</span><br><span class="line"><span class="comment"># &#x6C38;&#x4E45;&#x6DFB;&#x52A0;flutter&#x5230;PATH, &#x53C2;&#x8003;</span></span><br><span class="line">$ <span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/Users/jsl/flutter/bin</span><br><span class="line">$ <span class="built_in">source</span> <span class="variable">$HOME</span>/.bash_profile</span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$PATH</span></span><br></pre></td></tr></tbody></table></figure>
+<a id="more"></a>
+<h3 id="android-studio&#x914D;&#x7F6E;"><a class="header-anchor" href="#android-studio&#x914D;&#x7F6E;">&#xB6;</a>android studio&#x914D;&#x7F6E;</h3>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">//Macintosh HD&#x2069; &#x25B8; &#x2068;Users&#x2069; &#x25B8; &#x2068;&#x4F60;&#x7684;&#x7528;&#x6237;&#x540D; &#x25B8; &#x2068;.bash_profile</span><br><span class="line"><span class="comment">#Android &#x73AF;&#x5883;&#x53D8;&#x91CF;</span></span><br><span class="line"><span class="built_in">export</span> ANDROID_HOME=/Users/&#x4F60;&#x7684;&#x7528;&#x6237;&#x540D;/Library/Android/sdk</span><br><span class="line"><span class="comment">#Android &#x6A21;&#x62DF;&#x5668;&#x8DEF;&#x5F84;</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">${PATH}</span>:<span class="variable">${ANDROID_HOME}</span>/emulator</span><br><span class="line"><span class="comment">#Android tools &#x8DEF;&#x5F84;</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">${PATH}</span>:<span class="variable">${ANDROID_HOME}</span>/tools</span><br><span class="line"><span class="comment">#Android &#x5E73;&#x53F0;&#x5DE5;&#x5177;&#x8DEF;&#x5F84;</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">${PATH}</span>:<span class="variable">${ANDROID_HOME}</span>/platform-tools</span><br><span class="line"><span class="comment">#Android NDK&#x8DEF;&#x5F84;</span></span><br><span class="line">ANDROID_NDK_HOME=/Users/&#x4F60;&#x7684;&#x7528;&#x6237;&#x540D;/Library/Android/ndk/android-ndk-r10e</span><br><span class="line"><span class="comment">#FLutter&#x955C;&#x50CF;</span></span><br><span class="line"><span class="built_in">export</span> PUB_HOSTED_URL=https://pub.flutter-io.cn</span><br><span class="line"><span class="built_in">export</span> FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn</span><br><span class="line"><span class="comment">#Flutter&#x73AF;&#x5883;&#x53D8;&#x91CF;</span></span><br><span class="line"><span class="built_in">export</span> PATH=/Users/jph/Documents/flutter/bin:<span class="variable">$PATH</span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="xcode&#x914D;&#x7F6E;"><a class="header-anchor" href="#xcode&#x914D;&#x7F6E;">&#xB6;</a>xcode&#x914D;&#x7F6E;</h3>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &#x914D;&#x7F6E;cli tool</span></span><br><span class="line">$ sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer</span><br><span class="line"><span class="comment"># &#x542F;&#x52A8;&#x4E00;&#x4E2A;ios&#x6A21;&#x62DF;&#x5668;</span></span><br><span class="line">$ open -a Simulator</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="&#x521B;&#x5EFA;flutter&#x9879;&#x76EE;"><a class="header-anchor" href="#&#x521B;&#x5EFA;flutter&#x9879;&#x76EE;">&#xB6;</a>&#x521B;&#x5EFA;Flutter&#x9879;&#x76EE;</h2>
+<h3 id="&#x547D;&#x4EE4;&#x884C;&#x521B;&#x5EFA;flutter&#x9879;&#x76EE;"><a class="header-anchor" href="#&#x547D;&#x4EE4;&#x884C;&#x521B;&#x5EFA;flutter&#x9879;&#x76EE;">&#xB6;</a>&#x547D;&#x4EE4;&#x884C;&#x521B;&#x5EFA;flutter&#x9879;&#x76EE;</h3>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ flutter create app_name</span><br><span class="line"><span class="comment"># &#x8FDB;&#x5165;&#x9879;&#x76EE;&#x76EE;&#x5F55;</span></span><br><span class="line">$ <span class="built_in">cd</span> ap_name</span><br><span class="line"><span class="comment"># &#x542F;&#x52A8;&#x9879;&#x76EE;</span></span><br><span class="line">$ flutter run</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="android-studio&#x521B;&#x5EFA;flutter&#x9879;&#x76EE;"><a class="header-anchor" href="#android-studio&#x521B;&#x5EFA;flutter&#x9879;&#x76EE;">&#xB6;</a>Android studio&#x521B;&#x5EFA;flutter&#x9879;&#x76EE;</h3>
+<p>File &gt; New &gt; New Flutter Project</p>
+<h2 id="&#x6A21;&#x62DF;&#x5668;&#x8C03;&#x8BD5;"><a class="header-anchor" href="#&#x6A21;&#x62DF;&#x5668;&#x8C03;&#x8BD5;">&#xB6;</a>&#x6A21;&#x62DF;&#x5668;&#x8C03;&#x8BD5;</h2>
+<h3 id="android-studio-&#x542F;&#x52A8;&#x6A21;&#x62DF;&#x5668;"><a class="header-anchor" href="#android-studio-&#x542F;&#x52A8;&#x6A21;&#x62DF;&#x5668;">&#xB6;</a>Android Studio &#x542F;&#x52A8;&#x6A21;&#x62DF;&#x5668;</h3>
+<p>&#x6DFB;&#x52A0;&#x5E76;&#x9009;&#x62E9;&#x6A21;&#x62DF;&#x5668;&#x548C;&#x7A0B;&#x5E8F;&#x5165;&#x53E3;, &#x542F;&#x52A8;&#x6A21;&#x62DF;&#x5668;</p>
+<h3 id="xcode-&#x542F;&#x52A8;&#x6A21;&#x62DF;&#x5668;"><a class="header-anchor" href="#xcode-&#x542F;&#x52A8;&#x6A21;&#x62DF;&#x5668;">&#xB6;</a>XCode &#x542F;&#x52A8;&#x6A21;&#x62DF;&#x5668;</h3>
+<h2 id="&#x771F;&#x673A;&#x8C03;&#x8BD5;"><a class="header-anchor" href="#&#x771F;&#x673A;&#x8C03;&#x8BD5;">&#xB6;</a>&#x771F;&#x673A;&#x8C03;&#x8BD5;</h2>
+<h3 id="android-studio-&#x771F;&#x673A;&#x8C03;&#x8BD5;"><a class="header-anchor" href="#android-studio-&#x771F;&#x673A;&#x8C03;&#x8BD5;">&#xB6;</a>Android Studio &#x771F;&#x673A;&#x8C03;&#x8BD5;</h3>
+<p>&#x8FDE;&#x63A5;&#x6570;&#x636E;&#x7EBF;,</p>
+<h3 id="xcode-&#x771F;&#x673A;&#x8C03;&#x8BD5;"><a class="header-anchor" href="#xcode-&#x771F;&#x673A;&#x8C03;&#x8BD5;">&#xB6;</a>XCode &#x771F;&#x673A;&#x8C03;&#x8BD5;</h3>
+<h1>&#x5B89;&#x88C5;dart</h1>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ brew tap dart-lang/dart</span><br><span class="line">$ brew install dart</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="&#x8FDE;&#x63A5;&#x4E86;&#x591A;&#x4E2A;&#x8BBE;&#x5907;"><a class="header-anchor" href="#&#x8FDE;&#x63A5;&#x4E86;&#x591A;&#x4E2A;&#x8BBE;&#x5907;">&#xB6;</a>&#x8FDE;&#x63A5;&#x4E86;&#x591A;&#x4E2A;&#x8BBE;&#x5907;</h3>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ flutter run -d <span class="string">&apos;&#x8BBE;&#x5907;id(&#x5982;iPhone X)&apos;</span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="ios&#x771F;&#x673A;&#x8C03;&#x8BD5;"><a class="header-anchor" href="#ios&#x771F;&#x673A;&#x8C03;&#x8BD5;">&#xB6;</a>ios&#x771F;&#x673A;&#x8C03;&#x8BD5;</h3>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &#x4E00;&#x4E0B;&#x547D;&#x4EE4;&#x82E5;&#x51FA;&#x9519;, &#x8FD0;&#x884C; brew doctor</span></span><br><span class="line">$ brew update</span><br><span class="line">$ brew install --HEAD usbmuxd</span><br><span class="line">$ brew link usbmuxd</span><br><span class="line">$ brew install --HEAD libimobiledevice</span><br><span class="line">$ brew install ideviceinstaller ios-deploy cocoapods</span><br><span class="line">$ pod setup</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="flutter&#x5305;&#x7BA1;&#x7406;"><a class="header-anchor" href="#flutter&#x5305;&#x7BA1;&#x7406;">&#xB6;</a>flutter&#x5305;&#x7BA1;&#x7406;</h2>
+<ol>
+<li>
+<p><a href="https://pub.dev/" target="_blank" rel="noopener">https://pub.dev/</a></p>
+</li>
+<li>
+<p>&#x641C;&#x7D22;&#x5982;: flutter_color_plugin</p>
+</li>
+<li>
+<p>&#x6DFB;&#x52A0;&#x4F9D;&#x8D56;</p>
+<figure class="highlight yaml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># pubspec.yaml</span></span><br><span class="line"><span class="attr">dependencies:</span></span><br><span class="line"><span class="attr"> flutter_color_plugin:</span> <span class="string">^0.0.2</span></span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li>
+<p>&#x5B89;&#x88C5;, &#x70B9;&#x51FB; Package get</p>
+</li>
+<li>
+<p>&#x5BFC;&#x5165;</p>
+<figure class="highlight dart"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- pugin_use.dart --&gt;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&apos;package:flutter_color_plugin/flutter_color_plugin.dart&apos;</span>;</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li>
+<p>&#x5982;&#x679C;&#x9047;&#x5230;&#x95EE;&#x9898;, stop&#x91CD;&#x65B0;&#x8FD0;&#x884C;, &#x5378;&#x8F7D;&#x91CD;&#x88C5;app, &#x770B;issue</p>
+</li>
+</ol>
+<h1>StatelessWidget</h1>
+<h2 id="&#x7279;&#x70B9;"><a class="header-anchor" href="#&#x7279;&#x70B9;">&#xB6;</a>&#x7279;&#x70B9;</h2>
+<p>&#x5185;&#x90E8;&#x6CA1;&#x6709;&#x9700;&#x8981;&#x7BA1;&#x7406;&#x7684;&#x72B6;&#x6001;, &#x4E0D;&#x8981;&#x6839;&#x636E;&#x72B6;&#x6001;&#x6539;&#x53D8;&#x81EA;&#x5DF1;&#x7684;&#x6E32;&#x67D3;</p>
+<h2 id="&#x5E38;&#x7528;statelesswidget&#x5B50;&#x7EC4;&#x4EF6;"><a class="header-anchor" href="#&#x5E38;&#x7528;statelesswidget&#x5B50;&#x7EC4;&#x4EF6;">&#xB6;</a>&#x5E38;&#x7528;StatelessWidget&#x5B50;&#x7EC4;&#x4EF6;</h2>
+<h3 id="container"><a class="header-anchor" href="#container">&#xB6;</a>Container</h3>
+<h3 id="text"><a class="header-anchor" href="#text">&#xB6;</a>Text</h3>
+<h3 id="icon"><a class="header-anchor" href="#icon">&#xB6;</a>Icon</h3>
+<h3 id="closebutton"><a class="header-anchor" href="#closebutton">&#xB6;</a>CloseButton</h3>
+<h3 id="backbutton"><a class="header-anchor" href="#backbutton">&#xB6;</a>BackButton</h3>
+<h3 id="chip"><a class="header-anchor" href="#chip">&#xB6;</a>Chip</h3>
+<p>&#x53C2;&#x8003;: <a href="https://material.io" target="_blank" rel="noopener">https://material.io</a></p>
+<h3 id="divider-&#x5206;&#x5272;&#x7EBF;"><a class="header-anchor" href="#divider-&#x5206;&#x5272;&#x7EBF;">&#xB6;</a>Divider &#x5206;&#x5272;&#x7EBF;</h3>
+<p>height: &#x53EF;&#x8BBE;&#x7F6E;&#x5BB9;&#x5668;&#x9AD8;&#x5EA6;, &#x4E0D;&#x53EF;&#x8BBE;&#x7F6E;&#x7EBF;&#x7684;&#x9AD8;&#x5EA6;</p>
+<h3 id="card-&#x5361;&#x7247;"><a class="header-anchor" href="#card-&#x5361;&#x7247;">&#xB6;</a>Card &#x5361;&#x7247;</h3>
+<p>&#x5E26;&#x6709;&#x5706;&#x89D2;, &#x9634;&#x5F71;, &#x8FB9;&#x6846;&#x7B49;&#x6548;&#x679C;&#x7684;&#x5361;&#x7247;</p>
+<h3 id="alertdialog-&#x5F39;&#x51FA;&#x5BF9;&#x8BDD;&#x6846;"><a class="header-anchor" href="#alertdialog-&#x5F39;&#x51FA;&#x5BF9;&#x8BDD;&#x6846;">&#xB6;</a>AlertDialog &#x5F39;&#x51FA;&#x5BF9;&#x8BDD;&#x6846;</h3>
+<h1>StatefulWidget</h1>
+<h2 id="&#x5E38;&#x7528;statefulwidget&#x5B50;&#x7EC4;&#x4EF6;"><a class="header-anchor" href="#&#x5E38;&#x7528;statefulwidget&#x5B50;&#x7EC4;&#x4EF6;">&#xB6;</a>&#x5E38;&#x7528;StatefulWidget&#x5B50;&#x7EC4;&#x4EF6;</h2>
+<h3 id="materialapp"><a class="header-anchor" href="#materialapp">&#xB6;</a>MaterialApp</h3>
+<h3 id="bottomnavigationbar-&#x5E95;&#x90E8;&#x5BFC;&#x822A;&#x6761;"><a class="header-anchor" href="#bottomnavigationbar-&#x5E95;&#x90E8;&#x5BFC;&#x822A;&#x6761;">&#xB6;</a>BottomNavigationBar &#x5E95;&#x90E8;&#x5BFC;&#x822A;&#x6761;</h3>
+<h3 id="refreshindicator-&#x5237;&#x65B0;&#x6307;&#x793A;"><a class="header-anchor" href="#refreshindicator-&#x5237;&#x65B0;&#x6307;&#x793A;">&#xB6;</a>RefreshIndicator &#x5237;&#x65B0;&#x6307;&#x793A;</h3>
+<h3 id="image"><a class="header-anchor" href="#image">&#xB6;</a>Image</h3>
+<h3 id="textfield"><a class="header-anchor" href="#textfield">&#xB6;</a>TextField</h3>
+<h3 id="pageview"><a class="header-anchor" href="#pageview">&#xB6;</a>PageView</h3>
+<h1>&#x5E03;&#x5C40;&#x76F8;&#x5173;&#x7EC4;&#x4EF6;</h1>
+<h2 id="container-v2"><a class="header-anchor" href="#container-v2">&#xB6;</a>Container</h2>
+<h2 id="renderobjectwidget"><a class="header-anchor" href="#renderobjectwidget">&#xB6;</a>RenderObjectWidget</h2>
+<h2 id="parentdatawidget"><a class="header-anchor" href="#parentdatawidget">&#xB6;</a>ParentDataWidget</h2>
+<h1>&#x8DEF;&#x7531;&#x8DF3;&#x8F6C;</h1>
+<h2 id="&#x901A;&#x8FC7;&#x8DEF;&#x7531;&#x540D;&#x8DF3;&#x8F6C;"><a class="header-anchor" href="#&#x901A;&#x8FC7;&#x8DEF;&#x7531;&#x540D;&#x8DF3;&#x8F6C;">&#xB6;</a>&#x901A;&#x8FC7;&#x8DEF;&#x7531;&#x540D;&#x8DF3;&#x8F6C;</h2>
+<h2 id="&#x4E0D;&#x901A;&#x8FC7;&#x8DEF;&#x7531;&#x540D;&#x8DF3;&#x8F6C;"><a class="header-anchor" href="#&#x4E0D;&#x901A;&#x8FC7;&#x8DEF;&#x7531;&#x540D;&#x8DF3;&#x8F6C;">&#xB6;</a>&#x4E0D;&#x901A;&#x8FC7;&#x8DEF;&#x7531;&#x540D;&#x8DF3;&#x8F6C;</h2>
+<h2 id="&#x9875;&#x9762;&#x8FD4;&#x56DE;"><a class="header-anchor" href="#&#x9875;&#x9762;&#x8FD4;&#x56DE;">&#xB6;</a>&#x9875;&#x9762;&#x8FD4;&#x56DE;</h2>
+<figure class="highlight dart"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Navigator.pop(context)</span><br></pre></td></tr></tbody></table></figure>
+<h1>&#x76D1;&#x542C;&#x7528;&#x6237;&#x624B;&#x52BF; Gesture</h1>
+<figure class="highlight dart"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">GestureDetctor(</span><br><span class="line">  onTap: () =&gt; _printMsg(<span class="string">&apos;&#x70B9;&#x51FB;&apos;</span>),</span><br><span class="line">  onDoubleTap: () =&gt; _printMsg(<span class="string">&apos;&#x53CC;&#x51FB;&apos;</span>),</span><br><span class="line">  onLongPress: () =&gt; _printMsg(<span class="string">&apos;&#x957F;&#x6309;&apos;</span>),</span><br><span class="line">  onTapCancel: () =&gt; _printMsg(<span class="string">&apos;&#x53D6;&#x6D88;&apos;</span>),</span><br><span class="line">  onTapUp: (e) =&gt; _printMsg(<span class="string">&apos;&#x677E;&#x5F00;&apos;</span>),</span><br><span class="line">  onTapDown: (e) =&gt; _printMsg(<span class="string">&apos;&#x6309;&#x4E0B;&apos;</span>),</span><br><span class="line"></span><br><span class="line">)</span><br></pre></td></tr></tbody></table></figure>
+<h1>&#x5BFC;&#x5165;&#x8D44;&#x6E90;&#x6587;&#x4EF6;</h1>
+<figure class="highlight yaml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># pubspec.yaml</span></span><br><span class="line"><span class="attr">assets:</span> </span><br><span class="line"><span class="bullet">  -</span> <span class="string">images/avatar.png</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight dart"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Image(</span><br><span class="line">  image: AssetImage(<span class="string">&apos;images/avatar.png&apos;</span>)</span><br><span class="line">)</span><br></pre></td></tr></tbody></table></figure>
+<h1>&#x6253;&#x5F00;&#x7B2C;&#x4E09;&#x65B9;APP</h1>
+<p>&#x6DFB;&#x52A0;&#x5B89;&#x88C5;&#x5F15;&#x5165;url_launcher</p>
+<figure class="highlight dart"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">_launchURL() <span class="keyword">async</span> {</span><br><span class="line">  <span class="keyword">const</span> url = <span class="string">&apos;https://flutter.io&apos;</span>;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">await</span> canLaunch(url)) {</span><br><span class="line">    <span class="keyword">await</span> launch(url);</span><br><span class="line">  } <span class="keyword">else</span> {</span><br><span class="line">    <span class="keyword">throw</span> <span class="string">&apos;Could not launch <span class="subst">$url<span class="string">&apos;;</span></span></span></span><br><span class="line"><span class="string"><span class="subst"><span class="string">  }</span></span></span></span><br><span class="line"><span class="string"><span class="subst"><span class="string">}</span></span></span></span><br><span class="line"><span class="string"><span class="subst"><span class="string">// &#x4F7F;&#x7528;APP&#x7684;url, &#x6216;&#x8005;schema</span></span></span></span><br><span class="line"><span class="string"><span class="subst"><span class="string">// Android</span></span></span></span><br><span class="line"><span class="string"><span class="subst"><span class="string">const url = &apos;</span></span>geo:52.32,4.917&apos;</span>;</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">await</span> canLaunch(url)) {</span><br><span class="line">  <span class="keyword">await</span> launch(url);</span><br><span class="line">} <span class="keyword">else</span> {</span><br><span class="line">  <span class="comment">// iOS</span></span><br><span class="line">  <span class="keyword">const</span> url = <span class="string">&apos;http://maps.apple.com/?ll=52.32,4.917&apos;</span>;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">await</span> canLaunch(url)) {</span><br><span class="line">    <span class="keyword">await</span> launch(url);</span><br><span class="line">  } <span class="keyword">else</span> {</span><br><span class="line">    <span class="keyword">throw</span> <span class="string">&apos;Could not launch <span class="subst">$url<span class="string">&apos;;</span></span></span></span><br><span class="line"><span class="string"><span class="subst"><span class="string">  }</span></span></span></span><br><span class="line"><span class="string"><span class="subst"><span class="string">}</span></span></span></span><br></pre></td></tr></tbody></table></figure>
+<h1>&#x8C03;&#x7528;&#x76F8;&#x673A;</h1>
+<ol>
+<li>&#x6DFB;&#x52A0;&#x5B89;&#x88C5;&#x5F15;&#x5165;<a href="https://pub.dev/packages/image_picker" target="_blank" rel="noopener">image_picker</a>&#x63D2;&#x4EF6;</li>
+<li><a href="https://flutter.dev/docs/development/packages-and-plugins/androidx-compatibility" target="_blank" rel="noopener">AndroidX compatibillity</a></li>
+<li>&#x53C2;&#x7167;git&#x4ED3;&#x5E93;example&#x914D;&#x7F6E;<project root="">/ios/Runner/Info.plist</project></li>
+<li>&#x5B89;&#x5353;&#x6A21;&#x62DF;&#x5668;&#x4E0A;&#x6709;&#x5047;&#x76F8;&#x673A;&#x53EF;&#x7528;</li>
+</ol>
+<h1>&#x53EF;&#x5B66;&#x4E60;&#x7684;&#x5B9E;&#x4F8B;&#x9879;&#x76EE;</h1>
+<ul>
+<li><a href="https://github.com/flutter/flutter/tree/master/examples" target="_blank" rel="noopener">https://github.com/flutter/flutter/tree/master/examples</a></li>
+<li><a href="https://github.com/flutter/samples" target="_blank" rel="noopener">https://github.com/flutter/samples</a></li>
+<li><a href="https://github.com/nisrulz/flutter-examples" target="_blank" rel="noopener">https://github.com/nisrulz/flutter-examples</a></li>
+<li><a href="https://github.com/iampawan/FlutterExampleApps" target="_blank" rel="noopener">https://github.com/iampawan/FlutterExampleApps</a></li>
+</ul>
+<h1>Image widget &#x56FE;&#x7247;&#x63A7;&#x4EF6;&#x5F00;&#x53D1;</h1>
+<h2 id="&#x52A0;&#x8F7D;&#x7F51;&#x7EDC;&#x56FE;&#x7247;"><a class="header-anchor" href="#&#x52A0;&#x8F7D;&#x7F51;&#x7EDC;&#x56FE;&#x7247;">&#xB6;</a>&#x52A0;&#x8F7D;&#x7F51;&#x7EDC;&#x56FE;&#x7247;</h2>
+<h2 id="&#x52A0;&#x8F7D;&#x9759;&#x6001;&#x56FE;&#x7247;"><a class="header-anchor" href="#&#x52A0;&#x8F7D;&#x9759;&#x6001;&#x56FE;&#x7247;">&#xB6;</a>&#x52A0;&#x8F7D;&#x9759;&#x6001;&#x56FE;&#x7247;</h2>
+<h2 id="&#x52A0;&#x8F7D;&#x672C;&#x5730;&#x56FE;&#x7247;"><a class="header-anchor" href="#&#x52A0;&#x8F7D;&#x672C;&#x5730;&#x56FE;&#x7247;">&#xB6;</a>&#x52A0;&#x8F7D;&#x672C;&#x5730;&#x56FE;&#x7247;</h2>
+<p>&#x76F8;&#x5BF9;&#x8DEF;&#x5F84;&#x63D2;&#x4EF6;: <a href="https://pub.dev/packages/path_provider" target="_blank" rel="noopener">https://pub.dev/packages/path_provider</a></p>
+<figure class="highlight dart"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&apos;dart:io&apos;</span>;</span><br><span class="line">Image.file(File(<span class="string">&apos;/sdcard/Download/Stack.png))</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="&#x8BBE;&#x7F6E;placeholder"><a class="header-anchor" href="#&#x8BBE;&#x7F6E;placeholder">&#xB6;</a>&#x8BBE;&#x7F6E;Placeholder</h2>
+<p>&#x4ECE;&#x5185;&#x5B58;&#x4E2D;&#x6DFB;&#x52A0;Placeholder&#x63D2;&#x4EF6;: <a href="https://pub.dev/packages/transparent_image" target="_blank" rel="noopener">https://pub.dev/packages/transparent_image</a></p>
+<h2 id="&#x914D;&#x7F6E;&#x56FE;&#x7247;&#x7F13;&#x5B58;"><a class="header-anchor" href="#&#x914D;&#x7F6E;&#x56FE;&#x7247;&#x7F13;&#x5B58;">&#xB6;</a>&#x914D;&#x7F6E;&#x56FE;&#x7247;&#x7F13;&#x5B58;</h2>
+<p>&#x63D2;&#x4EF6;: <a href="https://pub.dev/packages/cached_network_image" target="_blank" rel="noopener">https://pub.dev/packages/cached_network_image</a></p>
+<h2 id="&#x52A0;&#x8F7D;icon"><a class="header-anchor" href="#&#x52A0;&#x8F7D;icon">&#xB6;</a>&#x52A0;&#x8F7D;Icon</h2>
+<p><a href="https://material.io/tools/icons/?style=baseline" target="_blank" rel="noopener">https://material.io/tools/icons/?style=baseline</a></p>
+  <figure class="highlight dart"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&apos;package:flutter/material.dart&apos;</span>;</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="&#x914D;&#x7F6E;&#x81EA;&#x5B9A;&#x4E49;icon"><a class="header-anchor" href="#&#x914D;&#x7F6E;&#x81EA;&#x5B9A;&#x4E49;icon">&#xB6;</a>&#x914D;&#x7F6E;&#x81EA;&#x5B9A;&#x4E49;Icon</h2>
+<h1>AnimationWidget &#x7B80;&#x5316;Animation</h1>
+<p>&#x4E0D;&#x9700;&#x8981;&#x624B;&#x52A8;&#x7684;setState&#x548C;addListener</p>
+<h1>AnimationBuilder &#x8BA9;&#x52A8;&#x753B;&#x548C;&#x903B;&#x8F91;&#x5206;&#x79BB;</h1>
+<h1>Hero&#x52A8;&#x753B;, &#x9875;&#x9762;&#x8FC7;&#x6E21;&#x65F6;&#x5171;&#x6709;&#x4E00;&#x90E8;&#x5206;&#x754C;&#x9762;</h1>
+<h1>Flutter&#x8C03;&#x8BD5;</h1>
+<ul>
+<li>&#x65AD;&#x70B9;</li>
+<li>&#x53D8;&#x91CF;Variable&#x89C6;&#x7A97;&#x4E0E;&#x89C2;&#x5BDF;Watches&#x89C6;&#x7A97;</li>
+<li>Frames&#x56DE;&#x9000;</li>
+<li>Console</li>
+</ul>
+<h1>Scaffold widget</h1>
+<p>scaffold&#x811A;&#x624B;&#x67B6;, &#x5B9E;&#x73B0;&#x4E86;&#x57FA;&#x672C;&#x7684;<code>material design</code>&#x7684;&#x5E03;&#x5C40;&#x7ED3;&#x6784;</p>
+<h1>PageView</h1>
+<p>&#x4E00;&#x4E2A;&#x53EF;&#x4EE5;&#x5B8C;&#x6210;&#x9875;&#x9762;&#x4E4B;&#x95F4;&#x6EDA;&#x52A8;&#x7684;widget</p>
+<h1>&#x8F6E;&#x64AD;&#x7EC4;&#x4EF6;</h1>
+<p>flutter_swiper</p>
+<h1>&#x57FA;&#x4E8E;Http&#x5B9E;&#x73B0;&#x7F51;&#x7EDC;&#x64CD;&#x4F5C;</h1>
+<p>&#x5F15;&#x5165;http&#x63D2;&#x4EF6;</p>
+<h1>&#x5F02;&#x6B65;: Future &#x4E0E; FutureBuilder</h1>
+<h1>JSON&#x89E3;&#x6790;&#x4E0E;&#x590D;&#x6742;&#x6A21;&#x578B;&#x8F6C;&#x6362;</h1>
+<h1>&#x672C;&#x5730;&#x5B58;&#x50A8;shared_preferences</h1>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>点击打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="atbulbs 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="atbulbs 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/flutter/" rel="tag"># flutter</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/17/2019-04-17更改git提交的协议/" rel="next" title="更改git提交的协议">
+                <i class="fa fa-chevron-left"></i> 更改git提交的协议
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/05/2019-05-05Phaser TS项目对低版本iOS的兼容/" rel="prev" title="Phaser TS项目对低版本iOS的兼容">
+                Phaser TS项目对低版本iOS的兼容 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="atbulbs">
+            
+              <p class="site-author-name" itemprop="name">atbulbs</p>
+              <p class="site-description motion-element" itemprop="description"></></p>
+          </div>
+
+          <nav class="site-state motion-element">
+            <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="293" height="86" src="//music.163.com/outchain/player?type=2&id=402073046&auto=1&height=66"></iframe>
+          </nav>
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+  
+  
+  <div class="site-state-item site-state-categories">
+    
+	  <a href="/categories/index.html">
+	
+      <span class="site-state-item-count">19</span>
+      <span class="site-state-item-name">分类</span>
+    </a>
+  </div>
+
+
+
+  
+  
+  <div class="site-state-item site-state-tags">
+    
+	  <a href="/tags/index.html">
+	
+      <span class="site-state-item-count">27</span>
+      <span class="site-state-item-name">标签</span>
+    </a>
+  </div>
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/atbulbs" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:atbulbs@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装软件和插件"><span class="nav-number">1.</span> <span class="nav-text">¶安装软件和插件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#flutter配置"><span class="nav-number">1.1.</span> <span class="nav-text">¶flutter配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#android-studio配置"><span class="nav-number">1.2.</span> <span class="nav-text">¶android studio配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#xcode配置"><span class="nav-number">1.3.</span> <span class="nav-text">¶xcode配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建flutter项目"><span class="nav-number">2.</span> <span class="nav-text">¶创建Flutter项目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#命令行创建flutter项目"><span class="nav-number">2.1.</span> <span class="nav-text">¶命令行创建flutter项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#android-studio创建flutter项目"><span class="nav-number">2.2.</span> <span class="nav-text">¶Android studio创建flutter项目</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模拟器调试"><span class="nav-number">3.</span> <span class="nav-text">¶模拟器调试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#android-studio-启动模拟器"><span class="nav-number">3.1.</span> <span class="nav-text">¶Android Studio 启动模拟器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#xcode-启动模拟器"><span class="nav-number">3.2.</span> <span class="nav-text">¶XCode 启动模拟器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#真机调试"><span class="nav-number">4.</span> <span class="nav-text">¶真机调试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#android-studio-真机调试"><span class="nav-number">4.1.</span> <span class="nav-text">¶Android Studio 真机调试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#xcode-真机调试"><span class="nav-number">4.2.</span> <span class="nav-text">¶XCode 真机调试</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">安装dart</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#连接了多个设备"><span class="nav-number">0.1.</span> <span class="nav-text">¶连接了多个设备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ios真机调试"><span class="nav-number">0.2.</span> <span class="nav-text">¶ios真机调试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#flutter包管理"><span class="nav-number">1.</span> <span class="nav-text">¶flutter包管理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">StatelessWidget</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#特点"><span class="nav-number">1.</span> <span class="nav-text">¶特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用statelesswidget子组件"><span class="nav-number">2.</span> <span class="nav-text">¶常用StatelessWidget子组件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#container"><span class="nav-number">2.1.</span> <span class="nav-text">¶Container</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#text"><span class="nav-number">2.2.</span> <span class="nav-text">¶Text</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#icon"><span class="nav-number">2.3.</span> <span class="nav-text">¶Icon</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#closebutton"><span class="nav-number">2.4.</span> <span class="nav-text">¶CloseButton</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#backbutton"><span class="nav-number">2.5.</span> <span class="nav-text">¶BackButton</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#chip"><span class="nav-number">2.6.</span> <span class="nav-text">¶Chip</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#divider-分割线"><span class="nav-number">2.7.</span> <span class="nav-text">¶Divider 分割线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#card-卡片"><span class="nav-number">2.8.</span> <span class="nav-text">¶Card 卡片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#alertdialog-弹出对话框"><span class="nav-number">2.9.</span> <span class="nav-text">¶AlertDialog 弹出对话框</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">StatefulWidget</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#常用statefulwidget子组件"><span class="nav-number">1.</span> <span class="nav-text">¶常用StatefulWidget子组件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#materialapp"><span class="nav-number">1.1.</span> <span class="nav-text">¶MaterialApp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bottomnavigationbar-底部导航条"><span class="nav-number">1.2.</span> <span class="nav-text">¶BottomNavigationBar 底部导航条</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#refreshindicator-刷新指示"><span class="nav-number">1.3.</span> <span class="nav-text">¶RefreshIndicator 刷新指示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#image"><span class="nav-number">1.4.</span> <span class="nav-text">¶Image</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#textfield"><span class="nav-number">1.5.</span> <span class="nav-text">¶TextField</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pageview"><span class="nav-number">1.6.</span> <span class="nav-text">¶PageView</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">布局相关组件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#container-v2"><span class="nav-number">1.</span> <span class="nav-text">¶Container</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#renderobjectwidget"><span class="nav-number">2.</span> <span class="nav-text">¶RenderObjectWidget</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#parentdatawidget"><span class="nav-number">3.</span> <span class="nav-text">¶ParentDataWidget</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">路由跳转</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#通过路由名跳转"><span class="nav-number">1.</span> <span class="nav-text">¶通过路由名跳转</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不通过路由名跳转"><span class="nav-number">2.</span> <span class="nav-text">¶不通过路由名跳转</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#页面返回"><span class="nav-number">3.</span> <span class="nav-text">¶页面返回</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">监听用户手势 Gesture</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">导入资源文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">打开第三方APP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">调用相机</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">可学习的实例项目</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">Image widget 图片控件开发</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#加载网络图片"><span class="nav-number">1.</span> <span class="nav-text">¶加载网络图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加载静态图片"><span class="nav-number">2.</span> <span class="nav-text">¶加载静态图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加载本地图片"><span class="nav-number">3.</span> <span class="nav-text">¶加载本地图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置placeholder"><span class="nav-number">4.</span> <span class="nav-text">¶设置Placeholder</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置图片缓存"><span class="nav-number">5.</span> <span class="nav-text">¶配置图片缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加载icon"><span class="nav-number">6.</span> <span class="nav-text">¶加载Icon</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置自定义icon"><span class="nav-number">7.</span> <span class="nav-text">¶配置自定义Icon</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">AnimationWidget 简化Animation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">AnimationBuilder 让动画和逻辑分离</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">Hero动画, 页面过渡时共有一部分界面</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">Flutter调试</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">Scaffold widget</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">PageView</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">轮播组件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">基于Http实现网络操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">异步: Future 与 FutureBuilder</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">JSON解析与复杂模型转换</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">本地存储shared_preferences</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love love-heart">
+    <i class="fa fa-heart" aria-hidden="true"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">atbulbs</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
